@@ -1,12 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Baby, GraduationCap, BookOpen, Heart, Star, Sparkles } from 'lucide-react';
-
-// Using the same import pattern as your original code
+import image_2 from "@/assets/image_2.png";
 import image_3 from "@/assets/image_3.jpg";
 import image_4 from "@/assets/image_4.jpg";
 import image_5 from "@/assets/image_5.jpg";
-import image_6 from "@/assets/image_6.jpg";
 import image_9 from "@/assets/image_9.jpg";
 import image_12 from "@/assets/image_12.jpg";
 
@@ -67,15 +65,13 @@ const JourneyTimeline = () => {
     target: containerRef,
     offset: ["start end", "end start"]
   });
-
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
-  // Journey images from assets (keeping your original structure)
   const journeyImages = [
+    image_2,
     image_3,
     image_4,
     image_5,
-    image_6,
     image_9,
     image_12
   ];
@@ -85,7 +81,6 @@ const JourneyTimeline = () => {
       threshold: 0.1,
       rootMargin: '0px 0px -100px 0px'
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -93,20 +88,55 @@ const JourneyTimeline = () => {
         }
       });
     }, observerOptions);
-
     const elements = document.querySelectorAll('.timeline-item');
     elements.forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <section ref={containerRef} className="py-12 md:py-20 bg-gradient-to-br from-pure-white to-sky-blue/20 relative overflow-hidden">
+      {/* Enhanced Background Decorations */}
       <motion.div style={{ y }} className="absolute inset-0 opacity-5 md:opacity-10 pointer-events-none">
-        <div className="absolute top-10 md:top-20 left-4 md:left-10 text-4xl md:text-9xl">🍀</div>
-        <div className="absolute top-20 md:top-40 right-4 md:right-20 text-3xl md:text-7xl">❄️</div>
-        <div className="absolute bottom-10 md:bottom-20 left-8 md:left-1/4 text-4xl md:text-8xl">💙</div>
+        <motion.div
+          className="absolute top-10 md:top-20 left-4 md:left-10 text-4xl md:text-9xl"
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        >🍀</motion.div>
+        <motion.div
+          className="absolute top-20 md:top-40 right-4 md:right-20 text-3xl md:text-7xl"
+          animate={{ y: [0, -15, 0] }}
+          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+        >❄️</motion.div>
+        <motion.div
+          className="absolute bottom-10 md:bottom-20 left-8 md:left-1/4 text-4xl md:text-8xl"
+          animate={{ y: [0, -25, 0] }}
+          transition={{ duration: 7, repeat: Infinity, delay: 2 }}
+        >💙</motion.div>
       </motion.div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-sky-blue/20 rounded-full"
+            animate={{
+              x: [0, 100, 0],
+              y: [0, -100, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 8 + i * 0.5,
+              repeat: Infinity,
+              delay: i * 0.3,
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -124,18 +154,28 @@ const JourneyTimeline = () => {
         </motion.div>
 
         <div className="relative max-w-6xl mx-auto">
-          {/* Timeline Line - Desktop only */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full"></div>
+          {/* Enhanced Timeline Line - Desktop */}
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full">
+            <motion.div
+              className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full"
+              style={{ scaleY: scrollYProgress }}
+              initial={{ scaleY: 0 }}
+            />
+          </div>
 
-          {/* Timeline Line - Mobile (Left aligned) */}
-          <div className="md:hidden absolute left-6 top-0 w-0.5 h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full"></div>
+          {/* Timeline Line - Mobile */}
+          <div className="md:hidden absolute left-6 top-0 w-0.5 h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full">
+            <motion.div
+              className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full"
+              style={{ scaleY: scrollYProgress }}
+              initial={{ scaleY: 0 }}
+            />
+          </div>
 
           {timelineEvents.map((event, index) => {
             const isEven = index % 2 === 0;
-
             return (
               <div key={index} className="timeline-item fade-in-up relative mb-12 md:mb-20">
-
                 {/* Mobile Layout */}
                 <div className="md:hidden flex items-start gap-6">
                   {/* Timeline Dot - Mobile */}
@@ -320,20 +360,38 @@ const JourneyTimeline = () => {
             );
           })}
         </div>
+
+        {/* Journey Complete Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="text-center mt-16"
+        >
+          <div className="glass-card p-6 rounded-2xl max-w-2xl mx-auto">
+            <h3 className="font-vibes text-3xl text-royal-blue mb-3">
+              The Journey Continues...
+            </h3>
+            <p className="font-lora text-lg text-midnight-black/80">
+              Every moment with you is a new chapter in our beautiful story
+            </p>
+          </div>
+        </motion.div>
       </div>
 
       <style>{`
         @keyframes pulse-glow {
-          0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
-          50% { box-shadow: 0 0 25px rgba(239, 68, 68, 0.6); }
+          0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+          50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.8); }
         }
         .animate-pulse-glow {
           animation: pulse-glow 2s ease-in-out infinite;
         }
         .glass-card {
-          background: rgba(255, 255, 255, 0.25);
+          background: rgba(255, 255, 255, 0.7);
           backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.18);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
         }
         .fade-in-up {
           opacity: 0;

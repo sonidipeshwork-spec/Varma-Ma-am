@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { Heart, Star, Sparkles } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Heart, Star, Sparkles, Gift, Crown } from 'lucide-react';
 import image_1 from "@/assets/image_1.png";
 import image_2 from "@/assets/image_2.png";
 import image_3 from "@/assets/image_3.jpg";
@@ -12,7 +12,6 @@ import image_9 from "@/assets/image_9.jpg";
 import image_10 from "@/assets/image_10.jpg";
 
 const CollageSection = () => {
-  // Using placeholder images for the collage
   const collageImages = [
     image_1,
     image_2,
@@ -28,11 +27,46 @@ const CollageSection = () => {
 
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-royal-blue/5 via-sky-blue/10 to-pure-white relative overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="top-10 left-5 md:top-20 md:left-10 text-4xl md:text-6xl animate-float absolute">🎨</div>
-        <div className="top-20 right-10 md:top-40 md:right-20 text-5xl md:text-8xl animate-float absolute" style={{ animationDelay: '2s' }}>✨</div>
-        <div className="bottom-10 left-1/4 md:bottom-20 text-4xl md:text-7xl animate-float absolute" style={{ animationDelay: '4s' }}>🌈</div>
+      {/* Enhanced Background Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Floating Particles */}
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-sky-blue/20 rounded-full"
+            animate={{
+              x: [0, 100, 0],
+              y: [0, -100, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 8 + i * 0.5,
+              repeat: Infinity,
+              delay: i * 0.3,
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
+
+        {/* Decorative Icons */}
+        <motion.div
+          className="absolute top-10 left-5 md:top-20 md:left-10 text-4xl md:text-6xl"
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        >🎨</motion.div>
+        <motion.div
+          className="absolute top-20 right-10 md:top-40 md:right-20 text-5xl md:text-8xl"
+          animate={{ y: [0, -25, 0] }}
+          transition={{ duration: 7, repeat: Infinity, delay: 1 }}
+        >✨</motion.div>
+        <motion.div
+          className="absolute bottom-10 left-1/4 md:bottom-20 text-4xl md:text-7xl"
+          animate={{ y: [0, -30, 0] }}
+          transition={{ duration: 8, repeat: Infinity, delay: 2 }}
+        >🌈</motion.div>
       </div>
 
       <div className="container mx-auto px-4">
@@ -42,6 +76,7 @@ const CollageSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-8 md:mb-12 lg:mb-16"
         >
+
           <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-royal-blue mb-4">
             Beautiful Collage
           </h2>
@@ -56,8 +91,13 @@ const CollageSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative bg-gradient-to-br from-pure-white to-sky-blue/20 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 shadow-2xl"
+            className="relative bg-gradient-to-br from-pure-white to-sky-blue/20 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 shadow-2xl overflow-hidden"
           >
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSI3IiBjeT0iNyIgcj0iMSIvPjwvZz48L2c+PC9zdmc+')]"></div>
+            </div>
+
             {/* Creative Collage Layout - Heart Shape */}
             <div className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex items-center justify-center">
               {/* Center Main Portrait */}
@@ -74,12 +114,29 @@ const CollageSection = () => {
                     className="w-full h-full object-cover filter brightness-110 transform hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="absolute -top-4 -right-4 w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br from-royal-blue to-sky-blue rounded-full flex items-center justify-center shadow-lg">
-                  <Heart className="w-4 h-4 md:w-6 md:h-6 text-pure-white fill-current animate-pulse" />
-                </div>
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 md:w-10 md:h-10 bg-gradient-to-br from-sky-blue to-pure-white rounded-full flex items-center justify-center shadow-lg">
-                  <Star className="w-3 h-3 md:w-5 md:h-5 text-royal-blue fill-current animate-pulse" />
-                </div>
+
+                {/* Decorative Elements */}
+                <motion.div
+                  className="absolute -top-4 -right-4 w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br from-royal-blue to-sky-blue rounded-full flex items-center justify-center shadow-lg"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 10, 0]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  <Heart className="w-4 h-4 md:w-6 md:h-6 text-pure-white fill-current" />
+                </motion.div>
+
+                <motion.div
+                  className="absolute -bottom-4 -left-4 w-6 h-6 md:w-10 md:h-10 bg-gradient-to-br from-sky-blue to-pure-white rounded-full flex items-center justify-center shadow-lg"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, -10, 0]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                >
+                  <Star className="w-3 h-3 md:w-5 md:h-5 text-royal-blue fill-current" />
+                </motion.div>
               </motion.div>
 
               {/* Heart Shape Left Side - Upper */}
@@ -96,7 +153,13 @@ const CollageSection = () => {
                     className="w-full h-full object-cover filter brightness-105 transform hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                <Sparkles className="absolute -top-3 -left-3 w-6 h-6 md:w-8 md:h-8 text-sky-blue fill-current animate-pulse" />
+
+                <motion.div
+                  className="absolute -top-3 -left-3 w-6 h-6 md:w-8 md:h-8 text-sky-blue fill-current"
+                  transition={{ duration: 8, repeat: Infinity }}
+                >
+                  <Sparkles className="w-full h-full" />
+                </motion.div>
               </motion.div>
 
               {/* Heart Shape Right Side - Upper */}
@@ -113,7 +176,13 @@ const CollageSection = () => {
                     className="w-full h-full object-cover filter brightness-105"
                   />
                 </div>
-                <Star className="absolute -top-3 -right-3 w-6 h-6 md:w-8 md:h-8 text-royal-blue fill-current animate-pulse" />
+
+                <motion.div
+                  className="absolute -top-3 -right-3 w-6 h-6 md:w-8 md:h-8 text-royal-blue fill-current"
+                  transition={{ duration: 8, repeat: Infinity }}
+                >
+                  <Star className="w-full h-full" />
+                </motion.div>
               </motion.div>
 
               {/* Heart Shape Left Side - Lower */}
@@ -130,7 +199,13 @@ const CollageSection = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <Heart className="absolute -bottom-3 -left-3 w-5 h-5 md:w-7 md:h-7 text-sky-blue fill-current animate-pulse" />
+
+                <motion.div
+                  className="absolute -bottom-3 -left-3 w-5 h-5 md:w-7 md:h-7 text-sky-blue fill-current"
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Heart className="w-full h-full" />
+                </motion.div>
               </motion.div>
 
               {/* Heart Shape Right Side - Lower */}
@@ -147,7 +222,13 @@ const CollageSection = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <Sparkles className="absolute -bottom-3 -right-3 w-5 h-5 md:w-7 md:h-7 text-royal-blue fill-current animate-pulse" />
+
+                <motion.div
+                  className="absolute -bottom-3 -right-3 w-5 h-5 md:w-7 md:h-7 text-royal-blue fill-current"
+                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                >
+                  <Sparkles className="w-full h-full" />
+                </motion.div>
               </motion.div>
 
               {/* Heart Bottom Point */}
@@ -164,7 +245,6 @@ const CollageSection = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <Heart className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-6 h-6 md:w-8 md:h-8 text-royal-blue fill-current animate-pulse" />
               </motion.div>
 
               {/* Accent Photos - Far Corners */}
@@ -237,7 +317,7 @@ const CollageSection = () => {
               transition={{ duration: 0.8, delay: 1.2 }}
               className="text-center mt-8 md:mt-12 lg:mt-16"
             >
-              <h3 className="font-vibes py-5  text-2xl md:text-3xl lg:text-4xl text-royal-blue mb-4">
+              <h3 className="font-vibes py-5 text-2xl md:text-3xl lg:text-4xl text-royal-blue mb-4">
                 Moments That Matter
               </h3>
               <p className="font-lora text-base md:text-lg text-midnight-black/80 max-w-2xl mx-auto px-4">
@@ -248,10 +328,26 @@ const CollageSection = () => {
             </motion.div>
 
             {/* Floating Hearts */}
-            <div className="top-4 left-4 text-royal-blue/30 text-2xl md:text-3xl animate-float absolute">💕</div>
-            <div className="top-8 right-8 text-sky-blue/40 text-xl md:text-2xl animate-float absolute" style={{ animationDelay: '1s' }}>💖</div>
-            <div className="bottom-4 left-8 text-royal-blue/30 text-2xl md:text-3xl animate-float absolute" style={{ animationDelay: '2s' }}>💝</div>
-            <div className="bottom-8 right-4 text-sky-blue/40 text-xl md:text-2xl animate-float absolute" style={{ animationDelay: '3s' }}>🌸</div>
+            <motion.div
+              className="top-4 left-4 text-royal-blue/30 text-2xl md:text-3xl absolute"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >💕</motion.div>
+            <motion.div
+              className="top-8 right-8 text-sky-blue/40 text-xl md:text-2xl absolute"
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+            >💖</motion.div>
+            <motion.div
+              className="bottom-4 left-8 text-royal-blue/30 text-2xl md:text-3xl absolute"
+              animate={{ y: [0, -25, 0] }}
+              transition={{ duration: 6, repeat: Infinity, delay: 2 }}
+            >💝</motion.div>
+            <motion.div
+              className="bottom-8 right-4 text-sky-blue/40 text-xl md:text-2xl absolute"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, delay: 3 }}
+            >🌸</motion.div>
           </motion.div>
 
           {/* Quote Below Collage */}
@@ -261,10 +357,15 @@ const CollageSection = () => {
             transition={{ duration: 0.8, delay: 1.5 }}
             className="text-center mt-8 md:mt-12"
           >
-            <div className="glass-card p-4 md:p-6 rounded-2xl max-w-2xl mx-auto">
-              <p className="font-vibes text-xl md:text-2xl lg:text-3xl text-royal-blue mb-2">
-                "In every picture, I see the same thing..."
-              </p>
+            <div className="glass-card p-4 md:p-6 rounded-2xl max-w-2xl mx-auto relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-sky-blue/10 to-royal-blue/10 rounded-2xl"></div>
+              <div className="relative z-10 flex items-center justify-center mb-3">
+                <Gift className="w-6 h-6 text-rose-500 mr-2" />
+                <p className="font-vibes text-xl md:text-2xl lg:text-3xl text-royal-blue">
+                  "In every picture, I see the same thing..."
+                </p>
+                <Gift className="w-6 h-6 text-rose-500 ml-2" />
+              </div>
               <p className="font-lora text-base md:text-xl text-midnight-black/80">
                 Pure beauty, endless grace, and the reason for my smile.
               </p>
@@ -272,6 +373,15 @@ const CollageSection = () => {
           </motion.div>
         </div>
       </div>
+
+      <style>{`
+        .glass-card {
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+      `}</style>
     </section>
   );
 };
