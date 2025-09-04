@@ -1,12 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Baby, GraduationCap, BookOpen, Heart, Star, Sparkles } from 'lucide-react';
+import { Baby, GraduationCap, BookOpen, Heart, Star, Sparkles, Camera, Plane } from 'lucide-react';
 import image_2 from "@/assets/image_2.png";
 import image_3 from "@/assets/image_3.jpg";
 import image_4 from "@/assets/image_4.jpg";
 import image_5 from "@/assets/image_5.jpg";
 import image_9 from "@/assets/image_9.jpg";
 import image_12 from "@/assets/image_12.jpg";
+import image_13 from "@/assets/image_13.png";
+import image_14 from "@/assets/image_14.jpg";
+import image_15 from "@/assets/image_15.jpg";
+import image_16 from "@/assets/image_16.jpg";
 
 const timelineEvents = [
   {
@@ -56,6 +60,23 @@ const timelineEvents = [
     icon: Heart,
     details: "The moment everything changed for the better",
     color: "text-royal-blue"
+  },
+  // New events
+  {
+    year: "2024",
+    title: "Adventures Together",
+    description: "Exploring the world side by side",
+    icon: Plane,
+    details: "First trip together to the mountains, creating unforgettable memories",
+    color: "text-sky-blue"
+  },
+  {
+    year: "2025",
+    title: "Capturing Moments",
+    description: "Freezing time with photography",
+    icon: Camera,
+    details: "Discovered a passion for photography, capturing life's beautiful moments",
+    color: "text-royal-blue"
   }
 ];
 
@@ -67,13 +88,18 @@ const JourneyTimeline = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
+  // Updated with new images
   const journeyImages = [
     image_2,
     image_3,
     image_4,
     image_5,
     image_9,
-    image_12
+    image_12,
+    image_13, // New image
+    image_14, // New image
+    image_15, // New image
+    image_16  // New image
   ];
 
   useEffect(() => {
@@ -113,7 +139,6 @@ const JourneyTimeline = () => {
           transition={{ duration: 7, repeat: Infinity, delay: 2 }}
         >💙</motion.div>
       </motion.div>
-
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(15)].map((_, i) => (
@@ -137,7 +162,6 @@ const JourneyTimeline = () => {
           />
         ))}
       </div>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -152,7 +176,6 @@ const JourneyTimeline = () => {
             Every chapter tells a story of grace and growth
           </p>
         </motion.div>
-
         <div className="relative max-w-6xl mx-auto">
           {/* Enhanced Timeline Line - Desktop */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full">
@@ -162,7 +185,6 @@ const JourneyTimeline = () => {
               initial={{ scaleY: 0 }}
             />
           </div>
-
           {/* Timeline Line - Mobile */}
           <div className="md:hidden absolute left-6 top-0 w-0.5 h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full">
             <motion.div
@@ -171,7 +193,6 @@ const JourneyTimeline = () => {
               initial={{ scaleY: 0 }}
             />
           </div>
-
           {timelineEvents.map((event, index) => {
             const isEven = index % 2 === 0;
             return (
@@ -190,7 +211,6 @@ const JourneyTimeline = () => {
                       <div className="absolute inset-0 w-4 h-4 bg-sky-blue rounded-full animate-ping"></div>
                     </motion.div>
                   </div>
-
                   {/* Content - Mobile */}
                   <div className="flex-1 min-w-0">
                     <motion.div
@@ -219,7 +239,6 @@ const JourneyTimeline = () => {
                           </p>
                         </div>
                       </div>
-
                       {/* Image - Mobile */}
                       <div className="relative group">
                         <div className="absolute inset-0 bg-gradient-to-br from-sky-blue/30 to-royal-blue/30 rounded-xl blur-sm group-hover:blur-none transition-all duration-500"></div>
@@ -227,8 +246,7 @@ const JourneyTimeline = () => {
                           <img
                             src={journeyImages[index]}
                             alt={`${event.title} - ${event.year}`}
-                            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110 min-h-[200px] max-h-[400px]"
-                            style={{ aspectRatio: 'auto' }}
+                            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-midnight-black/20 to-transparent"></div>
                         </div>
@@ -236,7 +254,6 @@ const JourneyTimeline = () => {
                     </motion.div>
                   </div>
                 </div>
-
                 {/* Desktop Layout */}
                 <div className="hidden md:flex items-center">
                   {/* Left side - Card (even) or Image (odd) */}
@@ -281,8 +298,7 @@ const JourneyTimeline = () => {
                             <img
                               src={journeyImages[index]}
                               alt={`${event.title} - ${event.year}`}
-                              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110 min-h-[200px] max-h-[350px]"
-                              style={{ aspectRatio: 'auto' }}
+                              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-midnight-black/20 to-transparent"></div>
                           </div>
@@ -290,7 +306,6 @@ const JourneyTimeline = () => {
                       </motion.div>
                     )}
                   </div>
-
                   {/* Timeline Dot - Desktop */}
                   <div className="w-2/12 flex justify-center">
                     <motion.div
@@ -303,7 +318,6 @@ const JourneyTimeline = () => {
                       <div className="absolute inset-0 w-5 h-5 lg:w-6 lg:h-6 bg-sky-blue rounded-full animate-ping"></div>
                     </motion.div>
                   </div>
-
                   {/* Right side - Image (even) or Card (odd) */}
                   <div className="w-5/12">
                     {isEven ? (
@@ -319,8 +333,7 @@ const JourneyTimeline = () => {
                             <img
                               src={journeyImages[index]}
                               alt={`${event.title} - ${event.year}`}
-                              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110 min-h-[200px] max-h-[350px]"
-                              style={{ aspectRatio: 'auto' }}
+                              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-midnight-black/20 to-transparent"></div>
                           </div>
@@ -360,7 +373,6 @@ const JourneyTimeline = () => {
             );
           })}
         </div>
-
         {/* Journey Complete Message */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -378,7 +390,6 @@ const JourneyTimeline = () => {
           </div>
         </motion.div>
       </div>
-
       <style>{`
         @keyframes pulse-glow {
           0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }

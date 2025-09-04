@@ -125,7 +125,7 @@ const HeroSection = () => {
           </div>
 
           {/* Enhanced Name Section with Responsive Sizing */}
-          <div className="relative inline-block mb-6 sm:mb-8">
+          <div className="relative items-center inline-block mb-6 sm:mb-8">
             <motion.h2
               className="font-vibes text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-royal-blue mb-4 relative z-10"
               animate={{

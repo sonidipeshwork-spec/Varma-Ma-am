@@ -182,17 +182,6 @@ const ComplimentMachine = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          {/* Decorative Crown */}
-          <motion.div
-            className="flex justify-center mb-6"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
-              <Crown className="w-8 h-8 text-pure-white" />
-            </div>
-          </motion.div>
-
           <h2 className="font-playfair text-5xl md:text-6xl font-bold text-royal-blue mb-4">
             Compliment Machine
           </h2>
