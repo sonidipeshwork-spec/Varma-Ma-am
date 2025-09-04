@@ -37,8 +37,8 @@ const memories = [
   },
   {
     id: 5,
-    url: image_5,
-    caption: "Miss Adorable 💙",
+    url: image_11,
+    caption: "Special Moment 🎉",
   },
   {
     id: 6,
@@ -62,18 +62,18 @@ const memories = [
   },
   {
     id: 10,
-    url: image_11,
-    caption: "Joyful Moment 🎉",
+    url: image_5,
+    caption: "Miss Adorable 💙",
   },
   {
     id: 11,
     url: image_12,
-    caption: "Serene Beauty 🍃",
+    caption: "Silent Beauty 🍃",
   },
   {
     id: 12,
     url: image_1,
-    caption: "Timeless Charm ✨",
+    caption: "True Charm ✨",
   }
 ];
 
@@ -216,7 +216,7 @@ const MemoryWall = () => {
           className="absolute top-10 left-10 text-4xl md:text-6xl"
           animate={{ y: [0, -15, 0] }}
           transition={{ duration: 4, repeat: Infinity }}
-        >📸</motion.div>
+        >🪬</motion.div>
         <motion.div
           className="absolute top-32 right-20 text-5xl md:text-7xl"
           animate={{ y: [0, -20, 0] }}
@@ -226,17 +226,17 @@ const MemoryWall = () => {
           className="absolute bottom-20 left-1/3 text-4xl md:text-6xl"
           animate={{ y: [0, -25, 0] }}
           transition={{ duration: 6, repeat: Infinity, delay: 2 }}
-        >🌸</motion.div>
+        >🫧</motion.div>
         <motion.div
           className="absolute bottom-40 right-1/4 text-3xl md:text-5xl"
           animate={{ y: [0, -18, 0] }}
           transition={{ duration: 4.5, repeat: Infinity, delay: 1.5 }}
-        >✨</motion.div>
+        >🩵</motion.div>
         <motion.div
           className="absolute top-1/2 left-10 text-3xl md:text-5xl"
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 5.5, repeat: Infinity, delay: 0.7 }}
-        >🌟</motion.div>
+        >❄️</motion.div>
       </div>
 
       {/* Background Pattern */}

@@ -15,67 +15,66 @@ import image_16 from "@/assets/image_16.jpg";
 const timelineEvents = [
   {
     year: "2006",
-    title: "A Star is Born",
-    description: "September 16th - The world became brighter",
+    title: "Cutest Queen is Born",
+    description: "September 16th - Duniya roshan ho gayi",
     icon: Star,
-    details: "First word: 'Mama' at 10 months, First steps at 11 months, Loved to giggle and chase butterflies",
+    details: "10 mahine ki umar mein pehla shabd 'Mama', 11 mahine mein chhoti si chal.",
     color: "text-sky-blue"
   },
   {
     year: "2010",
     title: "Little Explorer",
-    description: "Curious mind discovering the world",
+    description: "Chhoti si duniya ki khoj",
     icon: Baby,
-    details: "Loved collecting colorful stones and drawing rainbows",
+    details: "Colorful pathar ikattha karna aur notebook bhar dena rainbow aur cute drawings se — imagination ki ek alag hi duniya thi.",
     color: "text-royal-blue"
   },
   {
     year: "2015",
     title: "Academic Excellence",
-    description: "School achievements and friendships",
+    description: "School ki achievements aur dostiyan",
     icon: BookOpen,
-    details: "Class topper, loved mathematics and art",
+    details: "Maths aur art se pyaar, teachers ki favorite aur doston ki jaan, hamesha knowledge aur creativity mein expert.",
     color: "text-sky-blue"
-  },
-  {
-    year: "2022",
-    title: "High School Graduate",
-    description: "Ready for new adventures",
-    icon: GraduationCap,
-    details: "Graduated with honors, dreams of higher education",
-    color: "text-royal-blue"
   },
   {
     year: "2023",
-    title: "College Journey Begins",
-    description: "Second year student, growing beautifully",
-    icon: Sparkles,
-    details: "Pursuing dreams with determination and grace",
-    color: "text-sky-blue"
+    title: "High School Graduate",
+    description: "Nayi safar ki shuruaat",
+    icon: GraduationCap,
+    details: "Stage par chalti hui ek shining star — honors ke saath graduation complete, aur naye sapno ki ek badi kitaab shuru hui.",
+    color: "text-royal-blue"
   },
   {
     year: "2024",
     title: "Our Story",
-    description: "When hearts connected",
+    description: "Dil se dil ka connection",
     icon: Heart,
-    details: "The moment everything changed for the better",
+    details: "Wo ek pal jab zindagi badal gayi — jab dosti se kuch aur khoobsurat shuru hua, aur duniya aur bhi roshan lagne lagi.",
+    color: "text-sky-blue"
+  },
+  {
+    year: "2025",
+    title: "College Journey Begins",
+    description: "Doosra saal college ka, aur bhi khilte hue",
+    icon: Sparkles,
+    details: "Books aur adventures dono balance karte hue, bade sapne chase karna, aur khud ki best version ban’na — ek nayi journey ka junoon.",
     color: "text-royal-blue"
   },
-  // New events
   {
     year: "2024",
     title: "Adventures Together",
-    description: "Exploring the world side by side",
+    description: "Duniya ko saath milke explore karna",
     icon: Plane,
-    details: "First trip together to the mountains, creating unforgettable memories",
+    details: "Pahadon ki wo pehli trip — haathon mein haath, hansi ki goonj, raat ko taare aur dil ek saath dhadak rahe the.",
     color: "text-sky-blue"
   },
   {
     year: "2025",
     title: "Capturing Moments",
-    description: "Freezing time with photography",
+    description: "Har pal ko yaadon mein basana",
     icon: Camera,
-    details: "Discovered a passion for photography, capturing life's beautiful moments",
+    details: "Camera ke lens se ek naya shauk mila — hasi, sunsets aur chhoti chhoti yaadein capture karke unhe hamesha ke liye amar banana.",
     color: "text-royal-blue"
   }
 ];

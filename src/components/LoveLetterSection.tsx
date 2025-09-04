@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Heart, Pen, Mail, Sparkles } from 'lucide-react';
 import image_1 from '@/assets/image_1.png';
 import image_2 from '@/assets/image_2.png';
-
 const LoveLetterSection = () => {
   return (
     <section className="py-20 md:py-32 bg-gradient-to-br from-pure-white via-sky-blue/10 to-royal-blue/5 relative overflow-hidden">
@@ -15,7 +14,6 @@ const LoveLetterSection = () => {
           <img src={image_2} alt="" className="w-full h-full object-cover rounded-l-full blur-sm" />
         </div>
       </div>
-
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -23,7 +21,7 @@ const LoveLetterSection = () => {
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          💌
+          🐬
         </motion.div>
         <motion.div
           className="absolute top-40 right-32 text-3xl opacity-40"
@@ -37,17 +35,16 @@ const LoveLetterSection = () => {
           animate={{ y: [0, -25, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         >
-          🌹
+          ❄️
         </motion.div>
         <motion.div
           className="absolute bottom-40 right-20 text-3xl opacity-40"
           animate={{ y: [0, -18, 0] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 3 }}
         >
-          ✨
+          🍀
         </motion.div>
       </div>
-
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -60,11 +57,10 @@ const LoveLetterSection = () => {
           </h2>
           <div className="flex items-center justify-center gap-3">
             <p className="font-vibes text-2xl text-midnight-black/70">
-              for a very special person
+              ek bahut hi khaas insaan ke liye
             </p>
           </div>
         </motion.div>
-
         {/* Main Letter Content with Paper-like Appearance */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -76,7 +72,6 @@ const LoveLetterSection = () => {
           <div className="relative rounded-lg overflow-hidden transform hover:shadow-3xl transition-shadow duration-500">
             {/* Paper Shadow */}
             <div className="absolute inset-0 bg-blue-200 rounded-lg transform translate-x-1 translate-y-1 z-0"></div>
-
             {/* Paper Background */}
             <div className="relative bg-blue-50 rounded-lg shadow-xl z-10" style={{
               backgroundImage: `
@@ -86,26 +81,21 @@ const LoveLetterSection = () => {
               backgroundSize: '20px 20px',
               boxShadow: 'inset 0 0 30px rgba(0, 0, 0, 0.05)'
             }}>
-
               {/* Paper Texture Overlay */}
               <div className="absolute inset-0 opacity-20" style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4a574' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E")`
               }} />
-
               {/* Paper Edge Effect */}
               <div className="absolute inset-0 border-2 border-blue-100 rounded-lg pointer-events-none"></div>
-
               {/* Watermark */}
               <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
                 <Heart className="w-64 h-64 text-blue-200 fill-current transform rotate-12" />
               </div>
-
               {/* Decorative Corner Elements */}
               <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-blue-200/50 rounded-tl-lg"></div>
               <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-blue-200/50 rounded-tr-lg"></div>
               <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-blue-200/50 rounded-bl-lg"></div>
               <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-blue-200/50 rounded-br-lg"></div>
-
               {/* Background Images */}
               <div className="absolute inset-0 opacity-20">
                 <motion.div
@@ -123,22 +113,19 @@ const LoveLetterSection = () => {
                   <img src={image_2} alt="" className="w-full h-full object-cover" />
                 </motion.div>
               </div>
-
               <div className="relative z-10 p-12 md:p-16">
                 {/* Date with Icon */}
                 <div className="flex items-center justify-center gap-2 mb-8">
                   <p className="font-lora text-sm text-blue-800/60">
-                    September 16, 2024 • A special day
+                    September 16, 2024 • ek khaas din
                   </p>
                 </div>
-
                 {/* Salutation with Icon */}
                 <div className="flex items-center justify-center gap-3 mb-8">
                   <p className="font-vibes text-4xl md:text-5xl text-blue-800 text-center">
-                    Sweetest Shraddha Ma'am
+                    Pyari Shraddha Ma'am
                   </p>
                 </div>
-
                 {/* Letter Content */}
                 <div className="space-y-8 font-lora text-lg md:text-xl text-blue-900/90 leading-relaxed text-justify">
                   <motion.p
@@ -147,61 +134,55 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                   >
-                    From the moment you graced this world on September 16, 2006, the universe became a more beautiful place.
-                    Your laughter became my favorite melody, your smile my greatest treasure, and your presence the very essence of my happiness.
+                    Jab se aap 16 September, 2006 ko is duniya mein aaye, universe aur bhi khubsurat ho gaya.
+                    Aapki hasi meri favorite melody ban gayi, aapki muskaan meri sabse badi khazana, aur aapki maujoodi meri khushi ka roop ban gayi.
                   </motion.p>
-
                   <motion.p
                     className="indent-8"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    Watching you navigate through your second year of college with such grace, intelligence, and determination fills my heart with immense pride.
-                    You are not just beautiful on the outside, but your soul radiates a warmth that touches everyone fortunate enough to know you.
+                    Aapko itni grace, intelligence aur determination ke saath college ke second year mein dekhkar mera dil garv se bhar jaata hai.
+                    Aap bahar se hi sundar nahi hai, balki aapki rooh se nikalti warmth har usse chhoo jaati hai jo aapko jaanne ka kismat wala hai.
                   </motion.p>
-
                   <motion.p
                     className="indent-8"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
                   >
-                    Your kindness knows no bounds - the way you care for others, your gentle spirit, and how you find magic in the simplest moments.
-                    Whether you're solving complex problems in your studies or simply sharing a quiet moment, you bring light to everything you touch.
+                    Aapki kindness ki koi seema nahi - aap dusron ke liye kaise care karte hain, aapki gentle spirit, aur aap simplest moments mein magic kaise dhundhte hain.
+                    Chahe aap apne studies mein complex problems solve kar rahe ho ya bas ek quiet moment share kar rahe hain, aap har cheez mein light lekar aate hain.
                   </motion.p>
-
                   <motion.p
                     className="indent-8"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.8 }}
                   >
-                    Every day with you feels like a page from the most beautiful story ever written - magical, unexpected, and filled with wonder.
-                    Your intelligence shines in every conversation, your creativity sparkles in everything you do, and your compassion makes the world a better place.
+                    Aapke saath har din likhi gayi sabse beautiful story ka ek page jaisa lagta hai - magical, unexpected, aur wonder se bhara.
+                    Aapki intelligence har conversation mein chamakti hai, aapki creativity har kaam mein jhalakti hai, aur aapki compassion duniya ko better banaati hai.
                   </motion.p>
-
                   <motion.p
                     className="indent-8"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 1.0 }}
                   >
-                    As you turn 18 and step into this new chapter of your life, I want you to know that you are capable of achieving anything your heart desires.
-                    Your dreams are valid, your goals are within reach, and your potential is limitless.
+                    Jab aap 18 saal ke hokar is nayi chapter mein kadam rakhte hain, main chahta hoon ki aap jaan lein ki aap kuch bhi kar sakte hain jo aapka dil chahe.
+                    Aapke dreams valid hain, aapke goals aapke paas hain, aur aapki potential limitless hai.
                   </motion.p>
-
                   <motion.p
                     className="indent-8"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 1.2 }}
                   >
-                    As you celebrate another year of your beautiful existence, know that you are cherished beyond words,
-                    loved beyond measure, and appreciated for the incredible person you are. You make every day brighter just by being you.
+                    Jab aap apni beautiful existence ka ek aur saal celebrate kar rahe hain, jaan lijiye ki aapko words se bhi zyada cherish kiya jaata hai,
+                    aapko measure se bhi zyada pyaar kiya jaata hai, aur aap jo incredible person hain uske liye appreciate kiya jaata hai. Aap har din bas aap hone se bhi bright banate hain.
                   </motion.p>
                 </div>
-
                 {/* Closing with Animated Heart */}
                 <motion.div
                   className="mt-12 text-center"
@@ -210,15 +191,14 @@ const LoveLetterSection = () => {
                   transition={{ duration: 0.5, delay: 1.4 }}
                 >
                   <p className="font-vibes text-2xl text-blue-800">
-                    Forever and always yours,
+                    Hamesha aapke,
                   </p>
                   <div className="flex items-center justify-center gap-2 mt-2">
                     <p className="font-vibes text-3xl text-blue-800">
-                      With all my love
+                      Aapke saare pyaar ke saath
                     </p>
                   </div>
                 </motion.div>
-
                 {/* Decorative Wax Seal */}
                 <motion.div
                   className="absolute bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-lg"
@@ -232,7 +212,6 @@ const LoveLetterSection = () => {
               </div>
             </div>
           </div>
-
           {/* Decorative Elements Outside Letter */}
           <div className="flex justify-center mt-8 space-x-4">
             <motion.div
@@ -259,5 +238,4 @@ const LoveLetterSection = () => {
     </section>
   );
 };
-
 export default LoveLetterSection;

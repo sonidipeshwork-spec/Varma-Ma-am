@@ -297,18 +297,6 @@ const ComplimentMachine = () => {
           <p className="font-lora text-sm text-midnight-black/60 mt-4">
             {isAutoPlay ? 'New compliments every 7 seconds' : 'Click the heart for love notes'}
           </p>
-
-          {/* Decorative Message */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-12 glass-card p-4 rounded-2xl max-w-md mx-auto"
-          >
-            <p className="font-vibes text-xl text-royal-blue">
-              Every compliment is a reflection of your beautiful soul
-            </p>
-          </motion.div>
         </div>
       </div>
 

@@ -101,9 +101,9 @@ const QualitiesSection = () => {
         ))}
 
         {/* Decorative Icons */}
-        <div className="absolute top-10 left-10 text-3xl md:text-4xl animate-float">💫</div>
-        <div className="absolute top-32 right-20 text-4xl md:text-6xl animate-float" style={{ animationDelay: '2s' }}>🌟</div>
-        <div className="absolute bottom-20 left-1/3 text-3xl md:text-5xl animate-float" style={{ animationDelay: '4s' }}>✨</div>
+        <div className="absolute top-10 left-10 text-3xl md:text-4xl">💙</div>
+        <div className="absolute top-32 right-20 text-4xl md:text-6xl">🧿</div>
+        <div className="absolute bottom-20 left-1/8 text-3xl md:text-6xl">🩵</div>
       </div>
 
       {/* Enhanced Background Image with Parallax */}

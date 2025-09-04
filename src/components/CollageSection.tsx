@@ -56,7 +56,7 @@ const CollageSection = () => {
           className="absolute top-10 left-5 md:top-20 md:left-10 text-4xl md:text-6xl"
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 6, repeat: Infinity }}
-        >🎨</motion.div>
+        >🤍</motion.div>
         <motion.div
           className="absolute top-20 right-10 md:top-40 md:right-20 text-5xl md:text-8xl"
           animate={{ y: [0, -25, 0] }}
@@ -66,7 +66,7 @@ const CollageSection = () => {
           className="absolute bottom-10 left-1/4 md:bottom-20 text-4xl md:text-7xl"
           animate={{ y: [0, -30, 0] }}
           transition={{ duration: 8, repeat: Infinity, delay: 2 }}
-        >🌈</motion.div>
+        >❣️</motion.div>
       </div>
 
       <div className="container mx-auto px-4">
