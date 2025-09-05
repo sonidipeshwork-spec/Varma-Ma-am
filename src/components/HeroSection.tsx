@@ -10,9 +10,8 @@ const HeroSection = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 500);
+    const timer = setTimeout(() => setIsLoaded(true), 300);
 
-    // Check if mobile
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -27,16 +26,18 @@ const HeroSection = () => {
   }, []);
 
   // Adjust particle count based on screen size
-  const particleCount = isMobile ? 10 : 20;
-  const sparkleCount = isMobile ? 4 : 8;
+  const particleCount = isMobile ? 8 : 15;
+  const sparkleCount = isMobile ? 3 : 6;
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Custom CSS */}
+      {/* Custom CSS with enhanced animations */}
       <style>{`
         @keyframes subtleFloat {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          25% { transform: translateY(-8px) translateX(5px); }
+          50% { transform: translateY(-5px) translateX(-5px); }
+          75% { transform: translateY(-10px) translateX(3px); }
         }
         
         @keyframes gradient-x {
@@ -44,28 +45,35 @@ const HeroSection = () => {
           50% { background-position: 100% 50%; }
         }
         
+        @keyframes pulse-glow {
+          0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+          50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.6); }
+        }
+        
         .animate-gradient-x {
           background-size: 200% 200%;
-          animation: gradient-x 3s ease infinite;
+          animation: gradient-x 4s ease infinite;
         }
         
         .bg-gradient-radial {
-          background: radial-gradient(circle, var(--tw-gradient-from), var(--tw-gradient-to));
+          background: radial-gradient(circle at center, var(--tw-gradient-from), var(--tw-gradient-to));
         }
         
         .glass-card {
-          background: rgba(255, 255, 255, 0.25);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.18);
+          background: rgba(255, 255, 255, 0.3);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
         }
         
         .text-shimmer {
-          background: linear-gradient(90deg, #0ea5e9, #1e40af, #0ea5e9);
-          background-size: 200% 200%;
+          background: linear-gradient(90deg, #0ea5e9, #3b82f6, #1d4ed8, #0ea5e9);
+          background-size: 300% 300%;
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
+          animation: gradient-x 3s ease infinite;
         }
         
         .font-playfair {
@@ -79,67 +87,111 @@ const HeroSection = () => {
         .font-lora {
           font-family: 'Lora', serif;
         }
+        
+        .floating {
+          animation: subtleFloat 12s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+          animation: pulse-glow 3s ease-in-out infinite;
+        }
       `}</style>
 
-      {/* Animated Background Particles - Reduced on mobile */}
+      {/* Enhanced Background Particles with optimized performance */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(particleCount)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-sky-400/20 rounded-full"
-            animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 8 + i * 0.5,
-              repeat: Infinity,
-              delay: i * 0.3,
-            }}
+            className="absolute rounded-full"
             style={{
+              width: `${Math.random() * 6 + 2}px`,
+              height: `${Math.random() * 6 + 2}px`,
+              background: `rgba(${125 + Math.random() * 50}, ${200 + Math.random() * 55}, 255, ${0.1 + Math.random() * 0.2})`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              x: [0, 50 + Math.random() * 50, 0],
+              y: [0, -30 - Math.random() * 50, 0],
+              opacity: [0, 0.7, 0],
+              scale: [0, 1, 0],
+            }}
+            transition={{
+              duration: 10 + i * 0.7,
+              repeat: Infinity,
+              delay: i * 0.4,
+              ease: "easeInOut"
             }}
           />
         ))}
       </div>
 
-      {/* Background Image with Responsive Effects */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+      {/* Enhanced Background Image with parallax effect */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 floating"
         style={{
           backgroundImage: `url(${heroImage})`,
-          animation: 'subtleFloat 20s ease-in-out infinite',
-          transform: isMobile ? 'scale(1.05)' : 'scale(1.1)'
+          transform: isMobile ? 'scale(1.05)' : 'scale(1.15)'
+        }}
+        animate={{
+          y: [0, -20, 0],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
       />
 
-      {/* Multiple Gradient Overlays for Depth */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-sky-400/70 to-blue-800/90" />
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-sky-400/10 to-blue-800/20" />
+      {/* Enhanced Gradient Overlays with animated opacity */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-white/90 via-sky-400/60 to-blue-800/80"
+        animate={{
+          opacity: [0.85, 0.95, 0.85],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      <motion.div
+        className="absolute inset-0 bg-gradient-radial from-transparent via-sky-400/15 to-blue-800/30"
+        animate={{
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
       <div className="absolute inset-0 bg-gradient-to-t from-gray-900/10 via-transparent to-white/20" />
 
-      {/* Floating Sparkles - Reduced on mobile */}
+      {/* Enhanced Floating Sparkles with more natural movement */}
       <div className="absolute inset-0">
         {[...Array(sparkleCount)].map((_, i) => (
           <motion.div
             key={`sparkle-${i}`}
-            className="absolute text-sky-400/60"
+            className="absolute text-sky-400/70"
             animate={{
-              y: [-20, 40, -20],
+              y: [-30, 50, -30],
+              x: [0, Math.random() * 20 - 10, 0],
               rotate: [0, 180, 360],
-              scale: [0.5, 1, 0.5],
-              opacity: [0.3, 1, 0.3],
+              scale: [0.4, 1, 0.4],
+              opacity: [0.2, 1, 0.2],
             }}
             transition={{
-              duration: 4 + i * 0.5,
+              duration: 5 + i * 0.7,
               repeat: Infinity,
-              delay: i * 0.8,
+              delay: i * 1,
+              ease: "easeInOut"
             }}
             style={{
-              left: `${20 + i * 10}%`,
-              top: `${30 + (i % 3) * 20}%`,
+              left: `${15 + i * 12}%`,
+              top: `${20 + (i % 4) * 20}%`,
             }}
           >
             <Sparkles className="w-4 h-4" />
@@ -147,73 +199,145 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* Main Content */}
+      {/* Main Content with enhanced animations */}
       <div className="relative z-20 text-center px-4 sm:px-6 max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isLoaded ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
         >
-          {/* Enhanced Title with Responsive Sizing */}
-          <div className="relative mb-6 sm:mb-8">
+          {/* Enhanced Title with more dynamic effects */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{
+              opacity: isLoaded ? 1 : 0,
+              y: isLoaded ? 0 : 50
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+              type: "spring",
+              damping: 12,
+              stiffness: 100
+            }}
+            className="relative mb-6 sm:mb-8"
+          >
             <motion.h1
               className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold relative"
               animate={{
                 textShadow: [
-                  '0 0 10px rgba(59, 130, 246, 0.3)',
-                  '0 0 20px rgba(59, 130, 246, 0.5)',
-                  '0 0 10px rgba(59, 130, 246, 0.3)'
-                ]
+                  '0 0 10px rgba(59, 130, 246, 0.4)',
+                  '0 0 20px rgba(59, 130, 246, 0.7)',
+                  '0 0 10px rgba(59, 130, 246, 0.4)'
+                ],
+                scale: [1, 1.01, 1]
               }}
-              transition={{ duration: 3, repeat: Infinity }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             >
-              <span className="text-shimmer animate-gradient-x">
+              <span className="text-shimmer">
                 Happy Birthday
               </span>
             </motion.h1>
-          </div>
 
-          {/* Enhanced Name Section with Responsive Sizing */}
-          <div className="relative flex flex-col-reverse space-y-reverse mb-6 sm:mb-8">
+            {/* Decorative elements */}
+            <motion.div
+              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-sky-400 to-transparent"
+              animate={{
+                width: [80, 120, 80],
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </motion.div>
+
+          {/* Enhanced Name Section with improved glow effect */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{
+              opacity: isLoaded ? 1 : 0,
+              y: isLoaded ? 0 : 50
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.4,
+              type: "spring",
+              damping: 12,
+              stiffness: 100
+            }}
+            className="relative flex flex-col-reverse space-y-reverse mb-6 sm:mb-8"
+          >
             <motion.h2
               className="font-vibes text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-blue-800 mb-4 relative z-10"
               animate={{
                 filter: [
-                  'drop-shadow(0 0 10px rgba(30, 64, 175, 0.3))',
-                  'drop-shadow(0 0 20px rgba(30, 64, 175, 0.6))',
-                  'drop-shadow(0 0 10px rgba(30, 64, 175, 0.3))'
+                  'drop-shadow(0 0 10px rgba(30, 64, 175, 0.4))',
+                  'drop-shadow(0 0 25px rgba(30, 64, 175, 0.8))',
+                  'drop-shadow(0 0 10px rgba(30, 64, 175, 0.4))'
                 ]
               }}
-              transition={{ duration: 4, repeat: Infinity }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             >
               Miss Princess, Shruu Ji
             </motion.h2>
-            <motion.div
-              className="absolute inset-0 rounded-full blur-3xl bg-gradient-radial from-sky-400/40 via-sky-400/20 to-transparent"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-          </div>
 
-          {/* Enhanced Glass Card with Responsive Padding */}
+            <motion.div
+              className="absolute inset-0 rounded-full blur-3xl bg-gradient-radial from-sky-400/50 via-sky-400/30 to-transparent"
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.4, 0.7, 0.4],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </motion.div>
+
+          {/* Enhanced Glass Card with more sophisticated effects */}
           <motion.div
-            className="glass-card p-4 sm:p-6 rounded-3xl mb-8 sm:mb-10 inline-block relative overflow-hidden"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{
+              opacity: isLoaded ? 1 : 0,
+              y: isLoaded ? 0 : 50
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.6,
+              type: "spring",
+              damping: 12,
+              stiffness: 100
+            }}
+            className="glass-card p-4 sm:p-6 rounded-3xl mb-8 sm:mb-10 inline-block relative overflow-hidden pulse-glow"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-sky-400/10 to-blue-800/10 opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-br from-sky-400/15 to-blue-800/15 opacity-60" />
             <div className="relative z-10">
               <motion.p
                 className="font-vibes text-xl sm:text-2xl md:text-3xl text-blue-600 mb-3"
                 animate={{
                   textShadow: [
-                    '0 0 5px rgba(14, 165, 233, 0.3)',
-                    '0 0 15px rgba(14, 165, 233, 0.6)',
-                    '0 0 5px rgba(14, 165, 233, 0.3)'
+                    '0 0 5px rgba(14, 165, 233, 0.4)',
+                    '0 0 15px rgba(14, 165, 233, 0.7)',
+                    '0 0 5px rgba(14, 165, 233, 0.4)'
                   ]
                 }}
-                transition={{ duration: 2.5, repeat: Infinity }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
                 <span className='text-xl sm:text-2xl text-blue-700 px-3'>
                   ⚝
@@ -229,32 +353,69 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Enhanced Quote with Responsive Sizing */}
-          <motion.p
-            className="font-lora text-lg sm:text-xl md:text-2xl text-gray-900/80 mb-10 sm:mb-12 relative"
+          {/* Enhanced Quote with more dynamic animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
             animate={{
-              color: [
-                'rgba(15, 23, 42, 0.8)',
-                'rgba(30, 64, 175, 0.9)',
-                'rgba(15, 23, 42, 0.8)'
-              ]
+              opacity: isLoaded ? 1 : 0,
+              y: isLoaded ? 0 : 50
             }}
-            transition={{ duration: 4, repeat: Infinity }}
+            transition={{
+              duration: 0.8,
+              delay: 0.8,
+              type: "spring",
+              damping: 12,
+              stiffness: 100
+            }}
+            className="relative mb-10 sm:mb-12"
           >
-            <span className="relative z-10">"Every moment 𖹭 today sings for you"</span>
+            <motion.p
+              className="font-lora text-lg sm:text-xl md:text-2xl text-gray-900/80 relative"
+              animate={{
+                color: [
+                  'rgba(15, 23, 42, 0.8)',
+                  'rgba(30, 64, 175, 0.9)',
+                  'rgba(15, 23, 42, 0.8)'
+                ]
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <span className="relative z-10">"Every moment 𖹭 today sings for you"</span>
+            </motion.p>
+
             <motion.div
-              className="absolute -inset-2 bg-gradient-to-r from-sky-400/5 to-blue-800/5 rounded-lg -z-10"
-              animate={{ opacity: [0, 0.5, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
+              className="absolute -inset-2 bg-gradient-to-r from-sky-400/10 to-blue-800/10 rounded-lg -z-10"
+              animate={{
+                opacity: [0, 0.6, 0],
+                scale: [0.95, 1.05, 0.95]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             />
-          </motion.p>
+          </motion.div>
         </motion.div>
 
-        {/* Enhanced Photo Gallery with Responsive Sizing */}
+        {/* Enhanced Photo Gallery with more sophisticated animations */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
+          animate={{
+            opacity: isLoaded ? 1 : 0,
+            scale: isLoaded ? 1 : 0.8
+          }}
+          transition={{
+            duration: 1.2,
+            delay: 0.5,
+            type: "spring",
+            stiffness: 100,
+            damping: 15
+          }}
           className="flex justify-center gap-4 sm:gap-8 mb-12 sm:mb-14"
         >
           <motion.div
@@ -262,20 +423,29 @@ const HeroSection = () => {
             whileHover={{
               scale: isMobile ? 1.05 : 1.15,
               rotate: isMobile ? 3 : 6,
-              transition: { type: "spring", stiffness: 300 }
+              transition: {
+                type: "spring",
+                stiffness: 300,
+                damping: 20
+              }
             }}
             animate={{
               y: [-5, 5, -5],
             }}
             transition={{
-              y: { duration: 4, repeat: Infinity, delay: 0 }
+              y: {
+                duration: 5,
+                repeat: Infinity,
+                delay: 0,
+                ease: "easeInOut"
+              }
             }}
           >
-            <div className="absolute -inset-2 bg-gradient-to-r from-sky-400/30 to-blue-800/30 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -inset-2 bg-gradient-to-r from-sky-400/40 to-blue-800/40 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <img
               src={image_1}
               alt="Shraddha"
-              className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-48 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-500"
+              className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-48 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-700"
             />
             <motion.div
               className="absolute -top-3 -right-3"
@@ -283,7 +453,11 @@ const HeroSection = () => {
                 scale: [1, 1.3, 1],
                 rotate: [0, 15, 0]
               }}
-              transition={{ duration: 2, repeat: Infinity }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             >
               <Heart className="w-5 h-5 sm:w-7 sm:h-7 text-blue-800 fill-current drop-shadow-lg" />
             </motion.div>
@@ -294,20 +468,29 @@ const HeroSection = () => {
             whileHover={{
               scale: isMobile ? 1.05 : 1.15,
               rotate: isMobile ? -3 : -6,
-              transition: { type: "spring", stiffness: 300 }
+              transition: {
+                type: "spring",
+                stiffness: 300,
+                damping: 20
+              }
             }}
             animate={{
               y: [5, -5, 5],
             }}
             transition={{
-              y: { duration: 4, repeat: Infinity, delay: 1 }
+              y: {
+                duration: 5,
+                repeat: Infinity,
+                delay: 1.2,
+                ease: "easeInOut"
+              }
             }}
           >
-            <div className="absolute -inset-2 bg-gradient-to-r from-blue-800/30 to-sky-400/30 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -inset-2 bg-gradient-to-r from-blue-800/40 to-sky-400/40 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <img
               src={image_2}
               alt="Shraddha"
-              className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-48 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-500"
+              className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-48 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-700"
             />
             <motion.div
               className="absolute -top-3 -left-3"
@@ -315,7 +498,12 @@ const HeroSection = () => {
                 scale: [1, 1.3, 1],
                 rotate: [0, -15, 0]
               }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                delay: 0.7,
+                ease: "easeInOut"
+              }}
             >
               <Heart className="w-5 h-5 sm:w-7 sm:h-7 text-sky-800 fill-current drop-shadow-lg" />
             </motion.div>
