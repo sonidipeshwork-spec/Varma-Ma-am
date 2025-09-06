@@ -176,7 +176,7 @@ const FutureSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-pure-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
 
                 <p className="font-lora text-xl md:text-2xl text-pure-white leading-relaxed text-center relative z-10">
-                  <span className="font-vibes text-3xl text-sky-blue">Happy 18th Birthday, Shraddha Varma.</span><br />
+                  <span className="font-vibes text-3xl text-sky-blue">Happy 19th Birthday, Varma Ma'am</span><br />
                   May this year paint your world with endless joy, fill your days with magical adventures,
                   crown your academic journey with success, and surround you with all the love
                   your beautiful heart deserves. Here's to new chapters written in starlight,
@@ -203,7 +203,7 @@ const FutureSection = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="absolute -inset-4 bg-gradient-to-r from-sky-blue/30 to-royal-blue/30 rounded-full blur-md"></div>
-              <p className="font-vibes text-5xl text-pure-white mb-4 relative z-10">
+              <p className="font-vibes text-3xl text-pure-white mb-4 relative z-10">
                 🤍 Happiest Birthday 🤍
               </p>
             </motion.div>
