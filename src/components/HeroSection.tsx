@@ -403,7 +403,7 @@ const HeroSection = () => {
                 scale: [0.95, 1.05, 0.95]
               }}
               transition={{
-                duration: 3, // Reduced duration
+                duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
@@ -444,7 +444,7 @@ const HeroSection = () => {
             }}
             transition={{
               y: {
-                duration: 4, // Reduced duration
+                duration: 4,
                 repeat: Infinity,
                 delay: 0,
                 ease: "easeInOut"
@@ -456,7 +456,7 @@ const HeroSection = () => {
             <img
               src={image_1}
               alt="Shraddha"
-              className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-48 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-700"
+              className="relative w-32 h-40 sm:w-40 sm:h-48 md:w-48 md:h-60 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-700"
             />
 
             <motion.div
@@ -504,7 +504,7 @@ const HeroSection = () => {
             <img
               src={image_2}
               alt="Shraddha"
-              className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-48 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-700"
+              className="relative w-32 h-40 sm:w-40 sm:h-48 md:w-48 md:h-60 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-700"
             />
 
             <motion.div

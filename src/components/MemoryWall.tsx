@@ -120,35 +120,6 @@ const MemoryWall = () => {
     setSelectedImage(memories[newIndex].id);
   };
 
-  const toggleAutoPlay = () => {
-    setIsAutoPlay(!isAutoPlay);
-  };
-
-  const downloadImage = () => {
-    if (!selectedMemory) return;
-    const link = document.createElement('a');
-    link.href = selectedMemory.url;
-    link.download = `memory-${selectedMemory.id}.jpg`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const shareImage = () => {
-    if (!selectedMemory) return;
-    if (navigator.share) {
-      navigator.share({
-        title: 'Special Memory',
-        text: selectedMemory.caption,
-        url: window.location.href
-      });
-    } else {
-      // Fallback for browsers that don't support Web Share API
-      navigator.clipboard.writeText(window.location.href);
-      alert('Link copied to clipboard!');
-    }
-  };
-
   const selectedMemory = memories.find(m => m.id === selectedImage);
 
   return (
@@ -400,39 +371,6 @@ const MemoryWall = () => {
                 {/* Image Counter */}
                 <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 bg-pure-white/20 backdrop-blur-sm text-pure-white px-4 py-2 rounded-full text-sm font-lora">
                   {currentIndex + 1} of {memories.length}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 flex space-x-3">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleAutoPlay();
-                    }}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 ease-in-out ${isAutoPlay ? 'bg-rose-500' : 'bg-pure-white/20 hover:bg-pure-white/30'}`}
-                  >
-                    <div className="w-4 h-4 rounded-sm bg-pure-white"></div>
-                  </button>
-
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      downloadImage();
-                    }}
-                    className="w-10 h-10 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors duration-300 ease-in-out"
-                  >
-                    <Download className="w-5 h-5 text-pure-white" />
-                  </button>
-
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      shareImage();
-                    }}
-                    className="w-10 h-10 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors duration-300 ease-in-out"
-                  >
-                    <Share2 className="w-5 h-5 text-pure-white" />
-                  </button>
                 </div>
 
                 {/* Image with Enhanced Styling */}
