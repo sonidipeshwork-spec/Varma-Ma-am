@@ -43,6 +43,7 @@ const CollageSection = () => {
               duration: 8 + i * 0.5,
               repeat: Infinity,
               delay: i * 0.3,
+              ease: "easeInOut"
             }}
             style={{
               left: `${Math.random() * 100}%`,
@@ -50,22 +51,35 @@ const CollageSection = () => {
             }}
           />
         ))}
-
         {/* Decorative Icons */}
         <motion.div
           className="absolute top-10 left-5 md:top-20 md:left-10 text-4xl md:text-6xl"
           animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 6, repeat: Infinity }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
         >🤍</motion.div>
         <motion.div
           className="absolute top-20 right-10 md:top-40 md:right-20 text-5xl md:text-8xl"
           animate={{ y: [0, -25, 0] }}
-          transition={{ duration: 7, repeat: Infinity, delay: 1 }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            delay: 1,
+            ease: "easeInOut"
+          }}
         >✨</motion.div>
         <motion.div
           className="absolute bottom-10 left-1/4 md:bottom-20 text-4xl md:text-7xl"
           animate={{ y: [0, -30, 0] }}
-          transition={{ duration: 8, repeat: Infinity, delay: 2 }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            delay: 2,
+            ease: "easeInOut"
+          }}
         >❣️</motion.div>
       </div>
 
@@ -73,10 +87,12 @@ const CollageSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{
+            duration: 0.8,
+            ease: "easeInOut"
+          }}
           className="text-center mb-8 md:mb-12 lg:mb-16"
         >
-
           <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-royal-blue mb-4">
             Beautiful Collage
           </h2>
@@ -90,7 +106,10 @@ const CollageSection = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
+            transition={{
+              duration: 1,
+              ease: "easeInOut"
+            }}
             className="relative bg-gradient-to-br from-pure-white to-sky-blue/20 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 shadow-2xl overflow-hidden"
           >
             {/* Background Pattern */}
@@ -104,14 +123,18 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.5,
+                  ease: "easeInOut"
+                }}
                 className="relative z-30 group"
               >
-                <div className="w-60 h-70 md:w-66 md:h-90 lg:w-72 lg:h-96 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-4 border-pure-white transform hover:scale-110 hover:rotate-3 transition-all duration-500 ease-out bg-gradient-to-br from-sky-blue/20 to-royal-blue/20 hover:z-50">
+                <div className="w-60 h-70 md:w-66 md:h-90 lg:w-72 lg:h-96 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-4 border-pure-white transform hover:scale-110 hover:rotate-3 transition-all duration-500 ease-in-out bg-gradient-to-br from-sky-blue/20 to-royal-blue/20 hover:z-50">
                   <img
                     src={collageImages[0]}
                     alt="Shruu"
-                    className="w-full h-full object-cover filter brightness-110 transform hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover filter brightness-110 transform hover:scale-105 transition-transform duration-500 ease-in-out"
                   />
                 </div>
 
@@ -122,7 +145,11 @@ const CollageSection = () => {
                     scale: [1, 1.2, 1],
                     rotate: [0, 10, 0]
                   }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 >
                   <Heart className="w-4 h-4 md:w-6 md:h-6 text-pure-white fill-current" />
                 </motion.div>
@@ -133,7 +160,12 @@ const CollageSection = () => {
                     scale: [1, 1.2, 1],
                     rotate: [0, -10, 0]
                   }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: 1,
+                    ease: "easeInOut"
+                  }}
                 >
                   <Star className="w-3 h-3 md:w-5 md:h-5 text-royal-blue fill-current" />
                 </motion.div>
@@ -143,20 +175,32 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, x: -50, y: -40, rotate: -20 }}
                 whileInView={{ opacity: 1, x: -175, y: -80, rotate: -15 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.7,
+                  ease: "easeInOut"
+                }}
                 className="absolute z-20 group"
               >
-                <div className="w-28 h-40 md:w-36 md:h-48 lg:w-48 lg:h-60 rounded-2xl overflow-hidden shadow-xl border-4 border-pure-white transform hover:scale-115 hover:rotate-6 transition-all duration-500 ease-out bg-gradient-to-br from-sky-blue/10 to-royal-blue/10 hover:z-50">
+                <div className="w-28 h-40 md:w-36 md:h-48 lg:w-48 lg:h-60 rounded-2xl overflow-hidden shadow-xl border-4 border-pure-white transform hover:scale-115 hover:rotate-6 transition-all duration-500 ease-in-out bg-gradient-to-br from-sky-blue/10 to-royal-blue/10 hover:z-50">
                   <img
                     src={collageImages[1]}
                     alt="Beautiful Moment"
-                    className="w-full h-full object-cover filter brightness-105 transform hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover filter brightness-105 transform hover:scale-110 transition-transform duration-500 ease-in-out"
                   />
                 </div>
 
                 <motion.div
                   className="absolute -top-3 -left-3 w-6 h-6 md:w-8 md:h-8 text-sky-blue fill-current"
-                  transition={{ duration: 8, repeat: Infinity }}
+                  animate={{
+                    rotate: [0, 15, 0, -15, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 >
                   <Sparkles className="w-full h-full" />
                 </motion.div>
@@ -166,10 +210,14 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, x: 50, y: -40, rotate: 20 }}
                 whileInView={{ opacity: 1, x: 175, y: -80, rotate: 15 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.9,
+                  ease: "easeInOut"
+                }}
                 className="absolute z-20 group"
               >
-                <div className="w-28 h-40 md:w-36 md:h-48 lg:w-48 lg:h-60 rounded-2xl overflow-hidden shadow-xl border-4 border-pure-white transform hover:scale-110 transition-all duration-300 bg-gradient-to-br from-royal-blue/10 to-sky-blue/10 hover:z-50">
+                <div className="w-28 h-40 md:w-36 md:h-48 lg:w-48 lg:h-60 rounded-2xl overflow-hidden shadow-xl border-4 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out bg-gradient-to-br from-royal-blue/10 to-sky-blue/10 hover:z-50">
                   <img
                     src={collageImages[2]}
                     alt="Precious Memory"
@@ -179,7 +227,15 @@ const CollageSection = () => {
 
                 <motion.div
                   className="absolute -top-3 -right-3 w-6 h-6 md:w-8 md:h-8 text-royal-blue fill-current"
-                  transition={{ duration: 8, repeat: Infinity }}
+                  animate={{
+                    rotate: [0, -15, 0, 15, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 >
                   <Star className="w-full h-full" />
                 </motion.div>
@@ -189,10 +245,14 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, x: -40, y: 20, rotate: -15 }}
                 whileInView={{ opacity: 1, x: -175, y: 90, rotate: -15 }}
-                transition={{ duration: 0.8, delay: 1.1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 1.1,
+                  ease: "easeInOut"
+                }}
                 className="absolute z-15 group"
               >
-                <div className="w-24 h-36 md:w-32 md:h-44 lg:w-44 lg:h-56 rounded-2xl overflow-hidden shadow-lg border-3 border-pure-white transform hover:scale-110 transition-all duration-300 hover:z-50">
+                <div className="w-24 h-36 md:w-32 md:h-44 lg:w-44 lg:h-56 rounded-2xl overflow-hidden shadow-lg border-3 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
                     src={collageImages[3]}
                     alt="Sweet Memory"
@@ -202,7 +262,15 @@ const CollageSection = () => {
 
                 <motion.div
                   className="absolute -bottom-3 -left-3 w-5 h-5 md:w-7 md:h-7 text-sky-blue fill-current"
-                  transition={{ duration: 2, repeat: Infinity }}
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 10, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 >
                   <Heart className="w-full h-full" />
                 </motion.div>
@@ -212,10 +280,14 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, x: 40, y: 20, rotate: 15 }}
                 whileInView={{ opacity: 1, x: 175, y: 90, rotate: 15 }}
-                transition={{ duration: 0.8, delay: 1.3 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 1.3,
+                  ease: "easeInOut"
+                }}
                 className="absolute z-15 group"
               >
-                <div className="w-24 h-36 md:w-32 md:h-44 lg:w-44 lg:h-56 rounded-2xl overflow-hidden shadow-lg border-3 border-pure-white transform hover:scale-110 transition-all duration-300 hover:z-50">
+                <div className="w-24 h-36 md:w-32 md:h-44 lg:w-44 lg:h-56 rounded-2xl overflow-hidden shadow-lg border-3 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
                     src={collageImages[4]}
                     alt="Cherished Moment"
@@ -225,7 +297,16 @@ const CollageSection = () => {
 
                 <motion.div
                   className="absolute -bottom-3 -right-3 w-5 h-5 md:w-7 md:h-7 text-royal-blue fill-current"
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, -10, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: 1,
+                    ease: "easeInOut"
+                  }}
                 >
                   <Sparkles className="w-full h-full" />
                 </motion.div>
@@ -235,10 +316,14 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, y: 60, rotate: 5 }}
                 whileInView={{ opacity: 1, y: 215, rotate: 0 }}
-                transition={{ duration: 0.8, delay: 1.5 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 1.5,
+                  ease: "easeInOut"
+                }}
                 className="absolute z-10 group"
               >
-                <div className="w-24 h-36 md:w-32 md:h-44 lg:w-40 lg:h-52 rounded-xl overflow-hidden shadow-lg border-3 border-pure-white transform hover:scale-110 transition-all duration-300 hover:z-50">
+                <div className="w-24 h-36 md:w-32 md:h-44 lg:w-40 lg:h-52 rounded-xl overflow-hidden shadow-lg border-3 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
                     src={collageImages[5]}
                     alt="Heart of Memories"
@@ -251,10 +336,14 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, x: -75, y: 0, rotate: -30 }}
                 whileInView={{ opacity: 1, x: -250, y: -10, rotate: -25 }}
-                transition={{ duration: 0.8, delay: 1.7 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 1.7,
+                  ease: "easeInOut"
+                }}
                 className="absolute z-5 group"
               >
-                <div className="w-20 h-28 md:w-24 md:h-32 lg:w-32 lg:h-40 rounded-xl overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 hover:z-50">
+                <div className="w-20 h-28 md:w-24 md:h-32 lg:w-32 lg:h-40 rounded-xl overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
                     src={collageImages[6]}
                     alt="Side Memory"
@@ -266,10 +355,14 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, x: 75, y: 0, rotate: 30 }}
                 whileInView={{ opacity: 1, x: 250, y: -10, rotate: 25 }}
-                transition={{ duration: 0.8, delay: 1.9 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 1.9,
+                  ease: "easeInOut"
+                }}
                 className="absolute z-5 group"
               >
-                <div className="w-20 h-28 md:w-24 md:h-32 lg:w-32 lg:h-40 rounded-xl overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 hover:z-50">
+                <div className="w-20 h-28 md:w-24 md:h-32 lg:w-32 lg:h-40 rounded-xl overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
                     src={collageImages[7]}
                     alt="Side Memory"
@@ -282,10 +375,14 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, y: -60, x: -30, rotate: -20 }}
                 whileInView={{ opacity: 1, y: -190, x: -120, rotate: -15 }}
-                transition={{ duration: 0.8, delay: 2.1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 2.1,
+                  ease: "easeInOut"
+                }}
                 className="absolute z-5 group"
               >
-                <div className="w-16 h-24 md:w-20 md:h-28 lg:w-28 lg:h-36 rounded-lg overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 hover:z-50">
+                <div className="w-16 h-24 md:w-20 md:h-28 lg:w-28 lg:h-36 rounded-lg overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
                     src={collageImages[8]}
                     alt="Top Memory"
@@ -297,10 +394,14 @@ const CollageSection = () => {
               <motion.div
                 initial={{ opacity: 0, y: -60, x: 30, rotate: 20 }}
                 whileInView={{ opacity: 1, y: -190, x: 120, rotate: 15 }}
-                transition={{ duration: 0.8, delay: 2.3 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 2.3,
+                  ease: "easeInOut"
+                }}
                 className="absolute z-5 group"
               >
-                <div className="w-16 h-24 md:w-20 md:h-28 lg:w-28 lg:h-36 rounded-lg overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 hover:z-50">
+                <div className="w-16 h-24 md:w-20 md:h-28 lg:w-28 lg:h-36 rounded-lg overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
                     src={collageImages[9]}
                     alt="Top Memory"
@@ -314,7 +415,11 @@ const CollageSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
+              transition={{
+                duration: 0.8,
+                delay: 1.2,
+                ease: "easeInOut"
+              }}
               className="text-center mt-8 md:mt-12 lg:mt-16"
             >
               <h3 className="font-vibes py-5 text-2xl md:text-3xl lg:text-4xl text-royal-blue mb-4">
@@ -331,22 +436,44 @@ const CollageSection = () => {
             <motion.div
               className="top-4 left-4 text-royal-blue/30 text-2xl md:text-3xl absolute"
               animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             >💕</motion.div>
+
             <motion.div
               className="top-8 right-8 text-sky-blue/40 text-xl md:text-2xl absolute"
               animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                delay: 1,
+                ease: "easeInOut"
+              }}
             >💖</motion.div>
+
             <motion.div
               className="bottom-4 left-8 text-royal-blue/30 text-2xl md:text-3xl absolute"
               animate={{ y: [0, -25, 0] }}
-              transition={{ duration: 6, repeat: Infinity, delay: 2 }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                delay: 2,
+                ease: "easeInOut"
+              }}
             >💝</motion.div>
+
             <motion.div
               className="bottom-8 right-4 text-sky-blue/40 text-xl md:text-2xl absolute"
               animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, delay: 3 }}
+              transition={{
+                duration: 4.5,
+                repeat: Infinity,
+                delay: 3,
+                ease: "easeInOut"
+              }}
             >🌸</motion.div>
           </motion.div>
 
@@ -354,17 +481,45 @@ const CollageSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
+            transition={{
+              duration: 0.8,
+              delay: 1.5,
+              ease: "easeInOut"
+            }}
             className="text-center mt-8 md:mt-12"
           >
             <div className="glass-card p-4 md:p-6 rounded-2xl max-w-2xl mx-auto relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-sky-blue/10 to-royal-blue/10 rounded-2xl"></div>
               <div className="relative z-10 flex items-center justify-center mb-3">
-                <Gift className="w-6 h-6 text-rose-500 mr-2" />
+                <motion.div
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 5, 0, -5, 0]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <Gift className="w-6 h-6 text-rose-500 mr-2" />
+                </motion.div>
                 <p className="font-vibes text-xl md:text-2xl lg:text-3xl text-royal-blue">
                   "In every picture, I see the same thing..."
                 </p>
-                <Gift className="w-6 h-6 text-rose-500 ml-2" />
+                <motion.div
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    rotate: [0, -5, 0, 5, 0]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <Gift className="w-6 h-6 text-rose-500 ml-2" />
+                </motion.div>
               </div>
               <p className="font-lora text-base md:text-xl text-midnight-black/80">
                 Pure beauty, endless grace, and the reason for my smile.

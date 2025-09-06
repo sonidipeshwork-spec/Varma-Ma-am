@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Sparkles } from 'lucide-react';
 import heroImage from '@/assets/hero-bg.jpg';
@@ -11,23 +11,20 @@ const HeroSection = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 300);
-
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     checkMobile();
     window.addEventListener('resize', checkMobile);
-
     return () => {
       clearTimeout(timer);
       window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
-  // Adjust particle count based on screen size
-  const particleCount = isMobile ? 8 : 15;
-  const sparkleCount = isMobile ? 3 : 6;
+  // Adjust particle count based on screen size (reduced for performance)
+  const particleCount = useMemo(() => isMobile ? 6 : 10, [isMobile]);
+  const sparkleCount = useMemo(() => isMobile ? 2 : 4, [isMobile]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -65,6 +62,7 @@ const HeroSection = () => {
           -webkit-backdrop-filter: blur(12px);
           border: 1px solid rgba(255, 255, 255, 0.25);
           box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+          will-change: transform;
         }
         
         .text-shimmer {
@@ -109,15 +107,16 @@ const HeroSection = () => {
               background: `rgba(${125 + Math.random() * 50}, ${200 + Math.random() * 55}, 255, ${0.1 + Math.random() * 0.2})`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              willChange: 'transform, opacity'
             }}
             animate={{
-              x: [0, 50 + Math.random() * 50, 0],
-              y: [0, -30 - Math.random() * 50, 0],
+              x: [0, 30 + Math.random() * 30, 0],
+              y: [0, -20 - Math.random() * 30, 0],
               opacity: [0, 0.7, 0],
               scale: [0, 1, 0],
             }}
             transition={{
-              duration: 10 + i * 0.7,
+              duration: 8 + i * 0.5, // Reduced duration
               repeat: Infinity,
               delay: i * 0.4,
               ease: "easeInOut"
@@ -131,13 +130,14 @@ const HeroSection = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 floating"
         style={{
           backgroundImage: `url(${heroImage})`,
-          transform: isMobile ? 'scale(1.05)' : 'scale(1.15)'
+          transform: isMobile ? 'scale(1.05)' : 'scale(1.15)',
+          willChange: 'transform'
         }}
         animate={{
-          y: [0, -20, 0],
+          y: [0, -15, 0], // Reduced movement
         }}
         transition={{
-          duration: 20,
+          duration: 15, // Reduced duration
           repeat: Infinity,
           ease: "easeInOut"
         }}
@@ -150,22 +150,24 @@ const HeroSection = () => {
           opacity: [0.85, 0.95, 0.85],
         }}
         transition={{
-          duration: 8,
+          duration: 6, // Reduced duration
           repeat: Infinity,
           ease: "easeInOut"
         }}
+        style={{ willChange: 'opacity' }}
       />
 
       <motion.div
         className="absolute inset-0 bg-gradient-radial from-transparent via-sky-400/15 to-blue-800/30"
         animate={{
-          scale: [1, 1.1, 1],
+          scale: [1, 1.08, 1], // Reduced scale change
         }}
         transition={{
-          duration: 12,
+          duration: 10, // Reduced duration
           repeat: Infinity,
           ease: "easeInOut"
         }}
+        style={{ willChange: 'transform' }}
       />
 
       <div className="absolute inset-0 bg-gradient-to-t from-gray-900/10 via-transparent to-white/20" />
@@ -177,21 +179,22 @@ const HeroSection = () => {
             key={`sparkle-${i}`}
             className="absolute text-sky-400/70"
             animate={{
-              y: [-30, 50, -30],
-              x: [0, Math.random() * 20 - 10, 0],
+              y: [-30, 40, -30], // Reduced movement
+              x: [0, Math.random() * 15 - 7.5, 0], // Reduced movement
               rotate: [0, 180, 360],
               scale: [0.4, 1, 0.4],
               opacity: [0.2, 1, 0.2],
             }}
             transition={{
-              duration: 5 + i * 0.7,
+              duration: 4 + i * 0.5, // Reduced duration
               repeat: Infinity,
               delay: i * 1,
               ease: "easeInOut"
             }}
             style={{
-              left: `${15 + i * 12}%`,
-              top: `${20 + (i % 4) * 20}%`,
+              left: `${15 + i * 20}%`, // Adjusted spacing
+              top: `${20 + (i % 3) * 25}%`, // Adjusted spacing
+              willChange: 'transform, opacity'
             }}
           >
             <Sparkles className="w-4 h-4" />
@@ -237,6 +240,7 @@ const HeroSection = () => {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+              style={{ willChange: 'transform, text-shadow' }}
             >
               <span className="text-shimmer">
                 Happy Birthday
@@ -255,6 +259,7 @@ const HeroSection = () => {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+              style={{ willChange: 'transform, opacity' }}
             />
           </motion.div>
 
@@ -284,10 +289,11 @@ const HeroSection = () => {
                 ]
               }}
               transition={{
-                duration: 5,
+                duration: 4, // Reduced duration
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+              style={{ willChange: 'filter' }}
             >
               Miss Princess, Shruu Ji
             </motion.h2>
@@ -295,14 +301,15 @@ const HeroSection = () => {
             <motion.div
               className="absolute inset-0 rounded-full blur-3xl bg-gradient-radial from-sky-400/50 via-sky-400/30 to-transparent"
               animate={{
-                scale: [1, 1.3, 1],
+                scale: [1, 1.2, 1], // Reduced scale change
                 opacity: [0.4, 0.7, 0.4],
               }}
               transition={{
-                duration: 4,
+                duration: 3, // Reduced duration
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+              style={{ willChange: 'transform, opacity' }}
             />
           </motion.div>
 
@@ -334,10 +341,11 @@ const HeroSection = () => {
                   ]
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 3, // Reduced duration
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
+                style={{ willChange: 'text-shadow' }}
               >
                 <span className='text-xl sm:text-2xl text-blue-700 px-3'>
                   ⚝
@@ -379,10 +387,11 @@ const HeroSection = () => {
                 ]
               }}
               transition={{
-                duration: 5,
+                duration: 4, // Reduced duration
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+              style={{ willChange: 'color' }}
             >
               <span className="relative z-10">"Every moment 𖹭 today sings for you"</span>
             </motion.p>
@@ -394,10 +403,11 @@ const HeroSection = () => {
                 scale: [0.95, 1.05, 0.95]
               }}
               transition={{
-                duration: 4,
+                duration: 3, // Reduced duration
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+              style={{ willChange: 'transform, opacity' }}
             />
           </motion.div>
         </motion.div>
@@ -434,12 +444,13 @@ const HeroSection = () => {
             }}
             transition={{
               y: {
-                duration: 5,
+                duration: 4, // Reduced duration
                 repeat: Infinity,
                 delay: 0,
                 ease: "easeInOut"
               }
             }}
+            style={{ willChange: 'transform' }}
           >
             <div className="absolute -inset-2 bg-gradient-to-r from-sky-400/40 to-blue-800/40 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <img
@@ -447,6 +458,7 @@ const HeroSection = () => {
               alt="Shraddha"
               className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-48 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-700"
             />
+
             <motion.div
               className="absolute -top-3 -right-3"
               animate={{
@@ -454,10 +466,11 @@ const HeroSection = () => {
                 rotate: [0, 15, 0]
               }}
               transition={{
-                duration: 2.5,
+                duration: 2, // Reduced duration
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+              style={{ willChange: 'transform' }}
             >
               <Heart className="w-5 h-5 sm:w-7 sm:h-7 text-blue-800 fill-current drop-shadow-lg" />
             </motion.div>
@@ -479,12 +492,13 @@ const HeroSection = () => {
             }}
             transition={{
               y: {
-                duration: 5,
+                duration: 4, // Reduced duration
                 repeat: Infinity,
                 delay: 1.2,
                 ease: "easeInOut"
               }
             }}
+            style={{ willChange: 'transform' }}
           >
             <div className="absolute -inset-2 bg-gradient-to-r from-blue-800/40 to-sky-400/40 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <img
@@ -492,6 +506,7 @@ const HeroSection = () => {
               alt="Shraddha"
               className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-48 object-cover rounded-3xl shadow-2xl glass-card border-2 border-gray-300/40 transition-all duration-700"
             />
+
             <motion.div
               className="absolute -top-3 -left-3"
               animate={{
@@ -499,11 +514,12 @@ const HeroSection = () => {
                 rotate: [0, -15, 0]
               }}
               transition={{
-                duration: 2.5,
+                duration: 2, // Reduced duration
                 repeat: Infinity,
                 delay: 0.7,
                 ease: "easeInOut"
               }}
+              style={{ willChange: 'transform' }}
             >
               <Heart className="w-5 h-5 sm:w-7 sm:h-7 text-sky-800 fill-current drop-shadow-lg" />
             </motion.div>

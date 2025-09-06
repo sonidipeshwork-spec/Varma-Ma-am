@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Baby, GraduationCap, BookOpen, Heart, Star, Sparkles, Camera, Plane } from 'lucide-react';
 import image_2 from "@/assets/image_2.png";
@@ -12,73 +12,6 @@ import image_14 from "@/assets/image_14.jpg";
 import image_15 from "@/assets/image_15.jpg";
 import image_16 from "@/assets/image_16.jpg";
 
-const timelineEvents = [
-  {
-    year: "2006",
-    title: "Cutest Queen is Born",
-    description: "September 16th - Duniya roshan ho gayi",
-    icon: Star,
-    details: "10 mahine ki umar mein pehla shabd 'Mama', 11 mahine mein chhoti si chal.",
-    color: "text-sky-blue"
-  },
-  {
-    year: "2010",
-    title: "Little Explorer",
-    description: "Chhoti si duniya ki khoj",
-    icon: Baby,
-    details: "Colorful pathar ikattha karna aur notebook bhar dena rainbow aur cute drawings se — imagination ki ek alag hi duniya thi.",
-    color: "text-royal-blue"
-  },
-  {
-    year: "2015",
-    title: "Academic Excellence",
-    description: "School ki achievements aur dostiyan",
-    icon: BookOpen,
-    details: "Maths aur art se pyaar, teachers ki favorite aur doston ki jaan, hamesha knowledge aur creativity mein expert.",
-    color: "text-sky-blue"
-  },
-  {
-    year: "2023",
-    title: "High School Graduate",
-    description: "Nayi safar ki shuruaat",
-    icon: GraduationCap,
-    details: "Stage par chalti hui ek shining star — honors ke saath graduation complete, aur naye sapno ki ek badi kitaab shuru hui.",
-    color: "text-royal-blue"
-  },
-  {
-    year: "2024",
-    title: "Our Story",
-    description: "Dil se dil ka connection",
-    icon: Heart,
-    details: "Wo ek pal jab zindagi badal gayi — jab dosti se kuch aur khoobsurat shuru hua, aur duniya aur bhi roshan lagne lagi.",
-    color: "text-sky-blue"
-  },
-  {
-    year: "2025",
-    title: "College Journey Begins",
-    description: "Doosra saal college ka, aur bhi khilte hue",
-    icon: Sparkles,
-    details: "Books aur adventures dono balance karte hue, bade sapne chase karna, aur khud ki best version ban’na — ek nayi journey ka junoon.",
-    color: "text-royal-blue"
-  },
-  {
-    year: "2024",
-    title: "Adventures Together",
-    description: "Duniya ko saath milke explore karna",
-    icon: Plane,
-    details: "Pahadon ki wo pehli trip — haathon mein haath, hansi ki goonj, raat ko taare aur dil ek saath dhadak rahe the.",
-    color: "text-sky-blue"
-  },
-  {
-    year: "2025",
-    title: "Capturing Moments",
-    description: "Har pal ko yaadon mein basana",
-    icon: Camera,
-    details: "Camera ke lens se ek naya shauk mila — hasi, sunsets aur chhoti chhoti yaadein capture karke unhe hamesha ke liye amar banana.",
-    color: "text-royal-blue"
-  }
-];
-
 const JourneyTimeline = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -87,25 +20,94 @@ const JourneyTimeline = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
-  // Updated with new images
-  const journeyImages = [
+  // Memoize static data to prevent unnecessary recalculations
+  const timelineEvents = useMemo(() => [
+    {
+      year: "2006",
+      title: "Cutest Queen is Born",
+      description: "September 16th - Duniya roshan ho gayi",
+      icon: Star,
+      details: "10 mahine ki umar mein pehla shabd 'Mama', 11 mahine mein chhoti si chal.",
+      color: "text-sky-blue"
+    },
+    {
+      year: "2010",
+      title: "Little Explorer",
+      description: "Ise Chhoti si duniya ki khoj",
+      icon: Baby,
+      details: "Colorful pathar ikattha karna aur notebook bhar dena rainbow aur cute drawings se — imagination ki ek alag hi duniya thi.",
+      color: "text-royal-blue"
+    },
+    {
+      year: "2015",
+      title: "Academic Excellence",
+      description: "School ki achievements aur dostiyan",
+      icon: BookOpen,
+      details: "Maths aur art se pyaar, teachers ki favorite, hamesha knowledge aur creativity mein curiosity.",
+      color: "text-sky-blue"
+    },
+    {
+      year: "2023",
+      title: "School Life Last Moments",
+      description: "Ek Nayi safar ki shuruaat",
+      icon: GraduationCap,
+      details: "Focusing on Studies, Fun, Future and many other thing a quite transition from school to college .",
+      color: "text-royal-blue"
+    },
+    {
+      year: "2024",
+      title: "New Chapter",
+      description: "Discovering New Challenges",
+      icon: Heart,
+      details: "New Faces, New Characters, New Lesson.",
+      color: "text-sky-blue"
+    },
+    {
+      year: "2025",
+      title: "College Journey",
+      description: "Doosra saal college ka, aur bhi khilte hue",
+      icon: Sparkles,
+      details: "Classes, projects aur masti dono balance karna, naye experiences collect karna.",
+      color: "text-royal-blue"
+    },
+    {
+      year: "2025",
+      title: "1st Semester Exam",
+      description: "Learning New Technique",
+      icon: Plane,
+      details: "1st semester exam — tension, late night studies, aur doston ke saath combined preparation. Nervousness of Exam.",
+      color: "text-sky-blue"
+    },
+    {
+      year: "2025",
+      title: "Capturing Precious Moments",
+      description: "Har pal ko yaadon mein basana",
+      icon: Camera,
+      details: "Capturing Each Moment, random selfies, aur chhote chhote moments forever save karna.",
+      color: "text-royal-blue"
+    }
+  ], []);
+
+  // Memoize images array
+  const journeyImages = useMemo(() => [
     image_2,
     image_3,
     image_4,
     image_5,
     image_9,
     image_12,
-    image_13, // New image
-    image_14, // New image
-    image_15, // New image
-    image_16  // New image
-  ];
+    image_13,
+    image_14,
+    image_15,
+    image_16
+  ], []);
 
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -100px 0px'
     };
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -113,59 +115,74 @@ const JourneyTimeline = () => {
         }
       });
     }, observerOptions);
+
     const elements = document.querySelectorAll('.timeline-item');
     elements.forEach((el) => observer.observe(el));
+
     return () => observer.disconnect();
   }, []);
 
   return (
     <section ref={containerRef} className="py-12 md:py-20 bg-gradient-to-br from-pure-white to-sky-blue/20 relative overflow-hidden">
       {/* Enhanced Background Decorations */}
-      <motion.div style={{ y }} className="absolute inset-0 opacity-5 md:opacity-10 pointer-events-none">
+      <motion.div
+        style={{
+          y,
+          willChange: 'transform'
+        }}
+        className="absolute inset-0 opacity-5 md:opacity-10 pointer-events-none"
+      >
         <motion.div
           className="absolute top-10 md:top-20 left-4 md:left-10 text-4xl md:text-9xl"
           animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 6, repeat: Infinity }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: 'transform' }}
         >🍀</motion.div>
         <motion.div
           className="absolute top-20 md:top-40 right-4 md:right-20 text-3xl md:text-7xl"
           animate={{ y: [0, -15, 0] }}
-          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+          transition={{ duration: 5, repeat: Infinity, delay: 1, ease: "easeInOut" }}
+          style={{ willChange: 'transform' }}
         >❄️</motion.div>
         <motion.div
           className="absolute bottom-10 md:bottom-20 left-8 md:left-1/4 text-4xl md:text-8xl"
           animate={{ y: [0, -25, 0] }}
-          transition={{ duration: 7, repeat: Infinity, delay: 2 }}
+          transition={{ duration: 7, repeat: Infinity, delay: 2, ease: "easeInOut" }}
+          style={{ willChange: 'transform' }}
         >💙</motion.div>
       </motion.div>
-      {/* Floating Particles */}
+
+      {/* Floating Particles - Reduced count for performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-sky-blue/20 rounded-full"
             animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
+              x: [0, 80, 0], // Reduced movement
+              y: [0, -80, 0], // Reduced movement
               opacity: [0, 1, 0],
             }}
             transition={{
-              duration: 8 + i * 0.5,
+              duration: 6 + i * 0.4, // Reduced duration
               repeat: Infinity,
               delay: i * 0.3,
+              ease: "easeInOut"
             }}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              willChange: 'transform, opacity'
             }}
           />
         ))}
       </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-royal-blue mb-4">
@@ -175,23 +192,32 @@ const JourneyTimeline = () => {
             Every chapter tells a story of grace and growth
           </p>
         </motion.div>
+
         <div className="relative max-w-6xl mx-auto">
           {/* Enhanced Timeline Line - Desktop */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full">
             <motion.div
               className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full"
-              style={{ scaleY: scrollYProgress }}
+              style={{
+                scaleY: scrollYProgress,
+                willChange: 'transform'
+              }}
               initial={{ scaleY: 0 }}
             />
           </div>
+
           {/* Timeline Line - Mobile */}
           <div className="md:hidden absolute left-6 top-0 w-0.5 h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full">
             <motion.div
               className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-sky-blue to-royal-blue rounded-full"
-              style={{ scaleY: scrollYProgress }}
+              style={{
+                scaleY: scrollYProgress,
+                willChange: 'transform'
+              }}
               initial={{ scaleY: 0 }}
             />
           </div>
+
           {timelineEvents.map((event, index) => {
             const isEven = index % 2 === 0;
             return (
@@ -203,20 +229,23 @@ const JourneyTimeline = () => {
                     <motion.div
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.2 + 0.4 }}
+                      transition={{ duration: 0.5, delay: index * 0.2 + 0.4, ease: "easeInOut" }}
                       className="relative"
+                      style={{ willChange: 'transform' }}
                     >
                       <div className="w-4 h-4 bg-royal-blue rounded-full border-2 border-pure-white shadow-lg animate-pulse-glow"></div>
                       <div className="absolute inset-0 w-4 h-4 bg-sky-blue rounded-full animate-ping"></div>
                     </motion.div>
                   </div>
+
                   {/* Content - Mobile */}
                   <div className="flex-1 min-w-0">
                     <motion.div
                       initial={{ opacity: 0, x: 50 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, delay: index * 0.2 }}
+                      transition={{ duration: 0.8, delay: index * 0.2, ease: "easeInOut" }}
                       className="space-y-4"
+                      style={{ willChange: 'transform, opacity' }}
                     >
                       {/* Card - Mobile */}
                       <div className="glass-card p-4 sm:p-6 rounded-xl hover:scale-105 transition-all duration-500 ease-out relative overflow-hidden">
@@ -238,6 +267,7 @@ const JourneyTimeline = () => {
                           </p>
                         </div>
                       </div>
+
                       {/* Image - Mobile */}
                       <div className="relative group">
                         <div className="absolute inset-0 bg-gradient-to-br from-sky-blue/30 to-royal-blue/30 rounded-xl blur-sm group-hover:blur-none transition-all duration-500"></div>
@@ -253,6 +283,7 @@ const JourneyTimeline = () => {
                     </motion.div>
                   </div>
                 </div>
+
                 {/* Desktop Layout */}
                 <div className="hidden md:flex items-center">
                   {/* Left side - Card (even) or Image (odd) */}
@@ -261,8 +292,9 @@ const JourneyTimeline = () => {
                       <motion.div
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: index * 0.2 }}
+                        transition={{ duration: 0.8, delay: index * 0.2, ease: "easeInOut" }}
                         className="pr-6 lg:pr-8 text-right"
+                        style={{ willChange: 'transform, opacity' }}
                       >
                         <div className="glass-card p-4 lg:p-6 rounded-2xl hover:scale-110 hover:rotate-2 transition-all duration-500 ease-out relative overflow-hidden">
                           <div className="relative z-10">
@@ -288,8 +320,9 @@ const JourneyTimeline = () => {
                       <motion.div
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: index * 0.2 }}
+                        transition={{ duration: 0.8, delay: index * 0.2, ease: "easeInOut" }}
                         className="pr-6 lg:pr-8"
+                        style={{ willChange: 'transform, opacity' }}
                       >
                         <div className="relative group">
                           <div className="absolute inset-0 bg-gradient-to-br from-sky-blue/30 to-royal-blue/30 rounded-2xl blur-sm group-hover:blur-none transition-all duration-500"></div>
@@ -305,26 +338,30 @@ const JourneyTimeline = () => {
                       </motion.div>
                     )}
                   </div>
+
                   {/* Timeline Dot - Desktop */}
                   <div className="w-2/12 flex justify-center">
                     <motion.div
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.2 + 0.4 }}
+                      transition={{ duration: 0.5, delay: index * 0.2 + 0.4, ease: "easeInOut" }}
                       className="relative"
+                      style={{ willChange: 'transform' }}
                     >
                       <div className="w-5 h-5 lg:w-6 lg:h-6 bg-royal-blue rounded-full border-3 lg:border-4 border-pure-white shadow-lg animate-pulse-glow"></div>
                       <div className="absolute inset-0 w-5 h-5 lg:w-6 lg:h-6 bg-sky-blue rounded-full animate-ping"></div>
                     </motion.div>
                   </div>
+
                   {/* Right side - Image (even) or Card (odd) */}
                   <div className="w-5/12">
                     {isEven ? (
                       <motion.div
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: index * 0.2 }}
+                        transition={{ duration: 0.8, delay: index * 0.2, ease: "easeInOut" }}
                         className="pl-6 lg:pl-8"
+                        style={{ willChange: 'transform, opacity' }}
                       >
                         <div className="relative group">
                           <div className="absolute inset-0 bg-gradient-to-br from-sky-blue/30 to-royal-blue/30 rounded-2xl blur-sm group-hover:blur-none transition-all duration-500"></div>
@@ -342,8 +379,9 @@ const JourneyTimeline = () => {
                       <motion.div
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: index * 0.2 }}
+                        transition={{ duration: 0.8, delay: index * 0.2, ease: "easeInOut" }}
                         className="pl-6 lg:pl-8 text-left"
+                        style={{ willChange: 'transform, opacity' }}
                       >
                         <div className="glass-card p-4 lg:p-6 rounded-2xl hover:scale-110 hover:rotate-2 transition-all duration-500 ease-out relative overflow-hidden">
                           <div className="relative z-10">
@@ -372,12 +410,14 @@ const JourneyTimeline = () => {
             );
           })}
         </div>
+
         {/* Journey Complete Message */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeInOut" }}
           className="text-center mt-16"
+          style={{ willChange: 'transform, opacity' }}
         >
           <div className="glass-card p-6 rounded-2xl max-w-2xl mx-auto">
             <h3 className="font-vibes text-3xl text-royal-blue mb-3">
@@ -389,6 +429,7 @@ const JourneyTimeline = () => {
           </div>
         </motion.div>
       </div>
+
       <style>{`
         @keyframes pulse-glow {
           0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
@@ -402,6 +443,7 @@ const JourneyTimeline = () => {
           backdrop-filter: blur(10px);
           border: 1px solid rgba(255, 255, 255, 0.3);
           box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+          will-change: transform;
         }
         .fade-in-up {
           opacity: 0;

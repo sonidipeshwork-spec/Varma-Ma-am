@@ -86,13 +86,11 @@ const MemoryWall = () => {
   // Auto-play functionality for lightbox
   useEffect(() => {
     let interval: NodeJS.Timeout;
-
     if (isAutoPlay && selectedImage !== null) {
       interval = setInterval(() => {
         navigateImage('next');
       }, 3000);
     }
-
     return () => {
       if (interval) clearInterval(interval);
     };
@@ -112,14 +110,12 @@ const MemoryWall = () => {
 
   const navigateImage = (direction: 'prev' | 'next') => {
     if (selectedImage === null) return;
-
     let newIndex;
     if (direction === 'prev') {
       newIndex = currentIndex > 0 ? currentIndex - 1 : memories.length - 1;
     } else {
       newIndex = currentIndex < memories.length - 1 ? currentIndex + 1 : 0;
     }
-
     setCurrentIndex(newIndex);
     setSelectedImage(memories[newIndex].id);
   };
@@ -130,7 +126,6 @@ const MemoryWall = () => {
 
   const downloadImage = () => {
     if (!selectedMemory) return;
-
     const link = document.createElement('a');
     link.href = selectedMemory.url;
     link.download = `memory-${selectedMemory.id}.jpg`;
@@ -141,7 +136,6 @@ const MemoryWall = () => {
 
   const shareImage = () => {
     if (!selectedMemory) return;
-
     if (navigator.share) {
       navigator.share({
         title: 'Special Memory',
@@ -176,6 +170,7 @@ const MemoryWall = () => {
               duration: 6 + i * 0.7,
               repeat: Infinity,
               delay: i * 0.4,
+              ease: "easeInOut"
             }}
             style={{
               left: `${Math.random() * 100}%`,
@@ -201,6 +196,7 @@ const MemoryWall = () => {
               duration: 5 + i * 0.5,
               repeat: Infinity,
               delay: i * 0.3,
+              ease: "easeInOut"
             }}
             style={{
               left: `${Math.random() * 100}%`,
@@ -215,27 +211,55 @@ const MemoryWall = () => {
         <motion.div
           className="absolute top-10 left-10 text-4xl md:text-6xl"
           animate={{ y: [0, -15, 0] }}
-          transition={{ duration: 4, repeat: Infinity }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
         >🪬</motion.div>
+
         <motion.div
           className="absolute top-32 right-20 text-5xl md:text-7xl"
           animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            delay: 1,
+            ease: "easeInOut"
+          }}
         >💖</motion.div>
+
         <motion.div
           className="absolute bottom-20 left-1/3 text-4xl md:text-6xl"
           animate={{ y: [0, -25, 0] }}
-          transition={{ duration: 6, repeat: Infinity, delay: 2 }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            delay: 2,
+            ease: "easeInOut"
+          }}
         >🫧</motion.div>
+
         <motion.div
           className="absolute bottom-40 right-1/4 text-3xl md:text-5xl"
           animate={{ y: [0, -18, 0] }}
-          transition={{ duration: 4.5, repeat: Infinity, delay: 1.5 }}
+          transition={{
+            duration: 4.5,
+            repeat: Infinity,
+            delay: 1.5,
+            ease: "easeInOut"
+          }}
         >🩵</motion.div>
+
         <motion.div
           className="absolute top-1/2 left-10 text-3xl md:text-5xl"
           animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, delay: 0.7 }}
+          transition={{
+            duration: 5.5,
+            repeat: Infinity,
+            delay: 0.7,
+            ease: "easeInOut"
+          }}
         >❄️</motion.div>
       </div>
 
@@ -248,7 +272,10 @@ const MemoryWall = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{
+            duration: 0.8,
+            ease: "easeInOut"
+          }}
           className="text-center mb-16"
         >
           <h2 className="font-playfair text-5xl md:text-6xl font-bold text-royal-blue mb-4">
@@ -266,27 +293,35 @@ const MemoryWall = () => {
               key={memory.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              transition={{
+                duration: 0.8,
+                delay: index * 0.1,
+                ease: "easeInOut"
+              }}
               className="break-inside-avoid mb-6 group cursor-pointer"
               onMouseEnter={() => setHoveredId(memory.id)}
               onMouseLeave={() => setHoveredId(null)}
               onClick={() => openLightbox(memory.id)}
             >
-              <div className="relative polaroid-frame bg-pure-white p-4 pb-16 rounded-lg shadow-lg transform rotate-1 group-hover:rotate-3 group-hover:scale-105 transition-all duration-500 ease-out">
+              <div className="relative polaroid-frame bg-pure-white p-4 pb-16 rounded-lg shadow-lg transform rotate-1 group-hover:rotate-3 group-hover:scale-105 transition-all duration-500 ease-in-out">
                 {/* Image with enhanced hover effect */}
                 <div className="relative overflow-hidden rounded-md">
                   <img
                     src={memory.url}
                     alt={memory.caption}
-                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-115"
+                    className="w-full h-auto object-cover transition-transform duration-500 ease-in-out group-hover:scale-115"
                   />
 
                   {/* Enhanced Hover Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-royal-blue/70 to-transparent transition-opacity duration-300 ${hoveredId === memory.id ? 'opacity-100' : 'opacity-0'}`}>
+                  <div className={`absolute inset-0 bg-gradient-to-t from-royal-blue/70 to-transparent transition-opacity duration-300 ease-in-out ${hoveredId === memory.id ? 'opacity-100' : 'opacity-0'}`}>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <motion.div
                         initial={{ scale: 0.8 }}
                         animate={{ scale: hoveredId === memory.id ? 1 : 0.8 }}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeInOut"
+                        }}
                         className="bg-pure-white/30 backdrop-blur-sm rounded-full p-3"
                       >
                         <Heart className="w-8 h-8 text-pure-white fill-current animate-pulse" />
@@ -306,7 +341,10 @@ const MemoryWall = () => {
                 <motion.div
                   className="absolute top-2 right-2"
                   animate={{ scale: hoveredId === memory.id ? [1, 1.2, 1] : 1 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeInOut"
+                  }}
                 >
                   <Heart className="w-4 h-4 text-royal-blue/50 fill-current" />
                 </motion.div>
@@ -322,6 +360,10 @@ const MemoryWall = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.3,
+                ease: "easeInOut"
+              }}
               className="fixed inset-0 bg-midnight-black/90 z-50 flex items-center justify-center p-4"
               onClick={closeLightbox}
             >
@@ -329,7 +371,7 @@ const MemoryWall = () => {
                 {/* Close Button */}
                 <button
                   onClick={closeLightbox}
-                  className="absolute top-4 right-4 z-10 w-10 h-10 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors"
+                  className="absolute top-4 right-4 z-10 w-10 h-10 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors duration-300 ease-in-out"
                 >
                   <X className="w-6 h-6 text-pure-white" />
                 </button>
@@ -340,16 +382,17 @@ const MemoryWall = () => {
                     e.stopPropagation();
                     navigateImage('prev');
                   }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors duration-300 ease-in-out"
                 >
                   <ChevronLeft className="w-6 h-6 text-pure-white" />
                 </button>
+
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigateImage('next');
                   }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors duration-300 ease-in-out"
                 >
                   <ChevronRight className="w-6 h-6 text-pure-white" />
                 </button>
@@ -366,25 +409,27 @@ const MemoryWall = () => {
                       e.stopPropagation();
                       toggleAutoPlay();
                     }}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${isAutoPlay ? 'bg-rose-500' : 'bg-pure-white/20 hover:bg-pure-white/30'}`}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 ease-in-out ${isAutoPlay ? 'bg-rose-500' : 'bg-pure-white/20 hover:bg-pure-white/30'}`}
                   >
                     <div className="w-4 h-4 rounded-sm bg-pure-white"></div>
                   </button>
+
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       downloadImage();
                     }}
-                    className="w-10 h-10 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors"
+                    className="w-10 h-10 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors duration-300 ease-in-out"
                   >
                     <Download className="w-5 h-5 text-pure-white" />
                   </button>
+
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       shareImage();
                     }}
-                    className="w-10 h-10 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors"
+                    className="w-10 h-10 bg-pure-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pure-white/30 transition-colors duration-300 ease-in-out"
                   >
                     <Share2 className="w-5 h-5 text-pure-white" />
                   </button>
@@ -395,7 +440,10 @@ const MemoryWall = () => {
                   initial={{ scale: 0.9 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{
+                    duration: 0.3,
+                    ease: "easeInOut"
+                  }}
                   className="glass-card p-6 rounded-2xl max-w-4xl max-h-full w-full"
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -414,7 +462,18 @@ const MemoryWall = () => {
                             {selectedMemory.caption}
                           </h3>
                         </div>
-                        <Heart className="w-6 h-6 text-rose-500 fill-current" />
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.1, 1],
+                          }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        >
+                          <Heart className="w-6 h-6 text-rose-500 fill-current" />
+                        </motion.div>
                       </div>
                     </div>
                   </div>
