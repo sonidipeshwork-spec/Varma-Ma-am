@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Sparkles } from 'lucide-react';
-import heroImage from '@/assets/hero-bg.jpg';
+import heroImage from '@/assets/hero-bg.png';
 import image_1 from '@/assets/image_1.png';
 import image_2 from '@/assets/image_2.png';
 
@@ -361,7 +361,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Enhanced Quote with more dynamic animation */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{
