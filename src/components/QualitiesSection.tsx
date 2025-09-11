@@ -108,7 +108,7 @@ const QualitiesSection = () => {
       <motion.div
         className="absolute left-0 top-0 w-full md:w-1/3 h-1/3 md:h-full bg-cover bg-center opacity-20 md:opacity-30"
         style={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1728299805996-afe00d301e28?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`,
+          backgroundImage: `url(https://images.unsplash.com/photo-1675677571342-90b22fe4af6c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`,
           backgroundPosition: 'center top',
         }}
         initial={{ x: -50, opacity: 0 }}

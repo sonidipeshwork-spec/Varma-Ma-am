@@ -1,28 +1,28 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Heart, Star, Sparkles, Gift, Crown } from 'lucide-react';
 import image_1 from "@/assets/image_1.png";
-import image_2 from "@/assets/image_2.png";
-import image_3 from "@/assets/image_3.jpg";
-import image_4 from "@/assets/image_4.jpg";
-import image_5 from "@/assets/image_5.jpg";
-import image_6 from "@/assets/image_6.jpg";
-import image_7 from "@/assets/image_7.jpg";
-import image_8 from "@/assets/image_8.jpg";
-import image_9 from "@/assets/image_9.jpg";
-import image_10 from "@/assets/image_10.jpg";
+import flower_1 from "@/assets/flower_1.png"
+import flower_2 from "@/assets/flower_2.png"
+import flower_3 from "@/assets/flower_3.png"
+import flower_4 from "@/assets/flower_4.png"
+import flower_5 from "@/assets/flower_5.png"
+import flower_1_mirror from "@/assets/flower_1_mirror.png"
+import flower_2_mirror from "@/assets/flower_2_mirror.png"
+import flower_3_mirror from "@/assets/flower_3_mirror.png"
+import flower_4_mirror from "@/assets/flower_4_mirror.png"
 
 const CollageSection = () => {
   const collageImages = [
     image_1,
-    image_2,
-    image_3,
-    image_4,
-    image_5,
-    image_6,
-    image_7,
-    image_8,
-    image_9,
-    image_10
+    flower_1,
+    flower_2,
+    flower_3,
+    flower_4,
+    flower_5,
+    flower_1_mirror,
+    flower_2_mirror,
+    flower_3_mirror,
+    flower_4_mirror,
   ];
 
   return (
@@ -114,7 +114,7 @@ const CollageSection = () => {
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSI3IiBjeT0iNyIgcj0iMSIvPjwvZz48L2c+PC9zdmc+')]"></div>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1719058338713-996dfdcd9fa5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDQ5fHx8ZW58MHx8fHx8')]"></div>
             </div>
 
             {/* Creative Collage Layout - Heart Shape */}
@@ -217,9 +217,9 @@ const CollageSection = () => {
                 }}
                 className="absolute z-20 group"
               >
-                <div className="w-28 h-40 md:w-36 md:h-48 lg:w-48 lg:h-60 rounded-2xl overflow-hidden shadow-xl border-4 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out bg-gradient-to-br from-royal-blue/10 to-sky-blue/10 hover:z-50">
+                <div className="w-28 h-430000 md:w-36 md:h-48 lg:w-48 lg:h-60 rounded-2xl overflow-hidden shadow-xl border-4 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out bg-gradient-to-br from-royal-blue/10 to-sky-blue/10 hover:z-50">
                   <img
-                    src={collageImages[2]}
+                    src={collageImages[6]}
                     alt="Precious Memory"
                     className="w-full h-full object-cover filter brightness-105"
                   />
@@ -254,7 +254,7 @@ const CollageSection = () => {
               >
                 <div className="w-24 h-36 md:w-32 md:h-44 lg:w-44 lg:h-56 rounded-2xl overflow-hidden shadow-lg border-3 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
-                    src={collageImages[3]}
+                    src={collageImages[2]}
                     alt="Sweet Memory"
                     className="w-full h-full object-cover"
                   />
@@ -289,7 +289,7 @@ const CollageSection = () => {
               >
                 <div className="w-24 h-36 md:w-32 md:h-44 lg:w-44 lg:h-56 rounded-2xl overflow-hidden shadow-lg border-3 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
-                    src={collageImages[4]}
+                    src={collageImages[7]}
                     alt="Cherished Moment"
                     className="w-full h-full object-cover"
                   />
@@ -345,7 +345,7 @@ const CollageSection = () => {
               >
                 <div className="w-20 h-28 md:w-24 md:h-32 lg:w-32 lg:h-40 rounded-xl overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
-                    src={collageImages[6]}
+                    src={collageImages[3]}
                     alt="Side Memory"
                     className="w-full h-full object-cover"
                   />
@@ -364,7 +364,7 @@ const CollageSection = () => {
               >
                 <div className="w-20 h-28 md:w-24 md:h-32 lg:w-32 lg:h-40 rounded-xl overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
-                    src={collageImages[7]}
+                    src={collageImages[8]}
                     alt="Side Memory"
                     className="w-full h-full object-cover"
                   />
@@ -384,7 +384,7 @@ const CollageSection = () => {
               >
                 <div className="w-16 h-24 md:w-20 md:h-28 lg:w-28 lg:h-36 rounded-lg overflow-hidden shadow-md border-2 border-pure-white transform hover:scale-110 transition-all duration-300 ease-in-out hover:z-50">
                   <img
-                    src={collageImages[8]}
+                    src={collageImages[4]}
                     alt="Top Memory"
                     className="w-full h-full object-cover"
                   />
