@@ -53,11 +53,11 @@ const LoveLetterSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-playfair text-5xl md:text-6xl font-bold text-royal-blue mb-4">
-            Special Birthday Wish
+            A Special Wish
           </h2>
           <div className="flex items-center justify-center gap-3">
             <p className="font-vibes text-2xl text-midnight-black/70">
-              ek bahut hi khaas insaan ke liye
+              for cutest person in universe
             </p>
           </div>
         </motion.div>
@@ -117,13 +117,13 @@ const LoveLetterSection = () => {
                 {/* Date with Icon */}
                 <div className="flex items-center justify-center gap-2 mb-8">
                   <p className="font-lora text-sm text-blue-800/60">
-                    September 16, 2024 • ek khaas din
+                    September 16, 2024 • specail cute din
                   </p>
                 </div>
                 {/* Salutation with Icon */}
                 <div className="flex items-center justify-center gap-3 mb-8">
                   <p className="font-vibes text-4xl md:text-5xl text-blue-800 text-center">
-                    Pyari Shraddha Ma'am
+                    Princess Shraddha Ma'am
                   </p>
                 </div>
                 {/* Letter Content */}
@@ -134,8 +134,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                   >
-                    Jab se aap 16 September, 2006 ko is duniya mein aaye, universe aur bhi khubsurat ho gaya.
-                    Aapki hasi meri favorite melody ban gayi, aapki muskaan meri sabse badi khazana, aur aapki maujoodi meri khushi ka roop ban gayi.
+                    Aapki yeh pyaari innocence aur aapka cute sa pyaara andaaz, har pal aapko aur bhi khaas bana deta hai. Aapki muskaan mein bas dil kho jana chahta hai.
                   </motion.p>
                   <motion.p
                     className="indent-8"
@@ -143,8 +142,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    Aapko itni grace, intelligence aur determination ke saath college ke second year mein dekhkar mera dil garv se bhar jaata hai.
-                    Aap bahar se hi sundar nahi hai, balki aapki rooh se nikalti warmth har usse chhoo jaati hai jo aapko jaanne ka kismat wala hai.
+                    Aapne kitne pyaara tarike se 18 yeras complete kar liya, Aur har ek din saath aap aur bhi cutee hote jaa rahe ho
                   </motion.p>
                   <motion.p
                     className="indent-8"
@@ -152,8 +150,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
                   >
-                    Aapki kindness ki koi seema nahi - aap dusron ke liye kaise care karte hain, aapki gentle spirit, aur aap simplest moments mein magic kaise dhundhte hain.
-                    Chahe aap apne studies mein complex problems solve kar rahe ho ya bas ek quiet moment share kar rahe hain, aap har cheez mein light lekar aate hain.
+                    aur aap
                   </motion.p>
                   <motion.p
                     className="indent-8"
@@ -170,8 +167,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 1.0 }}
                   >
-                    Jab aap 18 saal ke hokar is nayi chapter mein kadam rakhte hain, main chahta hoon ki aap jaan lein ki aap kuch bhi kar sakte hain jo aapka dil chahe.
-                    Aapke dreams valid hain, aapke goals aapke paas hain, aur aapki potential limitless hai.
+                    Aur aap kitne aache ho iski explaination dena easy nahi hai,
                   </motion.p>
                   <motion.p
                     className="indent-8"
@@ -179,8 +175,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 1.2 }}
                   >
-                    Jab aap apni beautiful existence ka ek aur saal celebrate kar rahe hain, jaan lijiye ki aapko words se bhi zyada cherish kiya jaata hai,
-                    aapko measure se bhi zyada pyaar kiya jaata hai, aur aap jo incredible person hain uske liye appreciate kiya jaata hai. Aap har din bas aap hone se bhi bright banate hain.
+                    Enjoy your special day just as special as you are. Enjoy your day exactly as you planned it, filled with laughter, love, and everything that makes you smile. Today is yours celebrate it in the most beautiful way.
                   </motion.p>
                 </div>
                 {/* Closing with Animated Heart */}
@@ -191,11 +186,11 @@ const LoveLetterSection = () => {
                   transition={{ duration: 0.5, delay: 1.4 }}
                 >
                   <p className="font-vibes text-2xl text-blue-800">
-                    Hamesha aapke,
+                    🍀 Take care Ma'am 🍀
                   </p>
                   <div className="flex items-center justify-center gap-2 mt-2">
                     <p className="font-vibes text-3xl text-blue-800">
-                      Aapke saare pyaar ke saath
+                      From a person who irritates you the most
                     </p>
                   </div>
                 </motion.div>

@@ -94,10 +94,10 @@ const CollageSection = () => {
           className="text-center mb-8 md:mb-12 lg:mb-16"
         >
           <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-royal-blue mb-4">
-            Beautiful Collage
+            Your Magical Effect
           </h2>
           <p className="font-vibes text-xl md:text-2xl text-midnight-black/70">
-            A mosaic of precious moments
+            your pretty Special Moments
           </p>
         </motion.div>
 
