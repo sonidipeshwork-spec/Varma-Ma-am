@@ -11,6 +11,11 @@ import image_13 from "@/assets/image_13.png";
 import image_14 from "@/assets/image_14.jpg";
 import image_15 from "@/assets/image_15.jpg";
 import image_16 from "@/assets/image_16.jpg";
+import flower_1 from "@/assets/flower_1.png";
+import flower_2 from "@/assets/flower_2.png";
+import flower_3 from "@/assets/flower_3.png";
+import flower_4 from "@/assets/flower_4.png";
+import flower_5 from "@/assets/flower_5.png";
 
 const JourneyTimeline = () => {
   const containerRef = useRef(null);
@@ -102,12 +107,20 @@ const JourneyTimeline = () => {
     image_16
   ], []);
 
+  // Background images for the timeline
+  const backgroundImages = useMemo(() => [
+    { src: flower_1, position: "top-8 right-5", opacity: "opacity-40", size: "w-48 h-48" },
+    { src: flower_2, position: "bottom-20 right-10", opacity: "opacity-35", size: "w-56 h-56" },
+    { src: flower_3, position: "top-1/3 right-5", opacity: "opacity-45", size: "w-40 h-40" },
+    { src: flower_4, position: "bottom-1/4 right-10", opacity: "opacity-35", size: "w-52 h-52" },
+    { src: flower_5, position: "top-1/2 left-1/5", opacity: "opacity-30", size: "w-44 h-44" }
+  ], []);
+
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -100px 0px'
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -115,22 +128,45 @@ const JourneyTimeline = () => {
         }
       });
     }, observerOptions);
-
     const elements = document.querySelectorAll('.timeline-item');
     elements.forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <section ref={containerRef} className="py-12 md:py-20 bg-gradient-to-br from-pure-white to-sky-blue/20 relative overflow-hidden">
+      {/* Background Images */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {backgroundImages.map((img, index) => (
+          <motion.div
+            key={index}
+            className={`absolute ${img.position} ${img.size} ${img.opacity} rounded-full overflow-hidden z-0`}
+            style={{
+              backgroundImage: `url(${img.src})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              willChange: 'transform'
+            }}
+            animate={{
+              scale: [1, 1.05, 1],
+              rotate: [0, 2, -2, 0]
+            }}
+            transition={{
+              duration: 15 + index * 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+      </div>
+
       {/* Enhanced Background Decorations */}
       <motion.div
         style={{
           y,
           willChange: 'transform'
         }}
-        className="absolute inset-0 opacity-5 md:opacity-10 pointer-events-none"
+        className="absolute inset-0 opacity-5 md:opacity-10 pointer-events-none z-10"
       >
         <motion.div
           className="absolute top-10 md:top-20 left-4 md:left-10 text-4xl md:text-9xl"
@@ -153,7 +189,7 @@ const JourneyTimeline = () => {
       </motion.div>
 
       {/* Floating Particles - Reduced count for performance */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
@@ -178,7 +214,7 @@ const JourneyTimeline = () => {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

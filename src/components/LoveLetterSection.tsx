@@ -117,7 +117,7 @@ const LoveLetterSection = () => {
                 {/* Date with Icon */}
                 <div className="flex items-center justify-center gap-2 mb-8">
                   <p className="font-lora text-sm text-blue-800/60">
-                    September 16, 2024 • specail cute din
+                    September 16, 2024 • special cute din
                   </p>
                 </div>
                 {/* Salutation with Icon */}
@@ -134,7 +134,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                   >
-                    Aapki yeh pyaari innocence aur aapka cute sa pyaara andaaz, har pal aapko aur bhi khaas bana deta hai. Aapki muskaan mein bas dil kho jana chahta hai.
+                    Aapki yeh pyaari si innocence aur aapka yeh cute sa pyaara andaaz, har moment aapko aur bhi special bana deta hai. Aur aaj ka din toh bhoot zayada special hai...
                   </motion.p>
                   <motion.p
                     className="indent-8"
@@ -142,7 +142,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    Aapne kitne pyaara tarike se 18 yeras complete kar liya, Aur har ek din saath aap aur bhi cutee hote jaa rahe ho
+                    Aapne kitne pyaare tarike se 19 saal ke ho gaye ho. Har ek din aapne life mein kuch naya experience kiya, aur har din ke saath aap aur bhi zyada cute, pyaare aur special bante jaa rahe ho. Yeh saal aapki kahani ke sabse khoobsurat chapters hain, ismein aapne sirf bade hone ka hi nahi, balki zindagi ko jeene ka tareeka bhi seekha, jaise life ko balance kaise karte hain, situation ko handle kaise karte hain. Kuch aise baatein bhi hai jo aapke aur aapke dil ke biche mein hi hai.
                   </motion.p>
                   <motion.p
                     className="indent-8"
