@@ -54,7 +54,6 @@ const CollageSection = () => {
         {/* Decorative Icons */}
         <motion.div
           className="absolute top-10 left-5 md:top-20 md:left-10 text-4xl md:text-6xl"
-          animate={{ y: [0, -20, 0] }}
           transition={{
             duration: 6,
             repeat: Infinity,
@@ -63,7 +62,6 @@ const CollageSection = () => {
         >🤍</motion.div>
         <motion.div
           className="absolute top-20 right-10 md:top-40 md:right-20 text-5xl md:text-8xl"
-          animate={{ y: [0, -25, 0] }}
           transition={{
             duration: 7,
             repeat: Infinity,
@@ -73,7 +71,6 @@ const CollageSection = () => {
         >✨</motion.div>
         <motion.div
           className="absolute bottom-10 left-1/4 md:bottom-20 text-4xl md:text-7xl"
-          animate={{ y: [0, -30, 0] }}
           transition={{
             duration: 8,
             repeat: Infinity,
@@ -114,7 +111,7 @@ const CollageSection = () => {
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1719058338713-996dfdcd9fa5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDQ5fHx8ZW58MHx8fHx8')]"></div>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1444021465936-c6ca81d39b84?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-no-repeat bg-cover"></div>
             </div>
 
             {/* Creative Collage Layout - Heart Shape */}
@@ -435,7 +432,6 @@ const CollageSection = () => {
             {/* Floating Hearts */}
             <motion.div
               className="top-4 left-4 text-royal-blue/30 text-2xl md:text-3xl absolute"
-              animate={{ y: [0, -15, 0] }}
               transition={{
                 duration: 4,
                 repeat: Infinity,
@@ -445,7 +441,6 @@ const CollageSection = () => {
 
             <motion.div
               className="top-8 right-8 text-sky-blue/40 text-xl md:text-2xl absolute"
-              animate={{ y: [0, -20, 0] }}
               transition={{
                 duration: 5,
                 repeat: Infinity,
@@ -456,7 +451,6 @@ const CollageSection = () => {
 
             <motion.div
               className="bottom-4 left-8 text-royal-blue/30 text-2xl md:text-3xl absolute"
-              animate={{ y: [0, -25, 0] }}
               transition={{
                 duration: 6,
                 repeat: Infinity,

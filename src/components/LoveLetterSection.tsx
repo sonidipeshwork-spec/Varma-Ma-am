@@ -1,17 +1,17 @@
 import { motion } from 'framer-motion';
 import { Heart, Pen, Mail, Sparkles } from 'lucide-react';
-import image_1 from '@/assets/image_1.png';
-import image_2 from '@/assets/image_2.png';
+import image_13 from '@/assets/image_13.png';
+import image_16 from '@/assets/image_16.jpg';
 const LoveLetterSection = () => {
   return (
     <section className="py-20 md:py-32 bg-gradient-to-br from-pure-white via-sky-blue/10 to-royal-blue/5 relative overflow-hidden">
       {/* Background with Parallax Effect */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute left-0 top-1/4 w-80 h-96 opacity-30 transform hover:scale-105 transition-transform duration-1000">
-          <img src={image_1} alt="" className="w-full h-full object-cover rounded-r-full blur-sm" />
+          <img src={image_13} alt="" className="w-full h-full object-cover rounded-r-full blur-sm" />
         </div>
         <div className="absolute right-0 bottom-1/4 w-80 h-96 opacity-30 transform hover:scale-105 transition-transform duration-1000">
-          <img src={image_2} alt="" className="w-full h-full object-cover rounded-l-full blur-sm" />
+          <img src={image_16} alt="" className="w-full h-full object-cover rounded-l-full blur-sm" />
         </div>
       </div>
       {/* Floating Elements */}
@@ -97,20 +97,20 @@ const LoveLetterSection = () => {
               <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-blue-200/50 rounded-bl-lg"></div>
               <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-blue-200/50 rounded-br-lg"></div>
               {/* Background Images */}
-              <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 z-50 opacity-50">
                 <motion.div
                   className="absolute top-8 right-8 w-32 h-32 object-cover rounded-full overflow-hidden"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <img src={image_1} alt="" className="w-full h-full object-cover" />
+                  <img src={image_13} alt="Ma'am ji" className="w-full h-full object-cover" />
                 </motion.div>
                 <motion.div
                   className="absolute bottom-8 left-8 w-28 h-28 object-cover rounded-full overflow-hidden"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <img src={image_2} alt="" className="w-full h-full object-cover" />
+                  <img src={image_16} alt="Shruu" className="w-full h-full object-cover" />
                 </motion.div>
               </div>
               <div className="relative z-10 p-12 md:p-16">

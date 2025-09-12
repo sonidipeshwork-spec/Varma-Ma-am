@@ -12,6 +12,9 @@ import image_8 from '@/assets/image_8.jpg';
 import image_10 from '@/assets/image_10.jpg';
 import image_11 from '@/assets/image_11.jpg';
 import image_12 from '@/assets/image_12.jpg';
+import image_13 from '@/assets/image_13.png';
+import image_14 from '@/assets/image_14.jpg';
+import image_16 from '@/assets/image_16.jpg';
 
 // Simplified memories array without date and location
 const memories = [
@@ -71,9 +74,19 @@ const memories = [
     caption: "Silent Beauty 🍃",
   },
   {
-    id: 12,
-    url: image_1,
-    caption: "True Charm ✨",
+    id: 13,
+    url: image_13,
+    caption: "Goddess Charm ✨",
+  },
+  {
+    id: 14,
+    url: image_14,
+    caption: "Simplicity Beauty 💖",
+  },
+  {
+    id: 15,
+    url: image_16,
+    caption: "Angel ✨",
   }
 ];
 
@@ -179,19 +192,9 @@ const MemoryWall = () => {
         ))}
 
         {/* Decorative Icons */}
-        <motion.div
-          className="absolute top-10 left-10 text-4xl md:text-6xl"
-          animate={{ y: [0, -15, 0] }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >🪬</motion.div>
 
         <motion.div
           className="absolute top-32 right-20 text-5xl md:text-7xl"
-          animate={{ y: [0, -20, 0] }}
           transition={{
             duration: 5,
             repeat: Infinity,
@@ -202,7 +205,6 @@ const MemoryWall = () => {
 
         <motion.div
           className="absolute bottom-20 left-1/3 text-4xl md:text-6xl"
-          animate={{ y: [0, -25, 0] }}
           transition={{
             duration: 6,
             repeat: Infinity,
@@ -213,7 +215,6 @@ const MemoryWall = () => {
 
         <motion.div
           className="absolute bottom-40 right-1/4 text-3xl md:text-5xl"
-          animate={{ y: [0, -18, 0] }}
           transition={{
             duration: 4.5,
             repeat: Infinity,
@@ -224,7 +225,6 @@ const MemoryWall = () => {
 
         <motion.div
           className="absolute top-1/2 left-10 text-3xl md:text-5xl"
-          animate={{ y: [0, -20, 0] }}
           transition={{
             duration: 5.5,
             repeat: Infinity,
