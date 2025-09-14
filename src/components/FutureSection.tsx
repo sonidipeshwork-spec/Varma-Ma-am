@@ -163,7 +163,7 @@ const FutureSection = () => {
                 transition={{ duration: 1, delay: 0.3 }}
                 className="font-vibes text-3xl md:text-4xl text-pure-white mb-8 leading-relaxed text-center"
               >
-                "This is only the beginning of forever with you, Shraddha"
+                "This is only the beginning of your Beautiful Life, Ma'am ji"
               </motion.p>
 
               <motion.div
@@ -176,11 +176,8 @@ const FutureSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-pure-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
 
                 <p className="font-lora text-xl md:text-2xl text-pure-white leading-relaxed text-center relative z-10">
-                  <span className="font-vibes text-3xl text-sky-blue">Happy 19th Birthday, Varma Ma'am</span><br />
-                  May this year paint your world with endless joy, fill your days with magical adventures,
-                  crown your academic journey with success, and surround you with all the love
-                  your beautiful heart deserves. Here's to new chapters written in starlight,
-                  dreams materializing into reality, and a future as radiant as your smile.
+                  <span className="font-vibes text-3xl text-sky-blue">Varma Ma'am</span><br />
+                  Take care of your beautiful smile. Aapke
                 </p>
               </motion.div>
             </div>

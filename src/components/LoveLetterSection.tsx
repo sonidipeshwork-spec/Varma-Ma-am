@@ -134,7 +134,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                   >
-                    Aapki yeh pyaari si innocence aur aapka yeh cute sa pyaara andaaz, har moment aapko aur bhi special bana deta hai. Aur aaj ka din toh bhoot zayada special hai...
+                    Aapki yeh pyaari si innocence aur aapka yeh cute sa andaaz, har moment aapko aur bhi special bana deta hai. Aur aaj ka din toh hai bhi bhoot zayada special...
                   </motion.p>
                   <motion.p
                     className="indent-8"
@@ -142,24 +142,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    Aapne kitne pyaare tarike se 19 saal ke ho gaye ho. Har ek din aapne life mein kuch naya experience kiya, aur har din ke saath aap aur bhi zyada cute, pyaare aur special bante jaa rahe ho. Yeh saal aapki kahani ke sabse khoobsurat chapters hain, ismein aapne sirf bade hone ka hi nahi, balki zindagi ko jeene ka tareeka bhi seekha, jaise life ko balance kaise karte hain, situation ko handle kaise karte hain. Kuch aise baatein bhi hai jo aapke aur aapke dil ke biche mein hi hai.
-                  </motion.p>
-                  <motion.p
-                    className="indent-8"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                  >
-                    aur aap
-                  </motion.p>
-                  <motion.p
-                    className="indent-8"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.8 }}
-                  >
-                    Aapke saath har din likhi gayi sabse beautiful story ka ek page jaisa lagta hai - magical, unexpected, aur wonder se bhara.
-                    Aapki intelligence har conversation mein chamakti hai, aapki creativity har kaam mein jhalakti hai, aur aapki compassion duniya ko better banaati hai.
+                    Kitna pyaara din hai aaj, aur kitne pyaare lage rahe hoge aap aaj. Itni cuteness ke saath aap aaj aur bhi bade ho gaye. Har ek din aapne life mein kuch naya experience kiya chhoti khushiyan se lekar, badi-badi baatein bhi.Har ek din ke saath aap aur bhi zyada cute, pyaare aur special bante jaa rahe ho. Aap sirf chhote se bade nahi huye, balki zindagi ko jeene ka tareeka bhi seekha balance banana, priorities set karna, aur apne liye khud khush rehna. Life ko balance karna, situation ko calmly handle karna. Kuch baatein aisi bhi hain jo sirf aapke aur aapke dil ke beech mein hai.
                   </motion.p>
                   <motion.p
                     className="indent-8"
@@ -167,7 +150,10 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 1.0 }}
                   >
-                    Aur aap kitne aache ho iski explaination dena easy nahi hai,
+                    Aur aap kitne acche ho iski explanation dena easy nahi hai, na hi koi de sakta hai.
+                    Aap woh ho jinhe dekh kar phool khil jaate hain, chand bhi sharma jaata hai. Aapke ek chhote se gesture mein bhi itni positivity hai ki samne wale ka din ban jaata hai.
+                    Aapki simplicity hi aapko special banati hai. Sach kahun toh, aap itne khaas ho ki shabdon mein bayan karna mushkil hai. Aapki baatein, aapka andaaz, aur aapki soch sab kuch itna khaas hai. Aapki tarif ko shabdon mein likha jaaye toh alfaaz bhi khatam ho jaaye.
+
                   </motion.p>
                   <motion.p
                     className="indent-8"
@@ -175,7 +161,7 @@ const LoveLetterSection = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 1.2 }}
                   >
-                    Enjoy your special day just as special as you are. Enjoy your day exactly as you planned it, filled with laughter, love, and everything that makes you smile. Today is yours celebrate it in the most beautiful way.
+                    Enjoy your special day just as special as you are. Enjoy your day exactly as you planned it, filled with laughter, love, and everything that makes you smile. Today is yours, celebrate it in the most beautiful way.
                   </motion.p>
                 </div>
                 {/* Closing with Animated Heart */}
