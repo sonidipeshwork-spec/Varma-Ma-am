@@ -1,21 +1,20 @@
 import { useEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Baby, GraduationCap, BookOpen, Heart, Star, Sparkles, Camera, Plane } from 'lucide-react';
-import image_2 from "@/assets/image_2.png";
+import baby from "@/assets/baby.png";
+import foot from "@/assets/foot.png";
 import image_3 from "@/assets/image_3.jpg";
 import image_4 from "@/assets/image_4.jpg";
 import image_5 from "@/assets/image_5.jpg";
-import image_9 from "@/assets/image_9.jpg";
-import image_12 from "@/assets/image_12.jpg";
+import college from "@/assets/college.png";
 import image_13 from "@/assets/image_13.png";
-import image_14 from "@/assets/image_14.jpg";
-import image_15 from "@/assets/image_15.jpg";
-import image_16 from "@/assets/image_16.jpg";
+import study from "@/assets/study.png";
 import flower_1 from "@/assets/flower_1.png";
 import flower_2 from "@/assets/flower_2.png";
 import flower_3 from "@/assets/flower_3.png";
 import flower_4 from "@/assets/flower_4.png";
 import flower_5 from "@/assets/flower_5.png";
+import secondy from "@/assets/secondy.png"
 
 const JourneyTimeline = () => {
   const containerRef = useRef(null);
@@ -30,9 +29,9 @@ const JourneyTimeline = () => {
     {
       year: "2006",
       title: "Cutest Queen is Born",
-      description: "September 16th - Duniya roshan ho gayi",
+      description: "September 16th - A special day",
       icon: Star,
-      details: "10 mahine ki umar mein pehla shabd 'Mama', 11 mahine mein chhoti si chal.",
+      details: "10 mahine ki umar mein aapka pehla shabd 'Mama', 11 mahine mein chhota sa kadam.",
       color: "text-sky-blue"
     },
     {
@@ -40,7 +39,7 @@ const JourneyTimeline = () => {
       title: "Little Explorer",
       description: "Ise Chhoti si duniya ki khoj",
       icon: Baby,
-      details: "Colorful pathar ikattha karna aur notebook bhar dena rainbow aur cute drawings se — imagination ki ek alag hi duniya thi.",
+      details: "Colors se notebook bhar dena — imagination ki ek alag hi duniya.",
       color: "text-royal-blue"
     },
     {
@@ -54,7 +53,7 @@ const JourneyTimeline = () => {
     {
       year: "2023",
       title: "School Life Last Moments",
-      description: "Ek Nayi safar ki shuruaat",
+      description: "Emotional Moments",
       icon: GraduationCap,
       details: "Focusing on Studies, Fun, Future and many other thing a quite transition from school to college .",
       color: "text-royal-blue"
@@ -62,9 +61,17 @@ const JourneyTimeline = () => {
     {
       year: "2024",
       title: "New Chapter",
-      description: "Discovering New Challenges",
+      description: "Ek Nayi safar ki shuruaat",
       icon: Heart,
       details: "New Faces, New Characters, New Lesson.",
+      color: "text-sky-blue"
+    },
+    {
+      year: "2025",
+      title: "1st Semester Exam",
+      description: "Learning New Technique",
+      icon: Plane,
+      details: "1st semester exam — tension, late night studies, aur doston ke saath combined preparation. Nervousness of Exam.",
       color: "text-sky-blue"
     },
     {
@@ -74,14 +81,6 @@ const JourneyTimeline = () => {
       icon: Sparkles,
       details: "Classes, projects aur masti dono balance karna, naye experiences collect karna.",
       color: "text-royal-blue"
-    },
-    {
-      year: "2025",
-      title: "1st Semester Exam",
-      description: "Learning New Technique",
-      icon: Plane,
-      details: "1st semester exam — tension, late night studies, aur doston ke saath combined preparation. Nervousness of Exam.",
-      color: "text-sky-blue"
     },
     {
       year: "2025",
@@ -95,16 +94,14 @@ const JourneyTimeline = () => {
 
   // Memoize images array
   const journeyImages = useMemo(() => [
-    image_2,
+    baby,
+    foot,
     image_3,
     image_4,
-    image_5,
-    image_9,
-    image_12,
+    college,
+    study,
+    secondy,
     image_13,
-    image_14,
-    image_15,
-    image_16
   ], []);
 
   // Background images for the timeline
