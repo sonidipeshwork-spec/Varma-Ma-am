@@ -94,7 +94,7 @@ const CollageSection = () => {
             Your Magical Effect
           </h2>
           <p className="font-vibes text-xl md:text-2xl text-midnight-black/70">
-            your pretty Special Moments
+            Your Pretty Special Moments
           </p>
         </motion.div>
 
@@ -423,9 +423,7 @@ const CollageSection = () => {
                 Moments That Matter
               </h3>
               <p className="font-lora text-base md:text-lg text-midnight-black/80 max-w-2xl mx-auto px-4">
-                Every photograph tells a story, every smile captures a moment,
-                and every memory brings us closer together. This collage represents
-                the beautiful journey we've shared and the countless more moments to come.
+                Every photograph tells a story, every smile captures a moment, and every memory brings a cute blush on your face.
               </p>
             </motion.div>
 
@@ -499,7 +497,7 @@ const CollageSection = () => {
                   <Gift className="w-6 h-6 text-rose-500 mr-2" />
                 </motion.div>
                 <p className="font-vibes text-xl md:text-2xl lg:text-3xl text-royal-blue">
-                  "In every picture, I see the same thing..."
+                  "In every picture, there is something special..."
                 </p>
                 <motion.div
                   animate={{
@@ -516,7 +514,7 @@ const CollageSection = () => {
                 </motion.div>
               </div>
               <p className="font-lora text-base md:text-xl text-midnight-black/80">
-                Pure beauty, endless grace, and the reason for my smile.
+                Pure beauty, endless grace, and the reason hearts smile.
               </p>
             </div>
           </motion.div>

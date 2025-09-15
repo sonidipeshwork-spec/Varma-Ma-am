@@ -4,46 +4,40 @@ import image_1 from '@/assets/image_1.png';
 
 const qualities = [
   {
-    title: "Radiant Smile",
-    description: "Lights up every room she enters",
+    title: "Addictive Smile",
+    description: "You Lights up every face",
     icon: Smile,
     color: "from-sky-blue to-pure-white",
-    detail: "Your smile has the power to brighten even the darkest days and bring joy to everyone around you."
   },
   {
     title: "Kind Heart",
-    description: "Always caring for others",
+    description: "Always care for others",
     icon: Heart,
     color: "from-royal-blue to-sky-blue",
-    detail: "Your compassion knows no bounds, and your selflessness inspires everyone who knows you."
   },
   {
     title: "Brilliant Mind",
-    description: "Intelligence that inspires",
+    description: "Intelligence like a Queen",
     icon: Sparkles,
     color: "from-silver-accent to-sky-blue",
-    detail: "Your intellect and wisdom shine through in everything you do, lighting the path for others."
   },
   {
     title: "Graceful Soul",
     description: "Elegance in every movement",
     icon: Flower,
     color: "from-sky-blue to-royal-blue",
-    detail: "You move through life with a grace and elegance that leaves everyone in awe."
   },
   {
     title: "Positive Energy",
-    description: "Brings sunshine wherever she goes",
+    description: "Brings Positivity in Every Essence",
     icon: Sun,
     color: "from-pure-white to-sky-blue",
-    detail: "Your positive outlook and energy are contagious, lifting spirits wherever you go."
   },
   {
     title: "Unique Beauty",
     description: "One of a kind in every way",
     icon: Star,
     color: "from-royal-blue to-silver-accent",
-    detail: "Your beauty, both inside and out, is as rare and precious as a perfect star in the night sky."
   }
 ];
 
@@ -181,18 +175,6 @@ const QualitiesSection = () => {
                   <p className="font-lora text-sm md:text-base lg:text-lg text-midnight-black/80 leading-relaxed px-2">
                     {quality.description}
                   </p>
-
-                  {/* Additional Detail on Hover */}
-                  <motion.div
-                    className="mt-3 md:mt-4 overflow-hidden"
-                    initial={{ height: 0 }}
-                    whileHover={{ height: "auto" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <p className="font-lora text-xs md:text-sm text-royal-blue/80 italic pt-2 md:pt-3 border-t border-sky-blue/20">
-                      {quality.detail}
-                    </p>
-                  </motion.div>
                 </div>
 
                 {/* Decorative Gift Icon at Bottom */}

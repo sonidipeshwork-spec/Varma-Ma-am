@@ -4,20 +4,20 @@ import { Heart, Sparkles, Gift, Star, Crown, Flower } from 'lucide-react';
 
 const ComplimentMachine = () => {
   const compliments = useMemo(() => [
-    "Aapko describe karne ke liye dictionary bhi overtime kare 📖😂",
-    "Aapki smile andheri se andheri raat ko bhi roshan kar de 🌟",
-    "You have the Most Beautiful Heart in this World 💕",
+    "Aapki tarif karne ke liye dictionary ko bhi overtime karna padega 📖😂",
+    "Aapki muskaan mein ek pyaara sa jaadu hai 🌟",
+    "You have the Most Beautiful & Kind Heart in this World 💕",
     "Aap simple moments ko bhi magical bana dete ho ✨",
-    "Aapki laugh sabse cute awaaz hai 🎵",
-    "Aap sabse zayada caring insaan ho 🤗",
-    "Chocolate bhi sochti hai — 'yaar main itni sweet kaise hoon jab ye exist karti hain' 🍫",
-    "Aapki aankhon ki chamak raat ke sitaron se bhi zyada hai ⭐",
-    "Aapka andaaz ekdum royal aur classy hai 👑",
-    "Aapki kindness sabke dil ko chhoo jaati hai 🌸",
-    "Aap bohot strong aur inspiring hai 💪",
-    "Aapki awaaz sabse pyaari hai 🎶",
-    "Aapki presence sab kuch better bana deti hai 🌈",
-    "Aap ho perfection ki puri definition 💎"
+    "Aapki hansi sabse cute awaaz hai 🎵",
+    "Aap sabse zayada caring aur pyaare insaan ho 🤗",
+    "Chocolate bhi sochti hogi - 'yaar main itni sweet kaise hoon jab yeh exist karte hain' 🍫",
+    "You Lights up every face 🤗",
+    "Aapki aankhon ki chamak sitaron se bhi zyada hai ⭐",
+    "Aapka andaaz ek Queen jaisa royal aur classy hai 👑",
+    "One of a kind in every way ✨",
+    "Aapki awaaz sabse zayada pyaari hai 🎶",
+    "Aapki presence sab kuch special bana deti hai 🌈",
+    "You define the word Beautiful. 💎"
   ], []);
 
   const colors = useMemo(() => [
@@ -202,7 +202,7 @@ const ComplimentMachine = () => {
               duration: 2,
               ease: "easeInOut"
             }}
-            className="absolute pointer-events-none"
+            className="absolute pointer-events-none "
             style={{
               left: heart.x,
               top: heart.y,

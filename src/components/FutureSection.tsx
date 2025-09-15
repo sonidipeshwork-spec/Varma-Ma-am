@@ -177,7 +177,7 @@ const FutureSection = () => {
 
                 <p className="font-lora text-xl md:text-2xl text-pure-white leading-relaxed text-center relative z-10">
                   <span className="font-vibes text-3xl text-sky-blue">Varma Ma'am</span><br />
-                  Take care of your beautiful smile. Aapke
+                  Take care of your beautiful smile. Aapki muskaan aur innocence aapko hamesha sabse alag banati hai. Aapke chhote-chhote gestures mein jo positivity hai, woh bhoot special hain. Sach toh yeh hai ki aapki simplicity hi aapki asli khoobsurti hai. Aap jitne pyaare ho, utna hi mushkil hai aapki tarif ko shabdon mein sametna. Isliye bas itna hi kahunga, aaj ka din poori tarah se aapka hai, ise waise hi enjoy karna jaisa apnae plan kiya hain.
                 </p>
               </motion.div>
             </div>
@@ -206,9 +206,6 @@ const FutureSection = () => {
             </motion.div>
 
             <div className="mt-8 space-y-2">
-              <p className="font-lora text-lg text-pure-white/70">
-                19th Birthday
-              </p>
               <p className="font-lora text-base text-sky-blue/80">
                 A day as special and beautiful as you, Miss Shraddha Varma
               </p>

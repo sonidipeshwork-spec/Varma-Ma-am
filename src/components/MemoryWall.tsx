@@ -41,7 +41,7 @@ const memories = [
   {
     id: 5,
     url: image_11,
-    caption: "Special Moment 🎉",
+    caption: "Miss Glow 🌸",
   },
   {
     id: 6,

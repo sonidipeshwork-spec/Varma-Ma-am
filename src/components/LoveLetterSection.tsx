@@ -117,7 +117,7 @@ const LoveLetterSection = () => {
                 {/* Date with Icon */}
                 <div className="flex items-center justify-center gap-2 mb-8">
                   <p className="font-lora text-sm text-blue-800/60">
-                    September 16, 2024 • special cute din
+                    September 16 • special cute din
                   </p>
                 </div>
                 {/* Salutation with Icon */}

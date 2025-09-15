@@ -43,7 +43,7 @@ const JourneyTimeline = () => {
     },
     {
       year: "2015",
-      title: "Academic Excellence",
+      title: "School Excellence",
       description: "School ki achievements aur dostiyan",
       icon: BookOpen,
       details: "Maths aur art se pyaar, teachers ki favorite, hamesha knowledge aur creativity mein curiosity.",
@@ -109,7 +109,7 @@ const JourneyTimeline = () => {
     { src: flower_2, position: "bottom-20 right-10", opacity: "opacity-35", size: "w-56 h-56" },
     { src: flower_3, position: "top-1/3 right-5", opacity: "opacity-45", size: "w-40 h-40" },
     { src: flower_4, position: "bottom-1/4 right-10", opacity: "opacity-35", size: "w-52 h-52" },
-    { src: flower_5, position: "top-1/2 left-1/5", opacity: "opacity-30", size: "w-44 h-44" }
+    { src: flower_5, position: "top-1/2 left-1/4", opacity: "opacity-30", size: "w-44 h-44" }
   ], []);
 
   useEffect(() => {
@@ -456,7 +456,7 @@ const JourneyTimeline = () => {
               The Journey Continues...
             </h3>
             <p className="font-lora text-lg text-midnight-black/80">
-              Every moment with you is a new chapter in our beautiful story
+              Every moment is a new chapter in your beautiful story
             </p>
           </div>
         </motion.div>
