@@ -3,9 +3,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Baby, GraduationCap, BookOpen, Heart, Star, Sparkles, Camera, Plane } from 'lucide-react';
 import baby from "@/assets/baby.png";
 import foot from "@/assets/foot.png";
-import image_3 from "@/assets/image_3.jpg";
-import image_4 from "@/assets/image_4.jpg";
-import image_5 from "@/assets/image_5.jpg";
+import friend from "@/assets/friend.png";
+import school from "@/assets/school.png";
 import college from "@/assets/college.png";
 import image_13 from "@/assets/image_13.png";
 import study from "@/assets/study.png";
@@ -96,8 +95,8 @@ const JourneyTimeline = () => {
   const journeyImages = useMemo(() => [
     baby,
     foot,
-    image_3,
-    image_4,
+    friend,
+    school,
     college,
     study,
     secondy,
