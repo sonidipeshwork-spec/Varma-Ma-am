@@ -4,22 +4,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Romantic Birthday Theme Design System */
+/* Special Moon & Lotus Theme Design System */
 
 @layer base {
   :root {
-    /* Core romantic palette */
+    /* Core palette - Keeping Blue/White/Silver as requested */
     --pure-white: 0 0% 100%;
     --sky-blue: 203 69% 82%;
     --royal-blue: 224 76% 33%;
     --midnight-black: 0 0% 4%;
     --silver-accent: 0 0% 75%;
+    --moon-glow: 210 100% 95%; /* Pale blue-white */
     
     /* Gradient definitions */
-    --gradient-romantic: linear-gradient(135deg, hsl(var(--pure-white)), hsl(var(--sky-blue)));
-    --gradient-deep: linear-gradient(135deg, hsl(var(--royal-blue)), hsl(var(--midnight-black)));
-    --gradient-shimmer: linear-gradient(45deg, hsl(var(--silver-accent)), hsl(var(--pure-white)), hsl(var(--sky-blue)));
-    --gradient-hero: linear-gradient(180deg, hsl(var(--pure-white)) 0%, hsl(var(--sky-blue)) 50%, hsl(var(--royal-blue)) 100%);
+    --gradient-moon: linear-gradient(135deg, hsl(var(--pure-white)), hsl(var(--sky-blue)));
+    --gradient-deep-space: linear-gradient(135deg, hsl(var(--royal-blue)), hsl(var(--midnight-black)));
+    --gradient-starlight: linear-gradient(45deg, hsl(var(--silver-accent)), hsl(var(--pure-white)), hsl(var(--sky-blue)));
+    --gradient-lotus: linear-gradient(180deg, hsl(var(--pure-white)) 0%, hsl(var(--sky-blue)) 50%, hsl(var(--royal-blue)) 100%);
     
     /* Glassmorphism effects */
     --glass-white: hsla(0, 0%, 100%, 0.25);
@@ -27,14 +28,14 @@
     --glass-border: hsla(0, 0%, 100%, 0.18);
     
     /* Shadows and glows */
-    --shadow-romantic: 0 8px 32px hsla(203, 69%, 82%, 0.37);
-    --shadow-deep: 0 12px 40px hsla(224, 76%, 33%, 0.4);
-    --glow-silver: 0 0 20px hsla(0, 0%, 75%, 0.6);
-    --glow-blue: 0 0 30px hsla(203, 69%, 82%, 0.5);
+    --shadow-soft: 0 8px 32px hsla(203, 69%, 82%, 0.25);
+    --shadow-deep: 0 12px 40px hsla(224, 76% 33%, 0.3);
+    --glow-moon: 0 0 20px hsla(210, 100%, 95%, 0.6);
+    --glow-blue: 0 0 30px hsla(203, 69%, 82%, 0.4);
     
     /* Animation timings */
     --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-    --transition-bounce: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-float: all 3s ease-in-out infinite;
     
     /* Core system colors */
     --background: var(--pure-white);
@@ -53,22 +54,6 @@
     --input: var(--glass-border);
     --ring: var(--royal-blue);
     --radius: 1rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
@@ -117,7 +102,7 @@
 
   body {
     @apply bg-background text-foreground font-lora overflow-x-hidden;
-    cursor: none; /* Custom cursor */
+    /* Removed cursor-none to use default or sparkly cursor via JS/CSS class */
   }
   
   /* Typography */
@@ -128,8 +113,8 @@
 
 @layer components {
   /* Custom cursor */
-  .cursor-heart::before {
-    content: '💕';
+  .cursor-sparkle::before {
+    content: '✨';
     position: fixed;
     top: 0;
     left: 0;
@@ -141,15 +126,19 @@
   }
 
   /* Floating animations */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(5deg); }
-    66% { transform: translateY(10px) rotate(-3deg); }
+  @keyframes moon-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
   }
   
-  @keyframes drift {
-    0% { transform: translateX(-100px) translateY(100vh) rotate(0deg); }
-    100% { transform: translateX(100vw) translateY(-100px) rotate(360deg); }
+  @keyframes sparkle-twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  
+  @keyframes lotus-bloom {
+    0% { transform: scale(0.9) rotate(0deg); opacity: 0.8; }
+    100% { transform: scale(1) rotate(5deg); opacity: 1; }
   }
   
   @keyframes shimmer {
@@ -159,12 +148,7 @@
   
   @keyframes pulse-glow {
     0%, 100% { box-shadow: var(--glow-blue); }
-    50% { box-shadow: var(--glow-silver); }
-  }
-  
-  @keyframes scale-in {
-    0% { transform: scale(0.8) translateY(20px); opacity: 0; }
-    100% { transform: scale(1) translateY(0); opacity: 1; }
+    50% { box-shadow: var(--glow-moon); }
   }
 
   /* Glass morphism effects */
@@ -172,7 +156,7 @@
     background: var(--glass-white);
     backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-romantic);
+    box-shadow: var(--shadow-soft);
   }
   
   .glass-blue {
@@ -182,14 +166,14 @@
   }
 
   /* Gradient backgrounds */
-  .bg-romantic { background: var(--gradient-romantic); }
-  .bg-deep { background: var(--gradient-deep); }
-  .bg-shimmer { background: var(--gradient-shimmer); }
-  .bg-hero { background: var(--gradient-hero); }
+  .bg-moon { background: var(--gradient-moon); }
+  .bg-deep-space { background: var(--gradient-deep-space); }
+  .bg-starlight { background: var(--gradient-starlight); }
+  .bg-lotus { background: var(--gradient-lotus); }
   
   /* Text effects */
   .text-shimmer {
-    background: var(--gradient-shimmer);
+    background: var(--gradient-starlight);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -202,35 +186,35 @@
     position: fixed;
     color: hsl(var(--sky-blue));
     font-size: 1.5rem;
-    animation: drift 15s infinite linear;
+    animation: drift 15s infinite linear; /* Keeping drift for now, as no direct replacement was provided */
     pointer-events: none;
     z-index: 10;
   }
   
   /* Button variants */
-  .btn-romantic {
-    background: var(--gradient-romantic);
+  .btn-moon {
+    background: var(--gradient-moon);
     border: 1px solid var(--glass-border);
     color: hsl(var(--royal-blue));
     transition: var(--transition-smooth);
     backdrop-filter: blur(10px);
   }
   
-  .btn-romantic:hover {
+  .btn-moon:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: var(--glow-blue);
   }
   
-  .btn-hero {
-    background: var(--gradient-deep);
+  .btn-lotus {
+    background: var(--gradient-deep-space);
     color: hsl(var(--pure-white));
     border: 1px solid hsl(var(--silver-accent));
-    transition: var(--transition-bounce);
+    transition: var(--transition-float);
   }
   
-  .btn-hero:hover {
+  .btn-lotus:hover {
     transform: translateY(-5px) scale(1.1);
-    box-shadow: var(--glow-silver);
+    box-shadow: var(--glow-moon);
   }
 
   /* Scroll animations */
@@ -248,5 +232,14 @@
   .parallax {
     transform: translateY(var(--parallax-offset, 0));
     transition: transform 0.1s ease-out;
+  }
+
+  /* Utilities */
+  .animate-float {
+    animation: moon-float 6s ease-in-out infinite;
+  }
+  
+  .animate-twinkle {
+    animation: sparkle-twinkle 4s ease-in-out infinite;
   }
 }

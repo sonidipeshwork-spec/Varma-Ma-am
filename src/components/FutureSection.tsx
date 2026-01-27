@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Heart, Infinity, Star, Sparkles, Gift, Crown, Flower } from 'lucide-react';
+import { Moon, Infinity as InfinityIcon, Star, Sparkles, Cloud, Sun, MoveRight } from 'lucide-react';
 
 const FutureSection = () => {
   return (
@@ -44,55 +44,22 @@ const FutureSection = () => {
           className="absolute top-20 left-20 text-3xl text-sky-blue/40"
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 6 }}
-        >❄️</motion.div>
+        >🌙</motion.div>
         <motion.div
           className="absolute top-40 right-32 text-4xl text-pure-white/30"
           animate={{ y: [0, -25, 0] }}
           transition={{ duration: 7, delay: 1 }}
-        >✿</motion.div>
+        >✨</motion.div>
         <motion.div
           className="absolute bottom-32 left-1/4 text-3xl text-sky-blue/50"
           animate={{ y: [0, -30, 0] }}
           transition={{ duration: 8, delay: 2 }}
-        >💙</motion.div>
+        >☁️</motion.div>
         <motion.div
           className="absolute bottom-20 right-20 text-3xl text-pure-white/40"
           animate={{ y: [0, -15, 0] }}
           transition={{ duration: 5, delay: 3 }}
-        >🌸</motion.div>
-        <motion.div
-          className="absolute top-1/3 right-1/4 text-2xl text-royal-blue/30"
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 6, delay: 1 }}
-        >⭐</motion.div>
-        <motion.div
-          className="absolute bottom-1/3 left-1/3 text-2xl text-sky-blue/40"
-          animate={{ y: [0, -25, 0] }}
-          transition={{ duration: 7, delay: 3 }}
-        >🤍</motion.div>
-      </div>
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-sky-blue/30 rounded-full"
-            animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 8 + i * 0.5,
-              delay: i * 0.3,
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
+        >💫</motion.div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -105,39 +72,39 @@ const FutureSection = () => {
           >
 
             <h2 className="font-playfair text-5xl md:text-7xl font-bold text-white mb-6 bg-gradient-to-r from-pure-white via-sky-blue to-pure-white bg-clip-text text-transparent animate-shimmer">
-              Future & Forever
+              Horizon of Tomorrow
             </h2>
             <p className="font-vibes text-2xl md:text-3xl text-sky-blue/90 mb-8">
-              Where every tomorrow begins with you
+              Where every dawn brings new light
             </p>
 
             {/* Enhanced Icon Animation */}
             <div className="flex items-center justify-center gap-6 mb-12">
               <motion.div
                 animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, ease: "linear" }}
+                transition={{ duration: 60, ease: "linear" }}
                 className="relative"
               >
                 <div className="absolute -inset-2 bg-sky-blue/30 rounded-full blur-md"></div>
-                <Heart className="w-8 h-8 text-sky-blue fill-current relative z-10" />
+                <Moon className="w-8 h-8 text-sky-blue fill-current relative z-10" />
               </motion.div>
 
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2 }}
+                transition={{ duration: 4, repeat: Infinity }}
                 className="relative"
               >
                 <div className="absolute -inset-2 bg-pure-white/30 rounded-full blur-md"></div>
-                <Infinity className="w-12 h-12 text-pure-white relative z-10" />
+                <InfinityIcon className="w-12 h-12 text-pure-white relative z-10" />
               </motion.div>
 
               <motion.div
                 animate={{ rotate: [0, -360] }}
-                transition={{ duration: 20, ease: "linear" }}
+                transition={{ duration: 60, ease: "linear" }}
                 className="relative"
               >
                 <div className="absolute -inset-2 bg-sky-blue/30 rounded-full blur-md"></div>
-                <Heart className="w-8 h-8 text-sky-blue fill-current relative z-10" />
+                <Sun className="w-8 h-8 text-sky-blue fill-current relative z-10" />
               </motion.div>
             </div>
           </motion.div>
@@ -163,7 +130,7 @@ const FutureSection = () => {
                 transition={{ duration: 1, delay: 0.3 }}
                 className="font-vibes text-3xl md:text-4xl text-pure-white mb-8 leading-relaxed text-center"
               >
-                "This is only the beginning of your Beautiful Life, Ma'am ji"
+                "May your journey be as limitless as the sky"
               </motion.p>
 
               <motion.div
@@ -177,7 +144,7 @@ const FutureSection = () => {
 
                 <p className="font-lora text-xl md:text-2xl text-pure-white leading-relaxed text-center relative z-10">
                   <span className="font-vibes text-3xl text-sky-blue">Varma Ma'am</span><br />
-                  Take care of your beautiful smile. Aapki muskaan aur innocence aapko hamesha sabse alag banati hai. Aapke chhote-chhote gestures mein jo positivity hai, woh bhoot special hain. Sach toh yeh hai ki aapki simplicity hi aapki asli khoobsurti hai. Aap jitne pyaare ho, utna hi mushkil hai aapki tarif ko shabdon mein sametna. Isliye bas itna hi kahunga, aaj ka din poori tarah se aapka hai, ise waise hi enjoy karna jaisa apnae plan kiya hain.
+                  Keep shining with that quiet grace of yours. Your smile is a light that makes the world a little brighter. May you always find peace in the chaos, strength in your gentleness, and joy in the simple moments. The future holds beautiful things for a soul as kind as yours.
                 </p>
               </motion.div>
             </div>
@@ -191,7 +158,7 @@ const FutureSection = () => {
             className="text-center"
           >
             <p className="font-vibes text-4xl text-sky-blue mb-4">
-              With all Love and Wishes,
+              With Best Wishes,
             </p>
 
             <motion.div
@@ -201,15 +168,9 @@ const FutureSection = () => {
             >
               <div className="absolute -inset-4 bg-gradient-to-r from-sky-blue/30 to-royal-blue/30 rounded-full blur-md"></div>
               <p className="font-vibes text-3xl text-pure-white mb-4 relative z-10">
-                🤍 Happiest Birthday 🤍
+                🤍 Stay Blessed 🤍
               </p>
             </motion.div>
-
-            <div className="mt-8 space-y-2">
-              <p className="font-lora text-base text-sky-blue/80">
-                A day as special and beautiful as you, Miss Shraddha Varma
-              </p>
-            </div>
           </motion.div>
         </div>
       </div>

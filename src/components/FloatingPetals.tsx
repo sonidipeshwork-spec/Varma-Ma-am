@@ -4,20 +4,20 @@ const FloatingPetals = () => {
   const [petals, setPetals] = useState<Array<{ id: number; delay: number; size: number; duration: number; horizontal: number }>>([]);
 
   useEffect(() => {
-    const petalArray = Array.from({ length: 20 }, (_, i) => ({
+    const petalArray = Array.from({ length: 30 }, (_, i) => ({
       id: i,
-      delay: Math.random() * 15,
-      size: 0.8 + Math.random() * 0.4,
-      duration: 10 + Math.random() * 10, // Random duration between 10-20s
-      horizontal: -20 + Math.random() * 40, // Random horizontal drift between -20% to 20%
+      delay: Math.random() * 20,
+      size: 0.5 + Math.random() * 1,
+      duration: 15 + Math.random() * 15,
+      horizontal: -30 + Math.random() * 60,
     }));
     setPetals(petalArray);
   }, []);
 
-  const petalTypes = ['🍀', '🤍', '💙', '🌸', '✿', '❄️'];
+  const icons = ['🌕', '🌙', '⭐', '☁️', '🪷', '✨'];
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden text-blue-100/40">
       {petals.map((petal) => (
         <div
           key={petal.id}
@@ -30,17 +30,18 @@ const FloatingPetals = () => {
             '--horizontal-drift': `${petal.horizontal}%`,
           } as React.CSSProperties}
         >
-          {petalTypes[Math.floor(Math.random() * petalTypes.length)]}
+          {icons[Math.floor(Math.random() * icons.length)]}
         </div>
       ))}
 
       <style>{`
         .floating-petal {
           position: absolute;
-          top: -20px;
+          top: -30px;
           animation: float linear infinite;
           will-change: transform, opacity;
           opacity: 0;
+          text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
         
         @keyframes float {
@@ -49,13 +50,13 @@ const FloatingPetals = () => {
             opacity: 0;
           }
           10% {
-            opacity: 1;
+            opacity: 0.6;
           }
           90% {
-            opacity: 1;
+            opacity: 0.6;
           }
           100% {
-            transform: translateY(100vh) translateX(var(--horizontal-drift, 0)) rotate(360deg);
+            transform: translateY(105vh) translateX(var(--horizontal-drift, 0)) rotate(360deg);
             opacity: 0;
           }
         }
