@@ -3,10 +3,10 @@ import type { Config } from "tailwindcss";
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./pages/**/*.{js,jsx,ts,tsx}",
+		"./components/**/*.{js,jsx,ts,tsx}",
+		"./app/**/*.{js,jsx,ts,tsx}",
+		"./src/**/*.{js,jsx,ts,tsx}",
 	],
 	prefix: "",
 	theme: {
@@ -22,6 +22,14 @@ export default {
 				playfair: ['Playfair Display', 'serif'],
 				vibes: ['Great Vibes', 'cursive'],
 				lora: ['Lora', 'serif'],
+				cormorant: ['Cormorant Garamond', 'serif'],
+				dm: ['DM Sans', 'sans-serif'],
+				dancing: ['Dancing Script', 'cursive'],
+				fredoka: ['Fredoka', 'sans-serif'],
+				comfortaa: ['Comfortaa', 'cursive'],
+				italiana: ['Italiana', 'serif'],
+				figtree: ['Figtree', 'sans-serif'],
+				italianno: ['Italianno', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -34,6 +42,16 @@ export default {
 				'royal-blue': 'hsl(var(--royal-blue))',
 				'midnight-black': 'hsl(var(--midnight-black))',
 				'silver-accent': 'hsl(var(--silver-accent))',
+				blush: '#FCE1EA',
+				'light-pink': '#FCE1EA',
+				'light-blue': '#D8EBF9',
+				'light-red': '#E04D66',
+				'light-cream': '#FAF5EE',
+				lavender: '#D8EBF9',
+				peach: '#FDE8E0',
+				cream: '#FAF5EE',
+				rosegold: '#E04D66',
+				'rose-gold': '#E04D66',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
