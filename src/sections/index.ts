@@ -1,6 +1,8 @@
+export { default as QuestionGate } from "./QuestionGate";
 export { default as LocketGate } from "./LocketGate";
 export { default as AmbientControls } from "./AmbientControls";
 export { default as BirthdayStorySection } from "./BirthdayStorySection";
+export { default as LoveConfessionSection } from "./LoveConfessionSection";
 export { default as OpeningSection } from "./OpeningSection";
 export { default as WhyILoveYouSection } from "./WhyILoveYouSection";
 export { default as HowIFellSection } from "./HowIFellSection";
@@ -9,3 +11,4 @@ export { default as LoveLetterBookSection } from "./LoveLetterBookSection";
 export { default as ComplimentsSection } from "./ComplimentsSection";
 export { default as OurFutureSection } from "./OurFutureSection";
 export { default as EndingSection } from "./EndingSection";
+

@@ -1,41 +1,75 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, BookOpen, Heart } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import gsap from "gsap";
 import { BOOK_CHAPTERS } from "@/love/content";
 
-/**
- * LoveLetterBookSection Component
- * Realistic 3D dual-page hardcover diary and private love letter book
- * with chapters, ribbon bookmarks, gold corner guards, drop caps, and signature seal.
- */
 export default function LoveLetterBookSection() {
   const [currentChapter, setCurrentChapter] = useState(0);
+  const [isTurning, setIsTurning] = useState(false);
+  const spreadRef = useRef<HTMLDivElement | null>(null);
 
   const chapter = BOOK_CHAPTERS[currentChapter];
 
-  const handlePrev = () => {
-    setCurrentChapter((prev) => Math.max(0, prev - 1));
+  const turnTo = (next: number) => {
+    if (isTurning || next === currentChapter || next < 0 || next >= BOOK_CHAPTERS.length) {
+      return;
+    }
+    setIsTurning(true);
+    const el = spreadRef.current;
+    const direction = next > currentChapter ? -1 : 1;
+
+    const apply = () => {
+      setCurrentChapter(next);
+      if (!el) {
+        setIsTurning(false);
+        return;
+      }
+      gsap.fromTo(
+        el,
+        { x: direction * -28, opacity: 0.35, rotateY: direction * -6 },
+        {
+          x: 0,
+          opacity: 1,
+          rotateY: 0,
+          duration: 0.42,
+          ease: "power3.out",
+          onComplete: () => setIsTurning(false),
+        }
+      );
+    };
+
+    if (!el) {
+      apply();
+      return;
+    }
+
+    gsap.to(el, {
+      x: direction * 28,
+      opacity: 0.35,
+      rotateY: direction * 6,
+      duration: 0.22,
+      ease: "power2.in",
+      onComplete: apply,
+    });
   };
 
-  const handleNext = () => {
-    setCurrentChapter((prev) => Math.min(BOOK_CHAPTERS.length - 1, prev + 1));
-  };
+  useEffect(() => {
+    const spread = spreadRef.current;
+    return () => {
+      if (spread) gsap.killTweensOf(spread);
+    };
+  }, []);
 
   return (
     <section id="love-letter" className="fold fold-letter">
-      {/* Section Title & Header */}
       <div className="book-section-head">
-        <p className="section-tag letter-tag">
-          <BookOpen size={13} className="inline mr-1 text-[#e04d66]" />
-          Private Diary & Book
-        </p>
-        <h2 className="book-main-title">A Book for My Ma'am Ji</h2>
+        <h2 className="book-main-title">A book for my Ma'am Ji</h2>
         <p className="book-main-subtitle">
-          Because there are countless things I want to tell you, written page by page.
+          Pages I wrote because one letter was never going to be enough.
         </p>
       </div>
 
-      {/* Chapter Ribbon Bookmark Tabs */}
-      <div className="book-chapter-tabs" role="tablist">
+      <div className="book-chapter-tabs" role="tablist" aria-label="Letter chapters">
         {BOOK_CHAPTERS.map((ch, idx) => (
           <button
             key={ch.id}
@@ -43,29 +77,24 @@ export default function LoveLetterBookSection() {
             role="tab"
             aria-selected={currentChapter === idx}
             className={`chapter-tab ${currentChapter === idx ? "is-active" : ""}`}
-            onClick={() => setCurrentChapter(idx)}
+            onClick={() => turnTo(idx)}
+            disabled={isTurning}
           >
-            <span className="tab-num">0{idx + 1}</span>
+            <span className="tab-num">{ch.chapterNum.replace("Chapter ", "")}</span>
             <span className="tab-title">{ch.tabTitle}</span>
           </button>
         ))}
       </div>
 
-      {/* The Physical Hardcover Book Container */}
       <div className="book-outer-container">
         <div className="book-casing">
-          {/* Gold Corner Guards */}
           <div className="book-corner corner-tl" aria-hidden />
           <div className="book-corner corner-tr" aria-hidden />
           <div className="book-corner corner-bl" aria-hidden />
           <div className="book-corner corner-br" aria-hidden />
-
-          {/* Silk Bookmark Ribbon */}
           <div className="book-ribbon" aria-hidden />
 
-          {/* 3D Dual-Page Open Book Spread */}
-          <div className="book-spread">
-            {/* LEFT PAGE */}
+          <div className="book-spread" ref={spreadRef}>
             <article className="book-page book-page-left">
               <div className="page-watermark" aria-hidden />
               <div className="page-header">
@@ -94,19 +123,15 @@ export default function LoveLetterBookSection() {
               </div>
 
               <div className="page-footer">
-                <span className="page-num">— {chapter.leftPage.pageNumber} —</span>
+                <span className="page-num">{chapter.leftPage.pageNumber}</span>
               </div>
             </article>
 
-            {/* CENTER SPINE & STITCHING */}
             <div className="book-spine" aria-hidden>
-              <div className="spine-shadow-left" />
               <div className="spine-crease" />
               <div className="spine-stitches" />
-              <div className="spine-shadow-right" />
             </div>
 
-            {/* RIGHT PAGE */}
             <article className="book-page book-page-right">
               <div className="page-watermark" aria-hidden />
               <div className="page-header">
@@ -118,62 +143,58 @@ export default function LoveLetterBookSection() {
 
               <div className="page-content">
                 {chapter.rightPage.paragraphs.map((p, pIdx) => (
-                  <p key={pIdx} className="page-para">{p}</p>
+                  <p key={pIdx} className="page-para">
+                    {p}
+                  </p>
                 ))}
 
                 {chapter.rightPage.signOff && (
                   <div className="book-signoff-block">
-                    <div className="book-mini-seal">
+                    <div className="book-mini-seal" aria-hidden>
                       <span>S</span>
                     </div>
                     <div className="book-sign-details">
                       <span className="sign-closing">{chapter.rightPage.signOff.close}</span>
-                      <strong className="sign-name">
-                        {chapter.rightPage.signOff.sign}{" "}
-                        <Heart size={18} className="inline text-[#e04d66] fill-[#e04d66]" />
-                      </strong>
+                      <strong className="sign-name">{chapter.rightPage.signOff.sign}</strong>
                     </div>
                   </div>
                 )}
               </div>
 
               <div className="page-footer">
-                <span className="page-num">— {chapter.rightPage.pageNumber} —</span>
+                <span className="page-num">{chapter.rightPage.pageNumber}</span>
               </div>
             </article>
           </div>
         </div>
 
-        {/* Interactive Book Navigation Controls */}
         <div className="book-nav-controls">
           <button
             type="button"
             className="book-turn-btn"
-            onClick={handlePrev}
-            disabled={currentChapter === 0}
+            onClick={() => turnTo(currentChapter - 1)}
+            disabled={currentChapter === 0 || isTurning}
             aria-label="Previous chapter"
           >
             <ChevronLeft size={18} />
-            <span>Previous Chapter</span>
+            <span>Previous</span>
           </button>
 
           <div className="book-progress-pill">
-            <span className="progress-current">
-              {chapter.chapterNum}: {chapter.tabTitle}
-            </span>
+            <span className="progress-current">{chapter.tabTitle}</span>
             <span className="progress-total">
-              ({currentChapter + 1} of {BOOK_CHAPTERS.length})
+              {currentChapter + 1} of {BOOK_CHAPTERS.length}
             </span>
           </div>
 
           <button
             type="button"
             className="book-turn-btn"
-            onClick={handleNext}
-            disabled={currentChapter === BOOK_CHAPTERS.length - 1}
+            onClick={() => turnTo(currentChapter + 1)}
+            disabled={currentChapter === BOOK_CHAPTERS.length - 1 || isTurning}
             aria-label="Next chapter"
           >
-            <span>Next Chapter</span>
+            <span>Next</span>
             <ChevronRight size={18} />
           </button>
         </div>

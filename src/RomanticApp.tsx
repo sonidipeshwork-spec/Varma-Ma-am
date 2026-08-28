@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { NAV } from "@/love/content";
-import { openLocketWithGsap, useLoveGsap } from "@/love/useLoveGsap";
+import { openLocketWithGsap, scrollLoveTo, useLoveGsap } from "@/love/useLoveGsap";
 import {
+  QuestionGate,
   LocketGate,
   AmbientControls,
   BirthdayStorySection,
@@ -29,12 +30,14 @@ function useReducedMotion() {
 
 export default function RomanticApp() {
   const reduced = useReducedMotion();
-  const [opened, setOpened] = useState(false);
+  const [stage, setStage] = useState<"questions" | "locket" | "opened">("questions");
   const [activeNav, setActiveNav] = useState(0);
   const [audioOn, setAudioOn] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // GSAP scroll and parallax triggers
+  const opened = stage === "opened";
+
+  // GSAP scroll and parallax triggers for main experience
   useLoveGsap(opened, reduced);
 
   // Ambient audio player
@@ -68,9 +71,16 @@ export default function RomanticApp() {
     return () => observer.disconnect();
   }, [opened]);
 
+  const handleQuestionsComplete = () => {
+    setStage("locket");
+  };
+
   const openLocket = () => {
-    if (opened) return;
-    openLocketWithGsap(reduced, () => setOpened(true));
+    if (stage === "opened") return;
+    openLocketWithGsap(reduced, () => {
+      window.scrollTo(0, 0);
+      setStage("opened");
+    });
   };
 
   const toggleAudio = () => {
@@ -82,7 +92,7 @@ export default function RomanticApp() {
   };
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    scrollLoveTo(`#${id}`);
   };
 
   return (
@@ -90,11 +100,14 @@ export default function RomanticApp() {
       <div className="love-vignette" aria-hidden />
       <div className="love-grain" aria-hidden />
 
-      {/* 1. Locket Lock Gate Screen */}
-      {!opened && <LocketGate onOpen={openLocket} />}
+      {/* 1. Playful "Are You Really Her?" Question Gate */}
+      {stage === "questions" && <QuestionGate onComplete={handleQuestionsComplete} />}
 
-      {/* 2. Main Experience & Dedicated Sections */}
-      {opened && (
+      {/* 2. Upgraded 3D Locket Gate Screen */}
+      {stage === "locket" && <LocketGate onOpen={openLocket} />}
+
+      {/* 3. Main Experience & Dedicated Sections */}
+      {stage === "opened" && (
         <>
           <AmbientControls
             audioOn={audioOn}

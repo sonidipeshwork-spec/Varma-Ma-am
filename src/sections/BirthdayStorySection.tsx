@@ -1,17 +1,10 @@
-import { BIRTHDAY_WORDS, CONFESSIONS, STORY_PANELS } from "@/love/content";
+import { BIRTHDAY_WORDS, STORY_PANELS } from "@/love/content";
+import LoveConfessionSection from "./LoveConfessionSection";
 
-/**
- * BirthdayStorySection Component
- * Contains the pinned Birthday Wish letter-by-letter animation, the Love Confession stack,
- * and the horizontal scrolling Story Chapters.
- */
 export default function BirthdayStorySection() {
   return (
-    <section className="story">
-      {/* 1. Birthday Wish */}
-      <div id="birthday" className="story-pin story-pin-hb">
-        <p className="section-tag">Birthday wish</p>
-        <p className="story-kicker">scroll to begin</p>
+    <>
+      <section id="birthday" className="story-pin story-pin-hb">
         <h2 className="hb-line" aria-label="Happy Birthday Shruu">
           {BIRTHDAY_WORDS.map((word) => (
             <span key={word} className="hb-word">
@@ -23,31 +16,22 @@ export default function BirthdayStorySection() {
             </span>
           ))}
         </h2>
-        <p className="story-hint">Keep scrolling the story</p>
-      </div>
+      </section>
 
-      {/* 2. Love Confession */}
-      <div id="confession" className="story-pin story-pin-love">
-        <p className="section-tag">Love confession</p>
-        <p className="story-kicker">read each line</p>
-        <div className="confess-stack">
-          {CONFESSIONS.map((line) => (
-            <p key={line} className="confess">
-              {line}
-            </p>
-          ))}
-        </div>
-      </div>
+      <LoveConfessionSection />
 
-      {/* 3. Story Chapters (Horizontal sliding panels) */}
-      <div id="chapters" className="story-horizon-pin">
-        <p className="section-tag film-head">Story chapters</p>
-        <p className="story-kicker">keep scrolling — photos move sideways</p>
+      <section id="chapters" className="story-horizon-pin">
+        <header className="fold-head film-head">
+          <h2>The day it became a story</h2>
+          <p>Five frames. One girl. The hours that changed everything.</p>
+        </header>
         <div className="story-horizon">
           {STORY_PANELS.map((panel) => (
             <article key={panel.title} className="story-panel">
-              <img src={panel.img} alt={panel.title} />
-              <div>
+              <div className="story-panel-frame">
+                <img src={panel.img} alt={panel.title} />
+              </div>
+              <div className="story-panel-copy">
                 <span>{panel.eyebrow}</span>
                 <h3>{panel.title}</h3>
                 <p>{panel.line}</p>
@@ -55,7 +39,7 @@ export default function BirthdayStorySection() {
             </article>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

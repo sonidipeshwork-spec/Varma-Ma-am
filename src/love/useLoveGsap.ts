@@ -2,274 +2,602 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import { playLocketUnlockSound } from "./soundEffects";
 
 gsap.registerPlugin(ScrollTrigger);
+
+let loveLenis: Lenis | null = null;
+
+/** Smooth-scroll helper that works with the active Lenis instance. */
+export function scrollLoveTo(target: number | string | HTMLElement, options?: { offset?: number }) {
+  const offset = options?.offset ?? 0;
+  if (loveLenis) {
+    loveLenis.scrollTo(target, { offset, duration: 1.15 });
+    return;
+  }
+
+  if (typeof target === "number") {
+    window.scrollTo({ top: target + offset, behavior: "smooth" });
+    return;
+  }
+
+  const el =
+    typeof target === "string" ? document.querySelector<HTMLElement>(target) : target;
+  el?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function waitForPaint() {
+  return new Promise<void>((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+  });
+}
+
+function bindImageRefresh(root: ParentNode, refresh: () => void) {
+  const images = Array.from(root.querySelectorAll("img"));
+  let pending = 0;
+
+  const onDone = () => {
+    pending -= 1;
+    if (pending <= 0) refresh();
+  };
+
+  images.forEach((img) => {
+    if (img.complete) return;
+    pending += 1;
+    img.addEventListener("load", onDone, { once: true });
+    img.addEventListener("error", onDone, { once: true });
+  });
+
+  return () => {
+    images.forEach((img) => {
+      img.removeEventListener("load", onDone);
+      img.removeEventListener("error", onDone);
+    });
+  };
+}
+
+function horizontalDistance(track: HTMLElement, pad = 64) {
+  return Math.max(0, track.scrollWidth - window.innerWidth + pad);
+}
+
+function createHorizontalPin(
+  pin: HTMLElement,
+  track: HTMLElement,
+  opts: {
+    id: string;
+    pad?: number;
+    scrub?: number;
+    minEnd?: number | (() => number);
+  }
+) {
+  const pad = opts.pad ?? 64;
+  const scrub = opts.scrub ?? 0.8;
+  const minEndOpt = opts.minEnd ?? (() => window.innerHeight * 1.2);
+
+  return gsap.to(track, {
+    x: () => -horizontalDistance(track, pad),
+    ease: "none",
+    scrollTrigger: {
+      id: opts.id,
+      trigger: pin,
+      start: "top top",
+      end: () => {
+        const distance = horizontalDistance(track, pad);
+        const floor = typeof minEndOpt === "function" ? minEndOpt() : minEndOpt;
+        return `+=${Math.max(floor, distance)}`;
+      },
+      scrub,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      fastScrollEnd: true,
+    },
+  });
+}
+
+function setupScrollExperience(reduced: boolean) {
+  gsap.set(".fan-3d, .z-rail, .book-casing, .muse-stack", {
+    transformPerspective: 1400,
+    transformStyle: "preserve-3d",
+  });
+
+  // Never transform pin ancestors (.story used to break every pin below it).
+  gsap.from(".chrome", {
+    opacity: 0,
+    y: -14,
+    duration: reduced ? 0.01 : 0.7,
+    ease: "power2.out",
+  });
+
+  gsap.to(".scroll-progress", {
+    scaleX: 1,
+    ease: "none",
+    scrollTrigger: {
+      scrub: 0.25,
+      start: 0,
+      end: "max",
+    },
+  });
+
+  gsap.to(".float-bloom", {
+    y: "random(-28, 22)",
+    x: "random(-14, 18)",
+    rotation: "random(-18, 18)",
+    duration: 5,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+    stagger: { each: 0.22, from: "random" },
+  });
+
+  if (reduced) {
+    gsap.set(
+      ".hb-letter, .lead-word, .sub-word, .stage-vignette-wrapper, .climax-seal-box, .fan-card, .z-card, .flip, .future-lead, .future-card, .finale-vow .vow-word, .finale-home, .finale-stamp, .finale-sign, .finale-seal, .wreath-shot",
+      { clearProps: "all" }
+    );
+    return;
+  }
+
+  // --- Birthday letter pin ---
+  const hbPin = document.querySelector<HTMLElement>(".story-pin-hb");
+  const hbLetters = gsap.utils.toArray<HTMLElement>(".hb-letter");
+  if (hbPin && hbLetters.length) {
+    gsap.set(hbLetters, { opacity: 0.08, y: 56, rotateX: -70 });
+    const hbTl = gsap.timeline({
+      scrollTrigger: {
+        id: "birthday-letters",
+        trigger: hbPin,
+        start: "top top",
+        end: "+=220%",
+        pin: true,
+        scrub: 0.65,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+    hbLetters.forEach((letter, i) => {
+      hbTl.to(
+        letter,
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.4, ease: "power2.out" },
+        i * 0.08
+      );
+    });
+  }
+
+  // --- Confession horizontal + word reveal ---
+  const confessTrack = document.querySelector<HTMLElement>(".confession-horizon-track");
+  const confessPin = document.querySelector<HTMLElement>(".confession-horizon-pin");
+  if (confessTrack && confessPin) {
+    const getConfessDistance = () => horizontalDistance(confessTrack, 120);
+
+    const confessTl = gsap.timeline({
+      scrollTrigger: {
+        id: "confession-scroll",
+        trigger: confessPin,
+        start: "top top",
+        end: () => `+=${Math.max(window.innerHeight * 2.6, getConfessDistance() * 1.35)}`,
+        pin: true,
+        scrub: 0.75,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        fastScrollEnd: true,
+      },
+    });
+
+    confessTl.to(
+      confessTrack,
+      {
+        x: () => -getConfessDistance(),
+        ease: "none",
+        duration: 1,
+      },
+      0
+    );
+
+    const orb1 = confessPin.querySelector<HTMLElement>(".glow-orb-1");
+    const orb2 = confessPin.querySelector<HTMLElement>(".glow-orb-2");
+    if (orb1) confessTl.to(orb1, { x: 200, scale: 1.3, duration: 1, ease: "none" }, 0);
+    if (orb2) confessTl.to(orb2, { x: -250, scale: 1.2, duration: 1, ease: "none" }, 0);
+
+    const stagePanels = gsap.utils.toArray<HTMLElement>(".confess-stage-panel");
+    const totalStages = Math.max(1, stagePanels.length);
+
+    stagePanels.forEach((panel, panelIdx) => {
+      const leadWords = panel.querySelectorAll<HTMLElement>(".lead-word");
+      const subWords = panel.querySelectorAll<HTMLElement>(".sub-word");
+      const vignette = panel.querySelector<HTMLElement>(".stage-vignette-wrapper");
+      const climaxBox = panel.querySelector<HTMLElement>(".climax-seal-box");
+
+      gsap.set(leadWords, { opacity: 0.12, y: 12, filter: "blur(4px)", scale: 0.96 });
+      if (subWords.length) gsap.set(subWords, { opacity: 0.1, y: 10, filter: "blur(3px)" });
+      if (vignette) gsap.set(vignette, { opacity: 0.25, scale: 0.9, rotateY: 12 });
+      if (climaxBox) gsap.set(climaxBox, { opacity: 0, scale: 0.6, y: 30 });
+
+      const stageStartTime = 0.08 + (panelIdx / totalStages) * 0.78;
+      const stageDuration = 0.85 / totalStages;
+
+      leadWords.forEach((word, wIdx) => {
+        const wordTime =
+          stageStartTime + (wIdx / Math.max(1, leadWords.length)) * (stageDuration * 0.55);
+        confessTl.to(
+          word,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            scale: word.classList.contains("is-climax") ? 1.08 : 1,
+            duration: stageDuration * 0.18,
+            ease: "power2.out",
+          },
+          wordTime
+        );
+      });
+
+      subWords.forEach((sword, sIdx) => {
+        const swordTime =
+          stageStartTime +
+          stageDuration * 0.48 +
+          (sIdx / Math.max(1, subWords.length)) * (stageDuration * 0.38);
+        confessTl.to(
+          sword,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: stageDuration * 0.15,
+            ease: "power2.out",
+          },
+          swordTime
+        );
+      });
+
+      if (vignette) {
+        confessTl.to(
+          vignette,
+          {
+            opacity: 1,
+            scale: 1,
+            rotateY: 0,
+            duration: stageDuration * 0.45,
+            ease: "power2.out",
+          },
+          stageStartTime + stageDuration * 0.2
+        );
+      }
+
+      if (climaxBox) {
+        confessTl.to(
+          climaxBox,
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: stageDuration * 0.35,
+            ease: "back.out(2)",
+          },
+          stageStartTime + stageDuration * 0.55
+        );
+      }
+    });
+  }
+
+  // --- Story chapters horizontal ---
+  const horizon = document.querySelector<HTMLElement>(".story-horizon");
+  const horizonPin = document.querySelector<HTMLElement>(".story-horizon-pin");
+  if (horizon && horizonPin) {
+    createHorizontalPin(horizonPin, horizon, {
+      id: "story-chapters",
+      pad: 64,
+      scrub: 0.8,
+      minEnd: () => window.innerHeight,
+    });
+  }
+
+  // --- Opening parallax ---
+  const opening = document.querySelector("#opening");
+  if (opening) {
+    gsap.from(".muse-title .word", {
+      yPercent: 110,
+      opacity: 0,
+      rotateX: -80,
+      transformOrigin: "50% 100%",
+      stagger: 0.09,
+      duration: 1,
+      ease: "power3.out",
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: opening,
+        start: "top 75%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    gsap.to(".muse-copy", {
+      y: -90,
+      opacity: 0.15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: opening,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to(".muse-photo-a", {
+      y: -140,
+      rotateY: -18,
+      rotateX: 8,
+      scale: 1.08,
+      ease: "none",
+      scrollTrigger: {
+        trigger: opening,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to(".muse-photo-b", {
+      y: 80,
+      rotateY: 22,
+      ease: "none",
+      scrollTrigger: {
+        trigger: opening,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  }
+
+  // --- Why I love you cards ---
+  const why = document.querySelector("#why-i-love-you");
+  if (why) {
+    gsap.from(".fan-card", {
+      y: 80,
+      rotateY: 50,
+      z: -180,
+      opacity: 0,
+      stagger: 0.12,
+      duration: 1,
+      ease: "power3.out",
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: why,
+        start: "top 78%",
+        toggleActions: "play none none none",
+      },
+    });
+  }
+
+  // --- How I fell cards ---
+  gsap.utils.toArray<HTMLElement>(".z-card").forEach((card) => {
+    gsap.fromTo(
+      card,
+      { rotateX: 42, z: -260, y: 70, opacity: 0.15 },
+      {
+        rotateX: 0,
+        z: 0,
+        y: 0,
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+          end: "top 42%",
+          scrub: true,
+        },
+      }
+    );
+  });
+
+  // --- Film strip horizontal ---
+  const filmTrack = document.querySelector<HTMLElement>(".film-track");
+  const filmPin = document.querySelector<HTMLElement>(".film-pin");
+  if (filmTrack && filmPin) {
+    createHorizontalPin(filmPin, filmTrack, {
+      id: "film-strip",
+      pad: 80,
+      scrub: 0.85,
+      minEnd: () => window.innerHeight,
+    });
+  }
+
+  // --- Love letter book ---
+  const letter = document.querySelector("#love-letter");
+  if (letter) {
+    gsap.from(".book-casing", {
+      y: 70,
+      rotateX: 16,
+      opacity: 0,
+      duration: 1.1,
+      ease: "power3.out",
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: letter,
+        start: "top 78%",
+        toggleActions: "play none none none",
+      },
+    });
+  }
+
+  // --- Compliment flips ---
+  gsap.utils.toArray<HTMLElement>(".flip").forEach((card, i) => {
+    gsap.from(card, {
+      y: 50,
+      rotateY: i % 2 === 0 ? -40 : 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: card,
+        start: "top 88%",
+        toggleActions: "play none none none",
+      },
+    });
+  });
+
+  // --- Future dreams ---
+  gsap.utils.toArray<HTMLElement>(".future-lead, .future-card").forEach((moon) => {
+    const target = moon.querySelector<HTMLElement>(".tilt-inner") || moon;
+    gsap.fromTo(
+      target,
+      { scale: 0.9, y: 36, opacity: 0.25 },
+      {
+        scale: 1,
+        y: 0,
+        opacity: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: moon,
+          start: "top 90%",
+          end: "top 55%",
+          scrub: 0.5,
+        },
+      }
+    );
+  });
+
+  // --- Ending ---
+  const ending = document.querySelector("#ending");
+  if (ending) {
+    gsap.from(".finale-vow .vow-word", {
+      yPercent: 80,
+      opacity: 0,
+      rotateX: -55,
+      stagger: 0.12,
+      duration: 0.9,
+      ease: "power3.out",
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: ending,
+        start: "top 72%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    gsap.from(".finale-home, .finale-stamp, .finale-sign, .finale-seal", {
+      y: 24,
+      opacity: 0,
+      stagger: 0.12,
+      duration: 0.8,
+      ease: "power3.out",
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: ending,
+        start: "top 68%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    gsap.from(".wreath-shot", {
+      opacity: 0,
+      filter: "blur(10px)",
+      stagger: 0.08,
+      duration: 1.05,
+      ease: "power3.out",
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: ending,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    gsap.to(".finale-halo", {
+      scale: 1.12,
+      opacity: 0.85,
+      duration: 3.2,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut",
+      scrollTrigger: {
+        trigger: ending,
+        start: "top 85%",
+        toggleActions: "play pause resume pause",
+      },
+    });
+  }
+}
 
 export function useLoveGsap(enabled: boolean, reduced: boolean) {
   useEffect(() => {
     if (!enabled) return;
 
-    const lenis = new Lenis({
-      duration: 1.15,
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.15,
-    });
-    const onScroll = () => ScrollTrigger.update();
-    lenis.on("scroll", onScroll);
-    const tick = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
+    let disposed = false;
+    let lenis: Lenis | null = null;
+    let ctx: gsap.Context | null = null;
+    let onScroll: (() => void) | null = null;
+    let tick: ((time: number) => void) | null = null;
+    const cleanups: Array<() => void> = [];
 
-    const ctx = gsap.context(() => {
-      gsap.set(".fan-3d, .z-rail, .letter-sheet, .muse-stack", {
-        transformPerspective: 1400,
-        transformStyle: "preserve-3d",
-      });
+    const refresh = () => {
+      if (!disposed) ScrollTrigger.refresh();
+    };
 
-      gsap.from(".muse-title .word", {
-        yPercent: 110,
-        opacity: 0,
-        rotateX: -80,
-        transformOrigin: "50% 100%",
-        stagger: 0.09,
-        duration: reduced ? 0.01 : 1,
-        ease: "power3.out",
-      });
-
-      gsap.to(".scroll-progress", {
-        scaleX: 1,
-        ease: "none",
-        scrollTrigger: { scrub: 0.2 },
-      });
-
-      gsap.to(".float-bloom", {
-        y: "random(-28, 22)",
-        x: "random(-14, 18)",
-        rotation: "random(-18, 18)",
-        duration: 5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: { each: 0.22, from: "random" },
-      });
-
-      if (reduced) return;
-
-      const hbLetters = gsap.utils.toArray<HTMLElement>(".hb-letter");
-      gsap.set(hbLetters, { opacity: 0.08, y: 56, rotateX: -70 });
-      const hbTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".story-pin-hb",
-          start: "top top",
-          end: "+=220%",
-          pin: true,
-          scrub: 0.65,
-          anticipatePin: 1,
-        },
-      });
-      hbLetters.forEach((letter, i) => {
-        hbTl.to(
-          letter,
-          { opacity: 1, y: 0, rotateX: 0, duration: 0.4, ease: "power2.out" },
-          i * 0.08
-        );
-      });
-
-      const confess = gsap.utils.toArray<HTMLElement>(".confess");
-      gsap.set(confess, { opacity: 0.08, y: 36 });
-      const loveTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".story-pin-love",
-          start: "top top",
-          end: "+=240%",
-          pin: true,
-          scrub: 0.7,
-          anticipatePin: 1,
-        },
-      });
-      confess.forEach((line, i) => {
-        loveTl.to(line, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, i * 0.45);
-        if (i < confess.length - 1) {
-          loveTl.to(line, { opacity: 0.28, duration: 0.35 }, i * 0.45 + 0.55);
-        }
-      });
-
-      const horizon = document.querySelector<HTMLElement>(".story-horizon");
-      const horizonPin = document.querySelector<HTMLElement>(".story-horizon-pin");
-      if (horizon && horizonPin) {
-        const getStoryDistance = () => Math.max(0, horizon.scrollWidth - window.innerWidth + 64);
-        gsap.to(horizon, {
-          x: () => -getStoryDistance(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: horizonPin,
-            start: "top top",
-            end: () => `+=${getStoryDistance()}`,
-            scrub: 0.8,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
+    const boot = async () => {
+      try {
+        await document.fonts.ready;
+      } catch {
+        // ignore font readiness failures
       }
+      await waitForPaint();
+      if (disposed) return;
 
-      gsap.to(".muse-copy", {
-        y: -90,
-        opacity: 0.15,
-        ease: "none",
-        scrollTrigger: { trigger: "#opening", start: "top top", end: "bottom top", scrub: true },
+      lenis = new Lenis({
+        duration: 1.15,
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.15,
+        autoRaf: false,
+      });
+      loveLenis = lenis;
+
+      onScroll = () => ScrollTrigger.update();
+      lenis.on("scroll", onScroll);
+
+      tick = (time: number) => {
+        lenis?.raf(time * 1000);
+      };
+      gsap.ticker.add(tick);
+      gsap.ticker.lagSmoothing(0);
+
+      ctx = gsap.context(() => {
+        setupScrollExperience(reduced);
       });
 
-      gsap.to(".muse-photo-a", {
-        y: -140,
-        rotateY: -18,
-        rotateX: 8,
-        scale: 1.08,
-        ease: "none",
-        scrollTrigger: { trigger: "#opening", start: "top top", end: "bottom top", scrub: true },
+      refresh();
+
+      const root = document.querySelector(".love-root") ?? document;
+      cleanups.push(bindImageRefresh(root, refresh));
+
+      const delayedA = window.setTimeout(refresh, 250);
+      const delayedB = window.setTimeout(refresh, 900);
+      cleanups.push(() => {
+        window.clearTimeout(delayedA);
+        window.clearTimeout(delayedB);
       });
 
-      gsap.to(".muse-photo-b", {
-        y: 80,
-        rotateY: 22,
-        ease: "none",
-        scrollTrigger: { trigger: "#opening", start: "top top", end: "bottom top", scrub: true },
+      window.addEventListener("load", refresh);
+      window.addEventListener("resize", refresh);
+      cleanups.push(() => {
+        window.removeEventListener("load", refresh);
+        window.removeEventListener("resize", refresh);
       });
+    };
 
-      gsap.from(".fan-card", {
-        y: 80,
-        rotateY: 50,
-        z: -180,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: "#why-i-love-you, #adore", start: "top 78%" },
-      });
-
-      gsap.utils.toArray<HTMLElement>(".z-card").forEach((card) => {
-        gsap.fromTo(
-          card,
-          { rotateX: 42, z: -260, y: 70, opacity: 0.15 },
-          {
-            rotateX: 0,
-            z: 0,
-            y: 0,
-            opacity: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 90%",
-              end: "top 42%",
-              scrub: true,
-            },
-          }
-        );
-      });
-
-      const track = document.querySelector<HTMLElement>(".film-track");
-      const pin = document.querySelector<HTMLElement>(".film-pin");
-      if (track && pin) {
-        const getDistance = () => Math.max(0, track.scrollWidth - window.innerWidth + 80);
-        gsap.to(track, {
-          x: () => -getDistance(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: pin,
-            start: "top top",
-            end: () => `+=${getDistance()}`,
-            scrub: 0.85,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-      }
-
-      gsap.from(".letter-sheet", {
-        y: 70,
-        rotateX: 16,
-        opacity: 0,
-        duration: 1.1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: "#love-letter, #letter", start: "top 78%" },
-      });
-
-      gsap.utils.toArray<HTMLElement>(".flip").forEach((card, i) => {
-        gsap.from(card, {
-          y: 50,
-          rotateY: i % 2 === 0 ? -40 : 40,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: { trigger: card, start: "top 88%" },
-        });
-      });
-
-      gsap.utils.toArray<HTMLElement>(".moon, .future-card").forEach((moon) => {
-        gsap.fromTo(
-          moon.querySelector(".tilt-inner") || moon,
-          { scale: 0.85, y: 40, opacity: 0.2 },
-          {
-            scale: 1,
-            y: 0,
-            opacity: 1,
-            ease: "power2.out",
-            scrollTrigger: { trigger: moon, start: "top 92%", end: "top 60%", scrub: 0.5 },
-          }
-        );
-      });
-
-      gsap.from(".finale-vow .vow-word", {
-        yPercent: 80,
-        opacity: 0,
-        rotateX: -55,
-        stagger: 0.12,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: { trigger: "#ending, #always", start: "top 72%" },
-      });
-
-      gsap.from(".finale-home, .finale-stamp, .finale-sign, .finale-seal", {
-        y: 24,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: { trigger: "#ending, #always", start: "top 68%" },
-      });
-
-      gsap.from(".wreath-shot", {
-        opacity: 0,
-        filter: "blur(10px)",
-        stagger: 0.08,
-        duration: 1.05,
-        ease: "power3.out",
-        scrollTrigger: { trigger: "#ending, #always", start: "top 80%" },
-      });
-
-      gsap.to(".finale-halo", {
-        scale: 1.12,
-        opacity: 0.85,
-        duration: 3.2,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-        scrollTrigger: { trigger: "#ending", start: "top 85%" },
-      });
-    });
-
-    const refresh = () => ScrollTrigger.refresh();
-    window.addEventListener("load", refresh);
-    requestAnimationFrame(refresh);
+    void boot();
 
     return () => {
-      window.removeEventListener("load", refresh);
-      ctx.revert();
-      gsap.ticker.remove(tick);
-      lenis.off("scroll", onScroll);
-      lenis.destroy();
+      disposed = true;
+      cleanups.forEach((fn) => fn());
+      ctx?.revert();
+      if (tick) gsap.ticker.remove(tick);
+      if (lenis && onScroll) lenis.off("scroll", onScroll);
+      lenis?.destroy();
+      if (loveLenis === lenis) loveLenis = null;
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, [enabled, reduced]);
@@ -281,11 +609,170 @@ export function openLocketWithGsap(reduced: boolean, onDone: () => void) {
     return;
   }
 
-  gsap.set(".locket-scene", { transformPerspective: 1400, transformStyle: "preserve-3d" });
+  playLocketUnlockSound();
+
+  gsap.set(".locket-scene", { transformPerspective: 1600, transformStyle: "preserve-3d" });
   gsap.set(".locket-lid", { transformOrigin: "50% 100%", transformStyle: "preserve-3d" });
+  gsap.set(".locket-well", { transformStyle: "preserve-3d" });
 
   const tl = gsap.timeline({ onComplete: onDone });
-  tl.to(".locket-hint", { opacity: 0, duration: 0.25, ease: "power2.out" }, 0);
-  tl.to(".locket-lid", { rotationX: -128, duration: 1.35, ease: "power3.inOut" }, 0.08);
-  tl.to(".locket-gem", { scale: 1.12, duration: 0.45, yoyo: true, repeat: 1, ease: "power2.out" }, 0.2);
+
+  tl.to(
+    ".locket-hint, .locket-header",
+    {
+      opacity: 0,
+      y: -12,
+      duration: 0.35,
+      ease: "power2.out",
+    },
+    0
+  );
+
+  tl.to(
+    ".locket-3d-wrapper",
+    {
+      scale: 0.94,
+      duration: 0.22,
+      ease: "power2.in",
+    },
+    0
+  );
+
+  tl.to(
+    ".locket-gem",
+    {
+      scale: 1.15,
+      boxShadow: "0 0 35px rgba(244, 143, 177, 0.9)",
+      duration: 0.3,
+      ease: "power2.out",
+    },
+    0.1
+  );
+
+  tl.to(
+    ".locket-3d-wrapper",
+    {
+      scale: 1.04,
+      y: -10,
+      duration: 0.45,
+      ease: "back.out(1.8)",
+    },
+    0.22
+  );
+
+  tl.to(
+    ".locket-lid",
+    {
+      rotationX: -142,
+      rotationY: -4,
+      y: -8,
+      duration: 1.45,
+      ease: "power3.inOut",
+    },
+    0.25
+  );
+
+  tl.fromTo(
+    ".locket-light-burst",
+    { scale: 0.4, opacity: 0 },
+    { scale: 2.4, opacity: 0.95, duration: 0.6, ease: "power2.out" },
+    0.35
+  );
+  tl.to(
+    ".locket-light-burst",
+    {
+      opacity: 0,
+      scale: 3.2,
+      duration: 0.8,
+      ease: "power2.inOut",
+    },
+    0.9
+  );
+
+  tl.fromTo(
+    ".locket-portrait",
+    { scale: 1.18, filter: "brightness(1.5) contrast(1.1)" },
+    { scale: 1, filter: "brightness(1) contrast(1)", duration: 1.2, ease: "power2.out" },
+    0.45
+  );
+
+  tl.to(
+    ".locket-ambient-halo",
+    {
+      scale: 1.6,
+      opacity: 0.85,
+      duration: 1.4,
+      ease: "power2.out",
+    },
+    0.3
+  );
+
+  const zoomTl = gsap.timeline();
+
+  zoomTl.to(
+    ".locket-lid, .locket-chain-anchor, .locket-lid-flare, .locket-gem-housing",
+    {
+      opacity: 0,
+      duration: 0.45,
+      ease: "power2.in",
+    },
+    "+=0.3"
+  );
+
+  zoomTl.to(
+    ".locket-well",
+    {
+      borderRadius: "16px",
+      borderColor: "rgba(255, 235, 175, 0.2)",
+      boxShadow: "0 0 100px rgba(224, 77, 102, 0.6)",
+      duration: 0.7,
+      ease: "power2.out",
+    },
+    "<"
+  );
+
+  zoomTl.to(
+    ".locket-3d-wrapper",
+    {
+      scale: 3.8,
+      y: -30,
+      duration: 1.1,
+      ease: "power3.inOut",
+    },
+    "<"
+  );
+
+  zoomTl.to(
+    ".locket-portrait",
+    {
+      scale: 1.12,
+      filter: "brightness(1.15) contrast(1.05)",
+      duration: 1.1,
+      ease: "power2.out",
+    },
+    "<"
+  );
+
+  zoomTl.to(
+    ".locket-ambient-halo",
+    {
+      scale: 3.5,
+      opacity: 1,
+      duration: 0.9,
+      ease: "power2.inOut",
+    },
+    "<"
+  );
+
+  zoomTl.to(
+    ".locket-gate",
+    {
+      opacity: 0,
+      duration: 0.55,
+      ease: "power2.inOut",
+    },
+    "-=0.35"
+  );
+
+  tl.add(zoomTl);
 }

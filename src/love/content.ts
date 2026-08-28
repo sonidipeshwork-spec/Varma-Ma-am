@@ -41,9 +41,74 @@ export const BIRTHDAY_WORDS = ["Happy", "Birthday", "Shruu"] as const;
 export const CONFESSIONS = [
   "I have been carrying this quietly.",
   "Not waiting for a perfect hour.",
-  "Today is yours — so I say it out loud.",
+  "Today is yours, so I say it out loud.",
   "I love you.",
 ] as const;
+
+export interface ConfessionStage {
+  id: string;
+  badge: string;
+  heading: string;
+  lead: string;
+  subline?: string;
+  img?: string;
+  imgCaption?: string;
+  highlightWords?: string[];
+}
+
+export const CONFESSION_STAGES: readonly ConfessionStage[] = [
+  {
+    id: "stage-secret",
+    badge: "01 • The Unspoken Truth",
+    heading: "Carried Quietly",
+    lead: "I have been carrying this deep feeling quietly inside my heart.",
+    subline: "Like a sacred secret too gentle, too profound for an ordinary day.",
+    img: img3,
+    imgCaption: "The quiet wonder of you",
+    highlightWords: ["carrying", "quietly", "heart", "sacred", "profound"],
+  },
+  {
+    id: "stage-moment",
+    badge: "02 • The Right Hour",
+    heading: "No More Waiting",
+    lead: "Not waiting for the stars to align or an imaginary perfect hour.",
+    subline: "Because every heartbeat beside you is already the most magical moment of my life.",
+    img: img4,
+    imgCaption: "Where time stands still",
+    highlightWords: ["waiting", "stars", "heartbeat", "magical", "life"],
+  },
+  {
+    id: "stage-sanctuary",
+    badge: "03 • My Sanctuary",
+    heading: "You Are Home",
+    lead: "Your smile is my morning sunrise, and your laughter is my favorite song in the universe.",
+    subline: "In a world of rush and noise, being near you is the only peace I ever seek.",
+    img: img5,
+    imgCaption: "My favorite sunrise",
+    highlightWords: ["smile", "sunrise", "laughter", "favorite", "universe", "peace"],
+  },
+  {
+    id: "stage-courage",
+    badge: "04 • Spoken Out Loud",
+    heading: "Pure Admiration",
+    lead: "Today belongs entirely to you, Shruu, so I speak the truth without holding back.",
+    subline: "You inspire me, you lift my spirits, and you paint my days with warmth and colors I never knew existed.",
+    img: secondyImg,
+    imgCaption: "Meri Pyaari Ma'am Ji",
+    highlightWords: ["belongs", "Shruu", "truth", "inspire", "warmth", "colors"],
+  },
+  {
+    id: "stage-climax",
+    badge: "05 • The Grand Confession",
+    heading: "My Forever Promise",
+    lead: "I love you, Shruu. Not as a fleeting maybe — but as my lifelong, unquestioned decision.",
+    subline: "With every sunrise, every quiet night, and all the countless tomorrows ahead. Eternally yours.",
+    img: img1,
+    imgCaption: "The love of my life",
+    highlightWords: ["love", "Shruu", "maybe", "lifelong", "decision", "sunrise", "tomorrows", "Eternally"],
+  },
+] as const;
+
 
 export const STORY_PANELS = [
   { img: schoolImg, eyebrow: "Once", title: "I saw you", line: "And an ordinary day stopped being ordinary." },
@@ -157,7 +222,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       kicker: "First Sight",
       title: "When Everything Changed",
       paragraphs: [
-        "I still remember the first moments I noticed your grace. It wasn't loud or dramatic—it was the quiet warmth you bring into every room, the genuine kindness in how you treat people, and the spark in your eyes when you speak.",
+        "I still remember the first moments I noticed your grace. It was not loud or dramatic. It was the quiet warmth you bring into every room, the genuine kindness in how you treat people, and the spark in your eyes when you speak.",
         "From that day, my world shifted. Loving you wasn't a question or a sudden rush; it became the most natural, effortless truth of my life.",
         "You became my favorite person to think about, my sweetest hope, and the anchor my heart always returns to.",
       ],
@@ -173,7 +238,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "The Melody of Your Laughter",
       paragraphs: [
         "Do you know how healing your laughter is? In a world that often feels rushed and heavy, hearing you smile is like the morning sun breaking through rainclouds.",
-        "I love the little habits you have—the way your eyes light up when you're passionate, the softness in your voice when you care, and the rare elegance that is effortlessly yours.",
+        "I love the little habits you have: the way your eyes light up when you're passionate, the softness in your voice when you care, and the rare elegance that is effortlessly yours.",
       ],
       quote: "“Your laughter is my favorite music, the one song I want on repeat for all my tomorrows.”",
       pageNumber: 3,
@@ -183,7 +248,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "A Heart So Beautifully Rare",
       paragraphs: [
         "You possess a brilliance, wisdom, and strength that inspires me every single day. Watching you grow, handle challenges with dignity, and shine in your own unique way makes me the proudest person alive.",
-        "You don't just brighten my life—you make me want to be better, wiser, and more loving. Having you in my life is a blessing I thank the stars for each morning.",
+        "You do not just brighten my life. You make me want to be better, wiser, and more loving. Having you in my life is a blessing I thank the stars for each morning.",
       ],
       pageNumber: 4,
     },
@@ -207,7 +272,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Deeply & Quietly Cherished",
       paragraphs: [
         "Even when miles or hours stand between us, you remain woven into every thought. Every sunrise reminds me of your glow; every peaceful evening whispers your name.",
-        "I want to listen to all your stories, celebrate all your victories—big and small—and be there to support you through whatever life brings our way.",
+        "I want to listen to all your stories, celebrate all your victories (big and small), and be there to support you through whatever life brings our way.",
       ],
       pageNumber: 6,
     },
@@ -222,9 +287,9 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       paragraphs: [
         "I promise to always be your biggest cheerleader, celebrating every milestone you conquer in life.",
         "I promise to stand by you in moments of doubt, to listen with patience, and to remind you of how extraordinary you are whenever you forget.",
-        "I promise to love you unconditionally, gently, and completely—today, tomorrow, and in every season ahead.",
+        "I promise to love you unconditionally, gently, and completely: today, tomorrow, and in every season ahead.",
       ],
-      quote: "“Loving you is not a chapter that ends—it is the entire story I want to keep reading forever.”",
+      quote: "“Loving you is not a chapter that ends. It is the entire story I want to keep reading forever.”",
       pageNumber: 7,
     },
     rightPage: {
@@ -248,7 +313,7 @@ export const LETTER = {
   greeting: "Dearest Shruu,",
   paragraphs: [
     "I am writing this simply because you have completely filled my heart. I did not wait for a special occasion, because loving you is a daily celebration of light, warmth, and gratitude.",
-    "I have loved discovering your smile and the melody of your laughter. You are my favorite poem—the one I choose to read slowly, savouring every word.",
+    "I have loved discovering your smile and the melody of your laughter. You are my favorite poem, the one I choose to read slowly, savouring every word.",
     "Thank you for being the quiet light that brightens my day, and the sanctuary where my thoughts find comfort. If I could map the stars, I would write your name across the sky.",
   ],
   close: "Always and completely,",

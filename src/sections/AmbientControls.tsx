@@ -65,6 +65,7 @@ export default function AmbientControls({
               className={i === activeNav ? "is-active" : ""}
               onClick={() => onNavigate(s.id)}
               aria-label={s.label}
+              aria-current={i === activeNav ? "true" : undefined}
             >
               <span>{s.label}</span>
             </button>

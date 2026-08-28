@@ -1,10 +1,5 @@
 import { PORTRAITS, QUALITIES, STAGES } from "@/love/content";
 
-/**
- * EndingSection Component
- * Grand finale closing section featuring an atmospheric halo, revolving photo wreath,
- * romantic vow typography, personalized signature stamp, and memorial footer.
- */
 export default function EndingSection() {
   const wreathImages = [
     PORTRAITS.hero,
@@ -24,7 +19,6 @@ export default function EndingSection() {
       <div className="finale-pin">
         <div className="finale-halo" aria-hidden />
 
-        {/* Circular Memory Wreath */}
         <div className="finale-wreath" aria-hidden>
           {wreathImages.map((src, i) => (
             <img
@@ -36,9 +30,7 @@ export default function EndingSection() {
           ))}
         </div>
 
-        {/* Romantic Vow & Signature */}
         <div className="finale-copy">
-          <p className="section-tag">Ending</p>
           <h2 className="finale-vow">
             {vowWords.map((word) => (
               <span key={word} className="vow-word">
@@ -53,10 +45,13 @@ export default function EndingSection() {
             I love you.
           </p>
           <p className="finale-sign">Always yours</p>
+          <div className="finale-seal" aria-hidden>
+            <span>S</span>
+            <em>sealed</em>
+          </div>
         </div>
       </div>
 
-      {/* Footer Bar */}
       <footer className="finale-bar">
         <span>Meri Pyaari Ma'am ji ke liye</span>
         <span>Happiest Birthday</span>
