@@ -17,8 +17,8 @@ export default function PhotoGallerySection() {
         </header>
 
         <div className="film-track">
-          {GLIMPSES.map((photo) => (
-            <figure key={photo.caption} className="film-frame">
+          {GLIMPSES.map((photo, idx) => (
+            <figure key={`${photo.caption}-${idx}`} className="film-frame">
               <div className="photo-frame">
                 <img src={photo.src} alt={photo.caption} />
               </div>
@@ -29,22 +29,27 @@ export default function PhotoGallerySection() {
       </div>
 
       <div className="layers">
+        <h3 className="sr-only">More reasons I love you</h3>
         {LAYERS.map((t, i) => {
           const isOpen = openLayer === i;
+          const noteId = `layer-note-${i}`;
           return (
             <button
-              key={t.title}
+              key={`${t.title}-${i}`}
               type="button"
               className={`layer-polaroid ${isOpen ? "is-open" : ""}`}
               style={{ "--i": i } as CSSProperties}
               onClick={() => toggleLayer(i)}
               aria-expanded={isOpen}
+              aria-controls={noteId}
             >
               <div className="photo-frame">
                 <img src={t.img} alt={t.title} />
               </div>
               <span>{t.title}</span>
-              <p>{t.note}</p>
+              <span id={noteId} className="layer-note">
+                {t.note}
+              </span>
             </button>
           );
         })}

@@ -10,7 +10,7 @@ export default function OurFutureSection() {
         <p className="future-eyebrow">Our Future</p>
         <h2>The days I want with you</h2>
         <p className="future-overview">
-          Not a wishlist — four rooms I already picture us living in. Each one
+          Not a wishlist four rooms I already picture us living in. Each one
           feels real because you make even ordinary hours feel like home.
         </p>
       </header>

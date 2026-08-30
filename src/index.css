@@ -1355,15 +1355,24 @@
   align-items: baseline;
   position: relative;
   will-change: transform, opacity, filter;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease, text-shadow 0.25s ease;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
   user-select: none;
   cursor: pointer;
 }
 
+.confess-word-inner {
+  display: inline-block;
+  transform-origin: 50% 80%;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .confess-word:hover {
-  transform: scale(1.08) translateY(-2px) !important;
-  color: #ffebaf !important;
+  color: #ffebaf;
   text-shadow: 0 0 16px rgba(255, 235, 175, 0.8), 0 0 30px rgba(224, 77, 102, 0.6);
+}
+
+.confess-word:hover .confess-word-inner {
+  transform: scale(1.08) translateY(-2px);
 }
 
 .confess-word.is-highlight {
@@ -2923,19 +2932,41 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1rem;
-  perspective: 1200px;
   margin-bottom: 4rem;
 }
 
+/* Flip shell never gets a GSAP rotate — only .flip-inner rotates. */
 .flip {
   height: 240px;
+  width: 100%;
   background: none;
   border: 0;
   padding: 0;
   cursor: pointer;
-  perspective: 1000px;
+  perspective: 1100px;
   position: relative;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.flip:focus-visible {
+  outline: 2px solid var(--light-red);
+  outline-offset: 4px;
+  border-radius: calc(var(--radius-photo) + 4px);
+}
+
+.flip-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
   transform-style: preserve-3d;
+  transition: transform 560ms var(--ease);
+  will-change: transform;
+}
+
+.flip.is-flipped .flip-inner {
+  transform: rotateY(180deg);
 }
 
 .flip-face {
@@ -2946,12 +2977,11 @@
   border-radius: var(--radius-photo);
   overflow: hidden;
   box-shadow: var(--shadow-soft);
-  transition: transform 560ms var(--ease);
   transform-style: preserve-3d;
 }
 
 .flip .front {
-  transform: rotateY(0);
+  transform: rotateY(0deg);
 }
 
 .flip .back {
@@ -2963,12 +2993,26 @@
   box-shadow: 0 15px 35px rgba(224, 77, 102, 0.14);
 }
 
-.flip.is-flipped .front {
-  transform: rotateY(-180deg);
+.flip-tap-hint {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(26, 7, 16, 0.55);
+  color: #fff5f8;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0.9;
+  transition: opacity 200ms var(--ease);
 }
 
-.flip.is-flipped .back {
-  transform: rotateY(0);
+.flip.is-flipped .flip-tap-hint,
+.flip:hover .flip-tap-hint {
+  opacity: 0;
 }
 
 .flip em {
@@ -2997,15 +3041,21 @@
   }
 }
 
+.reflect-card,
 .reflect figure {
   margin: 0;
   position: relative;
   min-height: 220px;
+  height: 100%;
   overflow: hidden;
   border-radius: var(--radius-photo);
   box-shadow: var(--shadow-rose);
   outline: 1px solid oklch(0 0 0 / 0.1);
   outline-offset: -1px;
+}
+
+.reflect-card.is-lead {
+  min-height: 280px;
 }
 
 .reflect figcaption {
@@ -3291,7 +3341,6 @@
 
   .tilt-inner,
   .cover-card,
-  .flip-face,
   .locket-lid,
   .finale-halo,
   .qgate-orb,
@@ -3302,5 +3351,33 @@
     transition: none !important;
     transform: none !important;
     animation: none !important;
+  }
+
+  /* Crossfade faces instead of zeroing transforms (which stacked both sides). */
+  .flip-inner {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .flip-face {
+    transition: opacity 160ms ease !important;
+  }
+
+  .flip .front {
+    opacity: 1;
+    transform: none !important;
+  }
+
+  .flip .back {
+    opacity: 0;
+    transform: none !important;
+  }
+
+  .flip.is-flipped .front {
+    opacity: 0;
+  }
+
+  .flip.is-flipped .back {
+    opacity: 1;
   }
 }

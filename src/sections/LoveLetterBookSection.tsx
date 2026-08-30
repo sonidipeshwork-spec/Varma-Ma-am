@@ -7,20 +7,32 @@ export default function LoveLetterBookSection() {
   const [currentChapter, setCurrentChapter] = useState(0);
   const [isTurning, setIsTurning] = useState(false);
   const spreadRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const isTurningRef = useRef(false);
+  const touchStartXRef = useRef<number | null>(null);
 
   const chapter = BOOK_CHAPTERS[currentChapter];
+  const isFirst = currentChapter === 0;
+  const isLast = currentChapter === BOOK_CHAPTERS.length - 1;
 
   const turnTo = (next: number) => {
-    if (isTurning || next === currentChapter || next < 0 || next >= BOOK_CHAPTERS.length) {
+    if (isTurningRef.current || next === currentChapter || next < 0 || next >= BOOK_CHAPTERS.length) {
       return;
     }
+
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+    isTurningRef.current = true;
     setIsTurning(true);
     const el = spreadRef.current;
     const direction = next > currentChapter ? -1 : 1;
 
     const apply = () => {
       setCurrentChapter(next);
-      if (!el) {
+      if (!el || prefersReducedMotion) {
+        isTurningRef.current = false;
         setIsTurning(false);
         return;
       }
@@ -33,12 +45,15 @@ export default function LoveLetterBookSection() {
           rotateY: 0,
           duration: 0.42,
           ease: "power3.out",
-          onComplete: () => setIsTurning(false),
+          onComplete: () => {
+            isTurningRef.current = false;
+            setIsTurning(false);
+          },
         }
       );
     };
 
-    if (!el) {
+    if (!el || prefersReducedMotion) {
       apply();
       return;
     }
@@ -59,6 +74,39 @@ export default function LoveLetterBookSection() {
       if (spread) gsap.killTweensOf(spread);
     };
   }, []);
+
+  // Keyboard navigation: left/right arrows turn the page when the book has focus
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      turnTo(currentChapter + 1);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      turnTo(currentChapter - 1);
+    }
+  };
+
+  // Swipe navigation for touch devices
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    const startX = touchStartXRef.current;
+    const endX = e.changedTouches[0]?.clientX;
+    touchStartXRef.current = null;
+    if (startX === null || endX === undefined) return;
+
+    const delta = endX - startX;
+    const SWIPE_THRESHOLD = 50;
+    if (delta <= -SWIPE_THRESHOLD) {
+      turnTo(currentChapter + 1);
+    } else if (delta >= SWIPE_THRESHOLD) {
+      turnTo(currentChapter - 1);
+    }
+  };
+
+  const sealInitial = chapter.rightPage.signOff?.sign?.trim().charAt(0) || "";
 
   return (
     <section id="love-letter" className="fold fold-letter">
@@ -87,12 +135,42 @@ export default function LoveLetterBookSection() {
       </div>
 
       <div className="book-outer-container">
-        <div className="book-casing">
+        <div
+          className="book-casing"
+          ref={containerRef}
+          tabIndex={0}
+          role="group"
+          aria-roledescription="book"
+          aria-label={`Chapter ${currentChapter + 1} of ${BOOK_CHAPTERS.length}: ${chapter.tabTitle}`}
+          onKeyDown={handleKeyDown}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className="book-corner corner-tl" aria-hidden />
           <div className="book-corner corner-tr" aria-hidden />
           <div className="book-corner corner-bl" aria-hidden />
           <div className="book-corner corner-br" aria-hidden />
           <div className="book-ribbon" aria-hidden />
+
+          {/* Invisible edge-click zones for turning pages, book-style */}
+          {!isFirst && (
+            <button
+              type="button"
+              className="book-edge-turn book-edge-turn-left"
+              onClick={() => turnTo(currentChapter - 1)}
+              disabled={isTurning}
+              aria-label="Turn to previous page"
+            />
+          )}
+          {!isLast && (
+            <button
+              type="button"
+              className="book-edge-turn book-edge-turn-right"
+              onClick={() => turnTo(currentChapter + 1)}
+              disabled={isTurning}
+              aria-label="Turn to next page"
+            />
+          )}
 
           <div className="book-spread" ref={spreadRef}>
             <article className="book-page book-page-left">
@@ -136,7 +214,6 @@ export default function LoveLetterBookSection() {
               <div className="page-watermark" aria-hidden />
               <div className="page-header">
                 <span className="page-tag-kicker">{chapter.rightPage.kicker}</span>
-                <span className="page-date-badge">28 Sept</span>
               </div>
 
               <h3 className="page-title">{chapter.rightPage.title}</h3>
@@ -150,9 +227,11 @@ export default function LoveLetterBookSection() {
 
                 {chapter.rightPage.signOff && (
                   <div className="book-signoff-block">
-                    <div className="book-mini-seal" aria-hidden>
-                      <span>S</span>
-                    </div>
+                    {sealInitial && (
+                      <div className="book-mini-seal" aria-hidden>
+                        <span>{sealInitial}</span>
+                      </div>
+                    )}
                     <div className="book-sign-details">
                       <span className="sign-closing">{chapter.rightPage.signOff.close}</span>
                       <strong className="sign-name">{chapter.rightPage.signOff.sign}</strong>
@@ -173,14 +252,14 @@ export default function LoveLetterBookSection() {
             type="button"
             className="book-turn-btn"
             onClick={() => turnTo(currentChapter - 1)}
-            disabled={currentChapter === 0 || isTurning}
+            disabled={isFirst || isTurning}
             aria-label="Previous chapter"
           >
             <ChevronLeft size={18} />
             <span>Previous</span>
           </button>
 
-          <div className="book-progress-pill">
+          <div className="book-progress-pill" aria-live="polite">
             <span className="progress-current">{chapter.tabTitle}</span>
             <span className="progress-total">
               {currentChapter + 1} of {BOOK_CHAPTERS.length}
@@ -191,7 +270,7 @@ export default function LoveLetterBookSection() {
             type="button"
             className="book-turn-btn"
             onClick={() => turnTo(currentChapter + 1)}
-            disabled={currentChapter === BOOK_CHAPTERS.length - 1 || isTurning}
+            disabled={isLast || isTurning}
             aria-label="Next chapter"
           >
             <span>Next</span>

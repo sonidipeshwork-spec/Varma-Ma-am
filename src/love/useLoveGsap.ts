@@ -56,8 +56,198 @@ function bindImageRefresh(root: ParentNode, refresh: () => void) {
   };
 }
 
+export const CONFESSION_SCROLL_ID = "confession-scroll";
+export const CONFESSION_TRACK_PAD = 120;
+export const CONFESSION_STAGE_EVENT = "confession-stage";
+
 function horizontalDistance(track: HTMLElement, pad = 64) {
   return Math.max(0, track.scrollWidth - window.innerWidth + pad);
+}
+
+export function getConfessionTrackDistance(track: HTMLElement) {
+  return horizontalDistance(track, CONFESSION_TRACK_PAD);
+}
+
+/** Scroll progress (0–1) that centers a confession stage in the viewport. */
+export function confessionScrollProgressForStage(index: number) {
+  const track = document.querySelector<HTMLElement>(".confession-horizon-track");
+  const panel = document.querySelectorAll<HTMLElement>(".confess-stage-panel")[index];
+  if (!track || !panel) return 0;
+  const distance = getConfessionTrackDistance(track);
+  if (distance <= 0) return 0;
+  const targetX = panel.offsetLeft + panel.offsetWidth / 2 - window.innerWidth / 2;
+  return gsap.utils.clamp(0, 1, targetX / distance);
+}
+
+function nearestConfessionStage(track: HTMLElement, panels: HTMLElement[], progress: number) {
+  const distance = getConfessionTrackDistance(track);
+  const viewCenter = progress * distance + window.innerWidth / 2;
+  let best = 0;
+  let bestDist = Number.POSITIVE_INFINITY;
+  panels.forEach((panel, i) => {
+    const delta = Math.abs(panel.offsetLeft + panel.offsetWidth / 2 - viewCenter);
+    if (delta < bestDist) {
+      bestDist = delta;
+      best = i;
+    }
+  });
+  return best;
+}
+
+function emitConfessionStage(index: number) {
+  window.dispatchEvent(new CustomEvent<number>(CONFESSION_STAGE_EVENT, { detail: index }));
+}
+
+function setupConfessionScroll() {
+  const confessTrack = document.querySelector<HTMLElement>(".confession-horizon-track");
+  const confessPin = document.querySelector<HTMLElement>(".confession-horizon-pin");
+  if (!confessTrack || !confessPin) return;
+
+  const getConfessDistance = () => getConfessionTrackDistance(confessTrack);
+  const getConfessEnd = () => Math.max(window.innerHeight * 2, getConfessDistance());
+  const stagePanels = gsap.utils.toArray<HTMLElement>(".confess-stage-panel");
+  let lastStage = -1;
+
+  const publishStage = (progress: number) => {
+    const next = nearestConfessionStage(confessTrack, stagePanels, progress);
+    if (next === lastStage) return;
+    lastStage = next;
+    confessPin.dataset.activeStage = String(next);
+    emitConfessionStage(next);
+  };
+
+  const move = gsap.to(confessTrack, {
+    x: () => -getConfessDistance(),
+    ease: "none",
+    scrollTrigger: {
+      id: CONFESSION_SCROLL_ID,
+      trigger: confessPin,
+      start: "top top",
+      end: () => `+=${getConfessEnd()}`,
+      scrub: 0.75,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      fastScrollEnd: true,
+      onUpdate(self) {
+        publishStage(self.progress);
+      },
+      onRefresh(self) {
+        publishStage(self.progress);
+      },
+    },
+  });
+
+  const orbScrub = {
+    trigger: confessPin,
+    start: "top top",
+    end: () => `+=${getConfessEnd()}`,
+    scrub: 0.75,
+    invalidateOnRefresh: true,
+  } as const;
+
+  const orb1 = confessPin.querySelector<HTMLElement>(".glow-orb-1");
+  const orb2 = confessPin.querySelector<HTMLElement>(".glow-orb-2");
+  if (orb1) gsap.to(orb1, { x: 200, scale: 1.3, ease: "none", scrollTrigger: orbScrub });
+  if (orb2) gsap.to(orb2, { x: -250, scale: 1.2, ease: "none", scrollTrigger: { ...orbScrub } });
+
+  stagePanels.forEach((panel) => {
+    const leadWords = gsap.utils.toArray<HTMLElement>(panel.querySelectorAll(".lead-word"));
+    const subWords = gsap.utils.toArray<HTMLElement>(panel.querySelectorAll(".sub-word"));
+    const vignette = panel.querySelector<HTMLElement>(".stage-vignette-wrapper");
+    const climaxBox = panel.querySelector<HTMLElement>(".climax-seal-box");
+
+    gsap.set(leadWords, { opacity: 0.14, y: 14, filter: "blur(3px)" });
+    if (subWords.length) gsap.set(subWords, { opacity: 0.12, y: 10, filter: "blur(2px)" });
+    if (vignette) gsap.set(vignette, { opacity: 0.22, scale: 0.92, rotateY: 8 });
+    if (climaxBox) gsap.set(climaxBox, { opacity: 0, scale: 0.72, y: 24 });
+
+    const leadTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: panel,
+        containerAnimation: move,
+        start: "left 88%",
+        end: "center 48%",
+        scrub: 0.35,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    leadWords.forEach((word, wIdx) => {
+      leadTl.to(
+        word,
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          scale: word.classList.contains("is-climax") ? 1.06 : 1,
+          duration: 0.18,
+          ease: "none",
+        },
+        wIdx * 0.12
+      );
+    });
+
+    if (subWords.length) {
+      const subTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: move,
+          start: "left 72%",
+          end: "center 40%",
+          scrub: 0.3,
+          invalidateOnRefresh: true,
+        },
+      });
+      subWords.forEach((sword, sIdx) => {
+        subTl.to(
+          sword,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.14,
+            ease: "none",
+          },
+          sIdx * 0.08
+        );
+      });
+    }
+
+    if (vignette) {
+      gsap.to(vignette, {
+        opacity: 1,
+        scale: 1,
+        rotateY: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: move,
+          start: "left 84%",
+          end: "left 42%",
+          scrub: 0.4,
+          invalidateOnRefresh: true,
+        },
+      });
+    }
+
+    if (climaxBox) {
+      gsap.to(climaxBox, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: move,
+          start: "left 58%",
+          end: "center 42%",
+          scrub: 0.35,
+          invalidateOnRefresh: true,
+        },
+      });
+    }
+  });
 }
 
 function createHorizontalPin(
@@ -132,7 +322,7 @@ function setupScrollExperience(reduced: boolean) {
 
   if (reduced) {
     gsap.set(
-      ".hb-letter, .lead-word, .sub-word, .stage-vignette-wrapper, .climax-seal-box, .fan-card, .z-card, .flip, .future-lead, .future-card, .finale-vow .vow-word, .finale-home, .finale-stamp, .finale-sign, .finale-seal, .wreath-shot",
+      ".hb-letter, .lead-word, .sub-word, .stage-vignette-wrapper, .climax-seal-box, .fan-card, .z-card, .flip, .reflect-card, .future-lead, .future-card, .finale-vow .vow-word, .finale-home, .finale-stamp, .finale-sign, .finale-seal, .wreath-shot",
       { clearProps: "all" }
     );
     return;
@@ -164,122 +354,7 @@ function setupScrollExperience(reduced: boolean) {
     });
   }
 
-  // --- Confession horizontal + word reveal ---
-  const confessTrack = document.querySelector<HTMLElement>(".confession-horizon-track");
-  const confessPin = document.querySelector<HTMLElement>(".confession-horizon-pin");
-  if (confessTrack && confessPin) {
-    const getConfessDistance = () => horizontalDistance(confessTrack, 120);
-
-    const confessTl = gsap.timeline({
-      scrollTrigger: {
-        id: "confession-scroll",
-        trigger: confessPin,
-        start: "top top",
-        end: () => `+=${Math.max(window.innerHeight * 2.6, getConfessDistance() * 1.35)}`,
-        pin: true,
-        scrub: 0.75,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        fastScrollEnd: true,
-      },
-    });
-
-    confessTl.to(
-      confessTrack,
-      {
-        x: () => -getConfessDistance(),
-        ease: "none",
-        duration: 1,
-      },
-      0
-    );
-
-    const orb1 = confessPin.querySelector<HTMLElement>(".glow-orb-1");
-    const orb2 = confessPin.querySelector<HTMLElement>(".glow-orb-2");
-    if (orb1) confessTl.to(orb1, { x: 200, scale: 1.3, duration: 1, ease: "none" }, 0);
-    if (orb2) confessTl.to(orb2, { x: -250, scale: 1.2, duration: 1, ease: "none" }, 0);
-
-    const stagePanels = gsap.utils.toArray<HTMLElement>(".confess-stage-panel");
-    const totalStages = Math.max(1, stagePanels.length);
-
-    stagePanels.forEach((panel, panelIdx) => {
-      const leadWords = panel.querySelectorAll<HTMLElement>(".lead-word");
-      const subWords = panel.querySelectorAll<HTMLElement>(".sub-word");
-      const vignette = panel.querySelector<HTMLElement>(".stage-vignette-wrapper");
-      const climaxBox = panel.querySelector<HTMLElement>(".climax-seal-box");
-
-      gsap.set(leadWords, { opacity: 0.12, y: 12, filter: "blur(4px)", scale: 0.96 });
-      if (subWords.length) gsap.set(subWords, { opacity: 0.1, y: 10, filter: "blur(3px)" });
-      if (vignette) gsap.set(vignette, { opacity: 0.25, scale: 0.9, rotateY: 12 });
-      if (climaxBox) gsap.set(climaxBox, { opacity: 0, scale: 0.6, y: 30 });
-
-      const stageStartTime = 0.08 + (panelIdx / totalStages) * 0.78;
-      const stageDuration = 0.85 / totalStages;
-
-      leadWords.forEach((word, wIdx) => {
-        const wordTime =
-          stageStartTime + (wIdx / Math.max(1, leadWords.length)) * (stageDuration * 0.55);
-        confessTl.to(
-          word,
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            scale: word.classList.contains("is-climax") ? 1.08 : 1,
-            duration: stageDuration * 0.18,
-            ease: "power2.out",
-          },
-          wordTime
-        );
-      });
-
-      subWords.forEach((sword, sIdx) => {
-        const swordTime =
-          stageStartTime +
-          stageDuration * 0.48 +
-          (sIdx / Math.max(1, subWords.length)) * (stageDuration * 0.38);
-        confessTl.to(
-          sword,
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: stageDuration * 0.15,
-            ease: "power2.out",
-          },
-          swordTime
-        );
-      });
-
-      if (vignette) {
-        confessTl.to(
-          vignette,
-          {
-            opacity: 1,
-            scale: 1,
-            rotateY: 0,
-            duration: stageDuration * 0.45,
-            ease: "power2.out",
-          },
-          stageStartTime + stageDuration * 0.2
-        );
-      }
-
-      if (climaxBox) {
-        confessTl.to(
-          climaxBox,
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: stageDuration * 0.35,
-            ease: "back.out(2)",
-          },
-          stageStartTime + stageDuration * 0.55
-        );
-      }
-    });
-  }
+  setupConfessionScroll();
 
   // --- Story chapters horizontal ---
   const horizon = document.querySelector<HTMLElement>(".story-horizon");
@@ -422,22 +497,49 @@ function setupScrollExperience(reduced: boolean) {
     });
   }
 
-  // --- Compliment flips ---
-  gsap.utils.toArray<HTMLElement>(".flip").forEach((card, i) => {
-    gsap.from(card, {
-      y: 50,
-      rotateY: i % 2 === 0 ? -40 : 40,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-      immediateRender: false,
-      scrollTrigger: {
-        trigger: card,
-        start: "top 88%",
-        toggleActions: "play none none none",
-      },
+  // --- Compliments: enter without rotateY so CSS card-flip stays accurate ---
+  const compliments = document.querySelector("#compliments");
+  if (compliments) {
+    gsap.utils.toArray<HTMLElement>("#compliments .flip").forEach((card) => {
+      gsap.fromTo(
+        card,
+        { y: 36, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          immediateRender: false,
+          clearProps: "transform",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
     });
-  });
+
+    gsap.utils.toArray<HTMLElement>("#compliments .reflect-card").forEach((card) => {
+      gsap.fromTo(
+        card,
+        { y: 28, opacity: 0.2 },
+        {
+          y: 0,
+          opacity: 1,
+          ease: "power2.out",
+          immediateRender: false,
+          clearProps: "transform",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            end: "top 58%",
+            scrub: 0.45,
+          },
+        }
+      );
+    });
+  }
 
   // --- Future dreams ---
   gsap.utils.toArray<HTMLElement>(".future-lead, .future-card").forEach((moon) => {

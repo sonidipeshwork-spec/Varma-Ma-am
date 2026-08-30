@@ -4,7 +4,6 @@ import { openLocketWithGsap, scrollLoveTo, useLoveGsap } from "@/love/useLoveGsa
 import {
   QuestionGate,
   LocketGate,
-  AmbientControls,
   BirthdayStorySection,
   OpeningSection,
   WhyILoveYouSection,
@@ -109,13 +108,6 @@ export default function RomanticApp() {
       {/* 3. Main Experience & Dedicated Sections */}
       {stage === "opened" && (
         <>
-          <AmbientControls
-            audioOn={audioOn}
-            activeNav={activeNav}
-            onToggleAudio={toggleAudio}
-            onNavigate={scrollToSection}
-          />
-
           <BirthdayStorySection />
           <OpeningSection />
           <WhyILoveYouSection />

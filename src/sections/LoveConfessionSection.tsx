@@ -2,63 +2,68 @@ import { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CONFESSION_STAGES } from "@/love/content";
 import { playSparkleChime, playPopSound } from "@/love/soundEffects";
-import { scrollLoveTo } from "@/love/useLoveGsap";
+import {
+  CONFESSION_SCROLL_ID,
+  CONFESSION_STAGE_EVENT,
+  confessionScrollProgressForStage,
+  scrollLoveTo,
+} from "@/love/useLoveGsap";
 import TiltFrame from "@/components/TiltFrame";
+
+const CLIMAX_WORDS = new Set(["birthday", "shruu", "countdown", "celebrate", "today", "love"]);
+
+function normalizeToken(word: string) {
+  return word.replace(/[^a-zA-Z0-9']/g, "").toLowerCase();
+}
 
 export default function LoveConfessionSection() {
   const [activeStageIndex, setActiveStageIndex] = useState(0);
 
   const renderWords = (text: string, highlights: readonly string[] = [], classNamePrefix = "") => {
-    const words = text.split(/\s+/);
-    return words.map((word, idx) => {
-      const cleanWord = word.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
-      const isHighlighted = highlights.some((h) => h.toLowerCase() === cleanWord);
-      const isClimaxWord = ["love", "shruu", "decision", "forever", "eternally"].includes(cleanWord);
+    const highlightSet = new Set(highlights.map(normalizeToken));
+    return text
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((word, idx) => {
+        const cleanWord = normalizeToken(word);
+        const isHighlighted = highlightSet.has(cleanWord);
+        const isClimaxWord = CLIMAX_WORDS.has(cleanWord);
 
-      return (
-        <span
-          key={`${word}-${idx}`}
-          className={`confess-word ${classNamePrefix} ${
-            isHighlighted ? "is-highlight" : ""
-          } ${isClimaxWord ? "is-climax" : ""}`}
-          onClick={(e) => {
-            e.stopPropagation();
-            playPopSound();
-          }}
-        >
-          {word}
-          <span className="confess-space">&nbsp;</span>
-        </span>
-      );
-    });
+        return (
+          <span
+            key={`${word}-${idx}`}
+            className={`confess-word ${classNamePrefix} ${isHighlighted ? "is-highlight" : ""} ${
+              isClimaxWord ? "is-climax" : ""
+            }`}
+            onClick={(e) => {
+              e.stopPropagation();
+              playPopSound();
+            }}
+          >
+            <span className="confess-word-inner">{word}</span>
+            <span className="confess-space">&nbsp;</span>
+          </span>
+        );
+      });
   };
 
   useEffect(() => {
-    const syncMilestone = () => {
-      const trigger = ScrollTrigger.getById("confession-scroll");
-      if (!trigger) return;
-      const progress = trigger.progress;
-      const stageProgress = Math.min(
-        CONFESSION_STAGES.length - 1,
-        Math.max(0, Math.floor(((progress - 0.08) / 0.78) * CONFESSION_STAGES.length))
-      );
-      setActiveStageIndex(stageProgress);
+    const onStage = (event: Event) => {
+      const index = (event as CustomEvent<number>).detail;
+      if (typeof index === "number" && Number.isInteger(index)) {
+        setActiveStageIndex(index);
+      }
     };
 
-    window.addEventListener("scroll", syncMilestone, { passive: true });
-    ScrollTrigger.addEventListener("refresh", syncMilestone);
-    syncMilestone();
-    return () => {
-      window.removeEventListener("scroll", syncMilestone);
-      ScrollTrigger.removeEventListener("refresh", syncMilestone);
-    };
+    window.addEventListener(CONFESSION_STAGE_EVENT, onStage);
+    return () => window.removeEventListener(CONFESSION_STAGE_EVENT, onStage);
   }, []);
 
   const scrollToStage = (index: number) => {
     setActiveStageIndex(index);
-    const trigger = ScrollTrigger.getById("confession-scroll");
+    const trigger = ScrollTrigger.getById(CONFESSION_SCROLL_ID);
     if (!trigger) return;
-    const progress = 0.08 + (index / Math.max(1, CONFESSION_STAGES.length)) * 0.78;
+    const progress = confessionScrollProgressForStage(index);
     const target = trigger.start + (trigger.end - trigger.start) * progress;
     scrollLoveTo(target);
   };
@@ -73,26 +78,25 @@ export default function LoveConfessionSection() {
 
       <header className="confess-horizon-header">
         <div className="confess-eyebrow-pill">
-          <span className="confess-sparkle-icon">✨</span>
-          <span>Spoken From The Heart • For Shruu</span>
+          <span>Counting Down To You • For Shruu</span>
         </div>
-        <h2 className="confess-horizon-title">A Symphony of Unspoken Words</h2>
+        <h2 className="confess-horizon-title">A Countdown Written In Love</h2>
         <p className="confess-horizon-hint">
-          <span className="scroll-arrow">⟶</span> Scroll down to unveil each word across our journey
+          <span className="scroll-arrow">⟶</span> Scroll down to unwrap each day until your birthday
         </p>
       </header>
 
       <div className="confession-horizon-track">
         <div className="confess-intro-card">
           <div className="intro-card-inner">
-            <span className="intro-heart-badge">❤️</span>
-            <span className="intro-kicker">My Confession</span>
-            <h3 className="intro-title">Every thought I held in silence, spoken today.</h3>
+            <span className="intro-heart-badge">🎂</span>
+            <span className="intro-kicker">The Countdown</span>
+            <h3 className="intro-title">Every day counted down, every moment treasured.</h3>
             <p className="intro-note">
               Every word here was written with you in mind, Meri Pyaari Ma'am Ji.
             </p>
             <div className="intro-scroll-indicator">
-              <span>Scroll to begin reading</span>
+              <span>Scroll to begin the countdown</span>
               <div className="indicator-line" />
             </div>
           </div>
@@ -102,9 +106,8 @@ export default function LoveConfessionSection() {
           <article
             key={stage.id}
             id={`confess-stage-${idx}`}
-            className={`confess-stage-panel ${
-              stage.id === "stage-climax" ? "is-grand-climax" : ""
-            }`}
+            className={`confess-stage-panel ${stage.id === "stage-climax" ? "is-grand-climax" : ""}`}
+            data-stage-index={idx}
           >
             <div className="confess-stage-card">
               <div className="stage-card-meta">
@@ -153,12 +156,12 @@ export default function LoveConfessionSection() {
                       playSparkleChime();
                     }
                   }}
-                  aria-label="Celebrate this confession"
+                  aria-label="Celebrate the birthday countdown"
                 >
                   <div className="climax-heart-halo" />
                   <div className="climax-seal-circle">
-                    <span className="climax-heart-icon">💖</span>
-                    <span className="climax-seal-text">Eternally Yours</span>
+                    <span className="climax-heart-icon">🎉</span>
+                    <span className="climax-seal-text">The Wait Is Over</span>
                   </div>
                   <span className="climax-tap-hint">Tap for a sparkle ✨</span>
                 </div>
@@ -169,17 +172,17 @@ export default function LoveConfessionSection() {
 
         <div className="confess-outro-card">
           <div className="outro-card-inner">
-            <span className="outro-icon">🌹</span>
-            <h3 className="outro-title">And so the next chapter begins...</h3>
+            <span className="outro-icon">🎈</span>
+            <h3 className="outro-title">And so the countdown ends, and the celebration begins...</h3>
             <p className="outro-desc">
-              Every chapter of my life is brighter, warmer, and sweeter because you exist.
+              Every day was worth the wait, because it led here, to celebrating you.
             </p>
             <span className="outro-sign">Always, with all my love ❤️</span>
           </div>
         </div>
       </div>
 
-      <div className="confess-horizon-milestones" aria-label="Confession navigation milestones">
+      <div className="confess-horizon-milestones" aria-label="Birthday countdown navigation milestones">
         {CONFESSION_STAGES.map((stage, idx) => (
           <button
             key={stage.id}
@@ -187,6 +190,8 @@ export default function LoveConfessionSection() {
             className={`milestone-step ${activeStageIndex === idx ? "is-current" : ""}`}
             onClick={() => scrollToStage(idx)}
             title={stage.heading}
+            aria-current={activeStageIndex === idx ? "step" : undefined}
+            aria-label={`Go to ${stage.heading}`}
           >
             <span className="milestone-dot" />
             <span className="milestone-label">{stage.heading}</span>
