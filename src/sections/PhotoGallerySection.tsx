@@ -12,24 +12,51 @@ export default function PhotoGallerySection() {
     <section id="photo-gallery" className="fold fold-film">
       <div className="film-pin">
         <header className="fold-head film-head">
-          <h2>A film of you</h2>
-          <p>These frames keep sliding as you move through the room.</p>
+          <p className="film-eyebrow">Twelve stills</p>
+          <h2>A film for you</h2>
+          <p className="film-lede">
+            Real frames from your days — not stock poetry. Keep scrolling and
+            the reel pulls sideways, one still at a time.
+          </p>
+          <p className="film-counter" aria-live="polite">
+            <span className="film-counter-current" data-film-frame>
+              01
+            </span>
+            <span className="film-counter-sep">/</span>
+            <span className="film-counter-total">
+              {String(GLIMPSES.length).padStart(2, "0")}
+            </span>
+          </p>
         </header>
 
-        <div className="film-track">
-          {GLIMPSES.map((photo, idx) => (
-            <figure key={`${photo.caption}-${idx}`} className="film-frame">
-              <div className="photo-frame">
-                <img src={photo.src} alt={photo.caption} />
-              </div>
-              <figcaption>{photo.caption}</figcaption>
-            </figure>
-          ))}
+        <div className="film-reel" aria-label="Photo film strip">
+          <div className="film-sprocket film-sprocket--top" aria-hidden="true" />
+          <div className="film-track">
+            {GLIMPSES.map((photo, idx) => (
+              <figure
+                key={`${photo.caption}-${idx}`}
+                className="film-frame"
+                data-film-index={idx}
+              >
+                <span className="film-frame-num" aria-hidden="true">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <div className="photo-frame film-photo">
+                  <img src={photo.src} alt={photo.caption} loading="lazy" />
+                </div>
+                <figcaption>{photo.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="film-sprocket film-sprocket--bottom" aria-hidden="true" />
         </div>
       </div>
 
-      <div className="layers">
-        <h3 className="sr-only">More reasons I love you</h3>
+      <div className="layers film-layers">
+        <header className="film-layers-head">
+          <h3>Bonus stills</h3>
+          <p>Three more frames worth pausing on. Tap one to read the note.</p>
+        </header>
         {LAYERS.map((t, i) => {
           const isOpen = openLayer === i;
           const noteId = `layer-note-${i}`;
@@ -44,11 +71,11 @@ export default function PhotoGallerySection() {
               aria-controls={noteId}
             >
               <div className="photo-frame">
-                <img src={t.img} alt={t.title} />
+                <img src={t.img} alt={t.title} loading="lazy" />
               </div>
-              <span>{t.title}</span>
+              <span className="layer-title">{t.title}</span>
               <span id={noteId} className="layer-note">
-                {t.note}
+                {isOpen ? t.note : "Tap for the note"}
               </span>
             </button>
           );

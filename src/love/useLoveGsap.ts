@@ -258,6 +258,7 @@ function createHorizontalPin(
     pad?: number;
     scrub?: number;
     minEnd?: number | (() => number);
+    onUpdate?: (self: ScrollTrigger) => void;
   }
 ) {
   const pad = opts.pad ?? 64;
@@ -281,12 +282,13 @@ function createHorizontalPin(
       anticipatePin: 1,
       invalidateOnRefresh: true,
       fastScrollEnd: true,
+      onUpdate: opts.onUpdate,
     },
   });
 }
 
 function setupScrollExperience(reduced: boolean) {
-  gsap.set(".fan-3d, .z-rail, .book-casing, .muse-stack", {
+  gsap.set(".fan-3d, .book-casing, .muse-stack", {
     transformPerspective: 1400,
     transformStyle: "preserve-3d",
   });
@@ -446,37 +448,115 @@ function setupScrollExperience(reduced: boolean) {
     });
   }
 
-  // --- How I fell cards ---
-  gsap.utils.toArray<HTMLElement>(".z-card").forEach((card) => {
-    gsap.fromTo(
-      card,
-      { rotateX: 42, z: -260, y: 70, opacity: 0.15 },
-      {
-        rotateX: 0,
-        z: 0,
-        y: 0,
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 90%",
-          end: "top 42%",
-          scrub: true,
-        },
+  // --- How I fell: chronological sticky stages ---
+  const fellSection = document.querySelector<HTMLElement>("#how-i-fell");
+  const fellRail = document.querySelector<HTMLElement>(".fell-rail");
+  const fellCards = gsap.utils.toArray<HTMLElement>(".fell-card");
+  const fellFill = document.querySelector<HTMLElement>(".fell-spine-fill");
+  const fellDots = gsap.utils.toArray<HTMLElement>(".fell-spine-dot");
+
+  if (fellSection && fellRail && fellCards.length) {
+    const setActiveStage = (index: number) => {
+      fellCards.forEach((card, i) => {
+        card.classList.toggle("is-active", i === index);
+        card.classList.toggle("is-passed", i < index);
+      });
+      fellDots.forEach((dot, i) => {
+        dot.classList.toggle("is-active", i === index);
+        dot.classList.toggle("is-passed", i <= index);
+      });
+    };
+
+    setActiveStage(0);
+
+    if (fellFill) {
+      gsap.fromTo(
+        fellFill,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: {
+            id: "how-i-fell-spine",
+            trigger: fellRail,
+            start: "top center",
+            end: "bottom center",
+            scrub: 0.35,
+          },
+        }
+      );
+    }
+
+    fellCards.forEach((card, i) => {
+      const figure = card.querySelector<HTMLElement>(".fell-figure");
+      if (figure) {
+        gsap.fromTo(
+          figure,
+          { y: 36, opacity: 0.45 },
+          {
+            y: 0,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+              end: "top 55%",
+              scrub: 0.45,
+            },
+          }
+        );
       }
-    );
-  });
+
+      ScrollTrigger.create({
+        id: `how-i-fell-stage-${i}`,
+        trigger: card,
+        start: "top 45%",
+        end: "bottom 45%",
+        onEnter: () => setActiveStage(i),
+        onEnterBack: () => setActiveStage(i),
+      });
+    });
+  }
 
   // --- Film strip horizontal ---
   const filmTrack = document.querySelector<HTMLElement>(".film-track");
   const filmPin = document.querySelector<HTMLElement>(".film-pin");
-  if (filmTrack && filmPin) {
+  const filmFrames = gsap.utils.toArray<HTMLElement>(".film-frame");
+  const filmCounter = document.querySelector<HTMLElement>("[data-film-frame]");
+
+  if (filmTrack && filmPin && filmFrames.length) {
+    const syncFilmFrame = () => {
+      const focusX = filmPin.getBoundingClientRect().left + filmPin.clientWidth * 0.38;
+      let nearest = 0;
+      let nearestDist = Infinity;
+
+      filmFrames.forEach((frame, i) => {
+        const rect = frame.getBoundingClientRect();
+        const mid = rect.left + rect.width / 2;
+        const dist = Math.abs(mid - focusX);
+        frame.classList.remove("is-active");
+        if (dist < nearestDist) {
+          nearestDist = dist;
+          nearest = i;
+        }
+      });
+
+      filmFrames[nearest]?.classList.add("is-active");
+      if (filmCounter) {
+        filmCounter.textContent = String(nearest + 1).padStart(2, "0");
+      }
+    };
+
     createHorizontalPin(filmPin, filmTrack, {
       id: "film-strip",
       pad: 80,
       scrub: 0.85,
       minEnd: () => window.innerHeight,
+      onUpdate: syncFilmFrame,
     });
+
+    ScrollTrigger.addEventListener("refresh", syncFilmFrame);
+    syncFilmFrame();
   }
 
   // --- Love letter book ---

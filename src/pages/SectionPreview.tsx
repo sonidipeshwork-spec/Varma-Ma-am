@@ -36,10 +36,10 @@ const SECTIONS_MAP: Record<string, { title: string; component: ReactNode }> = {
   opening: { title: "Opening Photos", component: <OpeningSection /> },
   "why-i-love-you": { title: "Why I Love You", component: <WhyILoveYouSection /> },
   "how-i-fell": { title: "How I Fell For You", component: <HowIFellSection /> },
-  "photo-gallery": { title: "Photo Gallery & Film Strip", component: <PhotoGallerySection /> },
+  "photo-gallery": { title: "A Film For You", component: <PhotoGallerySection /> },
   "love-letter": { title: "Private Diary & Love Letter", component: <LoveLetterBookSection /> },
-  compliments: { title: "Compliments & Reflections", component: <ComplimentsSection /> },
-  "our-future": { title: "Our Future", component: <OurFutureSection /> },
+  compliments: { title: "Things I Keep Meaning To Say", component: <ComplimentsSection /> },
+  "our-future": { title: "The Days I Want With You", component: <OurFutureSection /> },
   ending: { title: "Ending & Vow", component: <EndingSection /> },
 };
 

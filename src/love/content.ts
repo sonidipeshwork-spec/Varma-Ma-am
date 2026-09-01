@@ -29,10 +29,10 @@ export const NAV = [
   { id: "opening", label: "Opening photos" },
   { id: "why-i-love-you", label: "Why I love you" },
   { id: "how-i-fell", label: "How I fell for you" },
-  { id: "photo-gallery", label: "Photo gallery" },
+  { id: "photo-gallery", label: "A film for you" },
   { id: "love-letter", label: "Love letter" },
-  { id: "compliments", label: "Compliments" },
-  { id: "our-future", label: "Our future" },
+  { id: "compliments", label: "Things unsaid" },
+  { id: "our-future", label: "Days ahead" },
   { id: "ending", label: "Ending" },
 ] as const;
 
@@ -130,48 +130,134 @@ export const QUALITIES = [
 ] as const;
 
 export const STAGES = [
-  { stage: "I", title: "The first sight", mood: "wonder", img: schoolImg, desc: "Seeing you and feeling the world skip a beat. An ordinary day, rewritten." },
-  { stage: "II", title: "The sweet laughter", mood: "melody", img: friendImg, desc: "Hearing you laugh and knowing it was a sound I never wanted to miss." },
-  { stage: "III", title: "The real conversations", mood: "sanctuary", img: studyImg, desc: "Talking with you and meeting how deep, wise, and rare your soul is." },
-  { stage: "IV", title: "The quiet realization", mood: "home", img: collegeImg, desc: "Waking up to find you woven into every hope. The anchor I had been looking for." },
-  { stage: "V", title: "Choosing you, daily", mood: "forever", img: img2, desc: "Loving you is not a passing weather. It is a decision I make with every sunrise." },
+  {
+    stage: "I",
+    title: "The first sight",
+    mood: "Once",
+    img: schoolImg,
+    desc: "I noticed your grace before I knew your name. Quiet warmth in a room, and an ordinary day stopped being ordinary.",
+  },
+  {
+    stage: "II",
+    title: "The sweet laughter",
+    mood: "Then",
+    img: friendImg,
+    desc: "Your laugh cut through the noise like morning sun. I heard it once and wanted that sound in every tomorrow.",
+  },
+  {
+    stage: "III",
+    title: "The real conversations",
+    mood: "After",
+    img: studyImg,
+    desc: "Talking with you, I met how deep and wise you are. Your mind made me want to listen longer, and grow sharper just to keep up.",
+  },
+  {
+    stage: "IV",
+    title: "The quiet realization",
+    mood: "Until",
+    img: collegeImg,
+    desc: "Somewhere between the hours it settled in: you were already woven into every hope. Home was no longer a place on a map.",
+  },
+  {
+    stage: "V",
+    title: "Choosing you, daily",
+    mood: "Always",
+    img: img2,
+    desc: "Loving you is not a passing weather. It is the decision I make with every sunrise — not as a maybe, as a vow.",
+  },
 ] as const;
 
 export const GLIMPSES = [
-  { src: img3, caption: "Sweet moments of wonder" },
-  { src: img4, caption: "A quiet, glowing warmth" },
-  { src: img5, caption: "Soft afternoon laughter" },
-  { src: img6, caption: "Chasing gentle horizons" },
-  { src: img7, caption: "Steps on warm sand" },
-  { src: img8, caption: "Sweet escapes" },
-  { src: img9, caption: "Golden skies in your eyes" },
-  { src: img10, caption: "Roads that lead home" },
-  { src: img11, caption: "Dressed in soft dreams" },
-  { src: img12, caption: "Celebrations of grace" },
-  { src: img13, caption: "A sanctuary of trust" },
-  { src: img14, caption: "Timeless chapters" },
+  { src: img3, caption: "Embroidery and silver, just past seven" },
+  { src: img4, caption: "Stripes, starlight, that soft smile" },
+  { src: img5, caption: "Henna still fresh, peace for the camera" },
+  { src: img6, caption: "Red saree, and the dimple I look for" },
+  { src: img7, caption: "Gold blouse, festival red" },
+  { src: img8, caption: "Mehndi and magenta, one quiet pose" },
+  { src: img9, caption: "Holi colors caught on your cheek" },
+  { src: img10, caption: "Chin in hand, sweater weather" },
+  { src: img11, caption: "Bindi, pink top, calm as ever" },
+  { src: img12, caption: "Close enough to keep forever" },
+  { src: img13, caption: "Lime green, soft eyes, hallway light" },
+  { src: img14, caption: "Yellow flower, jhumka, open sky" },
 ] as const;
 
 export const LAYERS = [
-  { img: img15, title: "Your heart", note: "The compassion you show in every little gesture. You treat the world with a grace that softens my coldest days." },
-  { img: img16, title: "Your mind", note: "The sparkling way you think, learn, and dream. Your perspective outshines any constellation." },
-  { img: img13, title: "Your grace", note: "The energy you bring. You bloom softly wherever you walk, and leave wonder in the path." },
+  {
+    img: img15,
+    title: "Silver and cream",
+    note: "The choker, the embroidery, the quiet way you hold yourself. A still I keep returning to.",
+  },
+  {
+    img: img16,
+    title: "The wink",
+    note: "Blue tee, finger heart, that wink. Proof that ordinary evenings with you already feel like cinema.",
+  },
+  {
+    img: img13,
+    title: "Hallway glow",
+    note: "Lime green against warm light. You make even a mirror selfie feel like a favorite scene.",
+  },
 ] as const;
 
 export const WHISPERS = [
-  { img: img9, quote: "You make ordinary hours feel enchanted." },
-  { img: img10, quote: "You are breathtaking inside and out." },
-  { img: img11, quote: "Your thoughts shape constellations." },
-  { img: img12, quote: "Your smile is my favorite sunrise." },
-  { img: babyImg, quote: "Your heart is a beautiful sanctuary." },
-  { img: footImg, quote: "You are my number one adventure." },
+  {
+    img: img9,
+    label: "Your laugh",
+    quote: "That laugh of yours still rearranges my whole day.",
+  },
+  {
+    img: img10,
+    label: "Your face",
+    quote: "You are breathtaking — and somehow softer up close.",
+  },
+  {
+    img: img11,
+    label: "Your mind",
+    quote: "The way you think leaves me quietly in awe.",
+  },
+  {
+    img: img12,
+    label: "Your smile",
+    quote: "Your smile is the first light I look for.",
+  },
+  {
+    img: babyImg,
+    label: "Your beginning",
+    quote: "Even then, you were already someone the world would need.",
+  },
+  {
+    img: footImg,
+    label: "Your story",
+    quote: "Your story started small — and I am so glad it led here.",
+  },
 ] as const;
 
 export const DREAMS = [
-  { img: img2, title: "Exploring together", desc: "Strange cities, your eyes reflecting the world, routes mapped with laughter." },
-  { img: collegeImg, title: "Cozy sanctuaries", desc: "Books, gentle music, tea mornings, starlight outside the window." },
-  { img: studyImg, title: "Your proudest cheer", desc: "Front row for every victory. Your biggest supporter, always." },
-  { img: friendImg, title: "Grow old together", desc: "Soft blankets, years turning gold, loving you deeper each season." },
+  {
+    img: img2,
+    when: "Evenings",
+    title: "When the room goes quiet",
+    desc: "You in soft light, looking at me like the rest of the world can wait. I want a lifetime of evenings that feel this still.",
+  },
+  {
+    img: studyImg,
+    when: "Mornings",
+    title: "Beside your hard days",
+    desc: "Books open, lamp lit, you leaning into the work. I want to be the quiet company on every morning that asks too much of you.",
+  },
+  {
+    img: collegeImg,
+    when: "Nights out",
+    title: "Garden air and heart filters",
+    desc: "Rust shirt, leaves behind you, those little hearts floating above your head. I want nights out that feel this easy and this ours.",
+  },
+  {
+    img: friendImg,
+    when: "Always",
+    title: "Our people in the stack",
+    desc: "Hands piled together — yours somewhere in the middle. I want a life where we keep choosing each other in front of everyone who knows us.",
+  },
 ] as const;
 
 export interface BookPageLeft {
@@ -321,8 +407,24 @@ export const LETTER = {
 };
 
 export const REFLECTIONS = [
-  { src: img1, title: "Sunlight & serenity", desc: "Afternoon rays in your hair. Every conversation rewrites the sky." },
-  { src: img2, title: "Sanctuary of thoughts", desc: "Home is not a pin on a map. Home is the warmth of your presence." },
-  { src: img13, title: "Cozy hopes", desc: "Magic in every laugh we share. Choosing you is the easiest decision." },
-  { src: collegeImg, title: "My favorite muse", desc: "Endless reasons to cherish the warmth, wisdom, and energy you bring." },
+  {
+    src: img1,
+    title: "When the light finds you",
+    desc: "Afternoon on your face. I forget whatever I was about to worry about.",
+  },
+  {
+    src: img2,
+    title: "Where I rest",
+    desc: "Home is not a pin on a map. Home is knowing you exist.",
+  },
+  {
+    src: img13,
+    title: "The easy choice",
+    desc: "Choosing you is not dramatic. It is the calmest decision I make.",
+  },
+  {
+    src: collegeImg,
+    title: "Still looking at you",
+    desc: "Warmth, wisdom, and that quiet energy — I keep finding new reasons.",
+  },
 ] as const;

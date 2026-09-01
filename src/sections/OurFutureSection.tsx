@@ -7,11 +7,11 @@ export default function OurFutureSection() {
   return (
     <section id="our-future" className="fold fold-sky">
       <header className="fold-head future-fold-head">
-        <p className="future-eyebrow">Our Future</p>
+        <p className="future-eyebrow">Four kinds of days</p>
         <h2>The days I want with you</h2>
         <p className="future-overview">
-          Not a wishlist four rooms I already picture us living in. Each one
-          feels real because you make even ordinary hours feel like home.
+          Not a fantasy trip or a wishlist of rooms — just the ordinary future
+          I already picture when I think about us.
         </p>
       </header>
 
@@ -21,12 +21,12 @@ export default function OurFutureSection() {
             <img src={lead.img} alt={lead.title} loading="lazy" />
           </div>
           <div className="future-lead-copy">
-            <span className="future-card-index">01</span>
+            <div className="future-meta">
+              <span className="future-card-index">01</span>
+              <span className="future-when">{lead.when}</span>
+            </div>
             <h3>{lead.title}</h3>
             <p>{lead.desc}</p>
-            <span className="future-lead-accent" aria-hidden="true">
-              ✦
-            </span>
           </div>
         </TiltFrame>
       </article>
@@ -39,7 +39,12 @@ export default function OurFutureSection() {
                 <img src={d.img} alt={d.title} loading="lazy" />
               </div>
               <div className="future-content">
-                <span className="future-card-index">0{i + 2}</span>
+                <div className="future-meta">
+                  <span className="future-card-index">
+                    {String(i + 2).padStart(2, "0")}
+                  </span>
+                  <span className="future-when">{d.when}</span>
+                </div>
                 <h3>{d.title}</h3>
                 <p>{d.desc}</p>
               </div>
