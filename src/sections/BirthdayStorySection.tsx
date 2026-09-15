@@ -1,5 +1,5 @@
 import { BIRTHDAY_WORDS, STORY_PANELS } from "@/love/content";
-import LoveConfessionSection from "./LoveConfessionSection";
+import BirthdayCountdownSection from "./BirthdayCountdownSection";
 
 export default function BirthdayStorySection() {
   return (
@@ -18,18 +18,18 @@ export default function BirthdayStorySection() {
         </h2>
       </section>
 
-      <LoveConfessionSection />
+      <BirthdayCountdownSection />
 
-      <section id="chapters" className="story-horizon-pin">
+      <section id="frames" className="story-horizon-pin">
         <header className="fold-head film-head">
-          <h2>The day it became a story</h2>
-          <p>Five frames. One girl. The hours that changed everything.</p>
+          <h2>Five frames of you</h2>
+          <p>Five portraits. One birthday. The story told in what you were wearing.</p>
         </header>
         <div className="story-horizon">
           {STORY_PANELS.map((panel) => (
             <article key={panel.title} className="story-panel">
               <div className="story-panel-frame">
-                <img src={panel.img} alt={panel.title} />
+                <img src={panel.img} alt={panel.title} loading="lazy" />
               </div>
               <div className="story-panel-copy">
                 <span>{panel.eyebrow}</span>

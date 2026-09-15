@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import gsap from "gsap";
 import { BOOK_CHAPTERS } from "@/love/content";
 
-export default function LoveLetterBookSection() {
+export default function BirthdayBookSection() {
   const [currentChapter, setCurrentChapter] = useState(0);
   const [isTurning, setIsTurning] = useState(false);
   const spreadRef = useRef<HTMLDivElement | null>(null);
@@ -109,15 +109,15 @@ export default function LoveLetterBookSection() {
   const sealInitial = chapter.rightPage.signOff?.sign?.trim().charAt(0) || "";
 
   return (
-    <section id="love-letter" className="fold fold-letter">
+    <section id="birthday-book" className="fold fold-letter">
       <div className="book-section-head">
-        <h2 className="book-main-title">A book for my Ma'am Ji</h2>
+        <h2 className="book-main-title">A Birthday Book for Ma'am Ji</h2>
         <p className="book-main-subtitle">
-          Pages I wrote because one letter was never going to be enough.
+          Dedicated pages celebrating your achievements, spirit, and wonderful year ahead.
         </p>
       </div>
 
-      <div className="book-chapter-tabs" role="tablist" aria-label="Letter chapters">
+      <div className="book-chapter-tabs" role="tablist" aria-label="Birthday book chapters">
         {BOOK_CHAPTERS.map((ch, idx) => (
           <button
             key={ch.id}

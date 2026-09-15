@@ -1,7 +1,7 @@
 import { useState, type CSSProperties } from "react";
 import { GLIMPSES, LAYERS } from "@/love/content";
 
-export default function PhotoGallerySection() {
+export default function FilmSection() {
   const [openLayer, setOpenLayer] = useState<number | null>(0);
 
   const toggleLayer = (index: number) => {
@@ -9,7 +9,7 @@ export default function PhotoGallerySection() {
   };
 
   return (
-    <section id="photo-gallery" className="fold fold-film">
+    <section id="film" className="fold fold-film">
       <div className="film-pin">
         <header className="fold-head film-head">
           <p className="film-eyebrow">Twelve stills</p>
@@ -50,36 +50,6 @@ export default function PhotoGallerySection() {
           </div>
           <div className="film-sprocket film-sprocket--bottom" aria-hidden="true" />
         </div>
-      </div>
-
-      <div className="layers film-layers">
-        <header className="film-layers-head">
-          <h3>Bonus stills</h3>
-          <p>Three more frames worth pausing on. Tap one to read the note.</p>
-        </header>
-        {LAYERS.map((t, i) => {
-          const isOpen = openLayer === i;
-          const noteId = `layer-note-${i}`;
-          return (
-            <button
-              key={`${t.title}-${i}`}
-              type="button"
-              className={`layer-polaroid ${isOpen ? "is-open" : ""}`}
-              style={{ "--i": i } as CSSProperties}
-              onClick={() => toggleLayer(i)}
-              aria-expanded={isOpen}
-              aria-controls={noteId}
-            >
-              <div className="photo-frame">
-                <img src={t.img} alt={t.title} loading="lazy" />
-              </div>
-              <span className="layer-title">{t.title}</span>
-              <span id={noteId} className="layer-note">
-                {isOpen ? t.note : "Tap for the note"}
-              </span>
-            </button>
-          );
-        })}
       </div>
     </section>
   );

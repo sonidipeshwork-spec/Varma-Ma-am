@@ -6,12 +6,12 @@ import {
   LocketGate,
   BirthdayStorySection,
   OpeningSection,
-  WhyILoveYouSection,
-  HowIFellSection,
-  PhotoGallerySection,
-  LoveLetterBookSection,
-  ComplimentsSection,
-  OurFutureSection,
+  QualitiesSection,
+  JourneySection,
+  FilmSection,
+  BirthdayBookSection,
+  UnsaidSection,
+  DaysAheadSection,
   EndingSection,
 } from "@/sections";
 
@@ -36,10 +36,8 @@ export default function RomanticApp() {
 
   const opened = stage === "opened";
 
-  // GSAP scroll and parallax triggers for main experience
   useLoveGsap(opened, reduced);
 
-  // Ambient audio player
   useEffect(() => {
     const a = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3");
     a.loop = true;
@@ -51,7 +49,6 @@ export default function RomanticApp() {
     };
   }, []);
 
-  // IntersectionObserver for tracking active section in dot navigation
   useEffect(() => {
     if (!opened) return;
     const els = NAV.map((s) => document.getElementById(s.id)).filter(Boolean) as HTMLElement[];
@@ -99,23 +96,20 @@ export default function RomanticApp() {
       <div className="love-vignette" aria-hidden />
       <div className="love-grain" aria-hidden />
 
-      {/* 1. Playful "Are You Really Her?" Question Gate */}
       {stage === "questions" && <QuestionGate onComplete={handleQuestionsComplete} />}
 
-      {/* 2. Upgraded 3D Locket Gate Screen */}
       {stage === "locket" && <LocketGate onOpen={openLocket} />}
 
-      {/* 3. Main Experience & Dedicated Sections */}
       {stage === "opened" && (
         <>
           <BirthdayStorySection />
           <OpeningSection />
-          <WhyILoveYouSection />
-          <HowIFellSection />
-          <PhotoGallerySection />
-          <LoveLetterBookSection />
-          <ComplimentsSection />
-          <OurFutureSection />
+          <QualitiesSection />
+          <JourneySection />
+          <FilmSection />
+          <BirthdayBookSection />
+          <UnsaidSection />
+          <DaysAheadSection />
           <EndingSection />
         </>
       )}

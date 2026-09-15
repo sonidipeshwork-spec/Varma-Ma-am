@@ -2,7 +2,7 @@ import { useState } from "react";
 import { REFLECTIONS, WHISPERS } from "@/love/content";
 import { playPopSound } from "@/love/soundEffects";
 
-export default function ComplimentsSection() {
+export default function UnsaidSection() {
   const [said, setSaid] = useState<Set<number>>(() => new Set());
 
   const saidCount = said.size;
@@ -27,13 +27,13 @@ export default function ComplimentsSection() {
   };
 
   return (
-    <section id="compliments" className="fold fold-whispers">
+    <section id="unsaid" className="fold fold-whispers">
       <header className="fold-head whisper-head">
         <p className="whisper-eyebrow">Unsaid → said</p>
-        <h2>Things I keep meaning to say</h2>
+        <h2>Things unsaid</h2>
         <p className="whisper-lede">
-          Six lines I rehearse and never send. Tap a portrait to flip it — once
-          it is open, that one is finally said.
+          Six appreciations saved for your birthday. Tap a portrait to flip it —
+          once it is open, that one is finally said.
         </p>
         <p className="whisper-progress" aria-live="polite">
           <span className="whisper-progress-count">

@@ -2,15 +2,15 @@ import { type CSSProperties } from "react";
 import TiltFrame from "@/components/TiltFrame";
 import { STAGES } from "@/love/content";
 
-export default function HowIFellSection() {
+export default function JourneySection() {
   return (
-    <section id="how-i-fell" className="fold fold-dark fell-section">
+    <section id="journey" className="fold fold-dark fell-section">
       <header className="fold-head fell-head">
-        <p className="fell-eyebrow">In order</p>
-        <h2>How I fell for you</h2>
+        <p className="fell-eyebrow">Five milestones</p>
+        <h2>A memorable journey</h2>
         <p className="fell-lede">
-          Five moments, in the sequence my heart learned them. Scroll to move
-          from first sight to the vow that still holds.
+          Five moments from first acquaintance to great admiration. Scroll through
+          the memories that make celebrating you so special.
         </p>
       </header>
 

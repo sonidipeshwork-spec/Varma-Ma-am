@@ -10,13 +10,13 @@ import {
 } from "@/love/useLoveGsap";
 import TiltFrame from "@/components/TiltFrame";
 
-const CLIMAX_WORDS = new Set(["birthday", "shruu", "countdown", "celebrate", "today", "love"]);
+const CLIMAX_WORDS = new Set(["birthday", "shruu", "countdown", "celebrate", "september", "today"]);
 
 function normalizeToken(word: string) {
   return word.replace(/[^a-zA-Z0-9']/g, "").toLowerCase();
 }
 
-export default function LoveConfessionSection() {
+export default function BirthdayCountdownSection() {
   const [activeStageIndex, setActiveStageIndex] = useState(0);
 
   const renderWords = (text: string, highlights: readonly string[] = [], classNamePrefix = "") => {
@@ -69,7 +69,7 @@ export default function LoveConfessionSection() {
   };
 
   return (
-    <div id="confession" className="confession-horizon-pin">
+    <div id="countdown" className="confession-horizon-pin">
       <div className="confess-ambient-glow" aria-hidden="true">
         <div className="glow-orb glow-orb-1" />
         <div className="glow-orb glow-orb-2" />
@@ -78,11 +78,11 @@ export default function LoveConfessionSection() {
 
       <header className="confess-horizon-header">
         <div className="confess-eyebrow-pill">
-          <span>Counting Down To You • For Shruu</span>
+          <span>28 September • For Shruu</span>
         </div>
-        <h2 className="confess-horizon-title">A Countdown Written In Love</h2>
+        <h2 className="confess-horizon-title">Counting Down To Your Birthday</h2>
         <p className="confess-horizon-hint">
-          <span className="scroll-arrow">⟶</span> Scroll down to unwrap each day until your birthday
+          <span className="scroll-arrow">⟶</span> Scroll through five photos on the way to 28 September
         </p>
       </header>
 
@@ -91,81 +91,85 @@ export default function LoveConfessionSection() {
           <div className="intro-card-inner">
             <span className="intro-heart-badge">🎂</span>
             <span className="intro-kicker">The Countdown</span>
-            <h3 className="intro-title">Every day counted down, every moment treasured.</h3>
+            <h3 className="intro-title">Five frames. One birthday.</h3>
             <p className="intro-note">
-              Every word here was written with you in mind, Meri Pyaari Ma'am Ji.
+              Each stop is a real photo of you — scrolled in order toward 28 September.
             </p>
-            <div className="intro-scroll-indicator">
-              <span>Scroll to begin the countdown</span>
-              <div className="indicator-line" />
-            </div>
           </div>
         </div>
 
         {CONFESSION_STAGES.map((stage, idx) => (
           <article
             key={stage.id}
-            id={`confess-stage-${idx}`}
+            id={stage.id}
             className={`confess-stage-panel ${stage.id === "stage-climax" ? "is-grand-climax" : ""}`}
             data-stage-index={idx}
           >
             <div className="confess-stage-card">
-              <div className="stage-card-meta">
-                <span className="stage-badge">{stage.badge}</span>
-                <h4 className="stage-heading">{stage.heading}</h4>
-              </div>
-
-              <div className="stage-prose-lead">
-                <p className="stage-lead-sentence">
-                  {renderWords(stage.lead, stage.highlightWords, "lead-word")}
-                </p>
-              </div>
-
-              {stage.subline && (
-                <div className="stage-prose-sub">
-                  <p className="stage-sub-sentence">
-                    {renderWords(stage.subline, stage.highlightWords, "sub-word")}
-                  </p>
-                </div>
-              )}
-
               {stage.img && (
                 <div className="stage-vignette-wrapper">
-                  <TiltFrame strength={7} className="stage-vignette-frame">
-                    <div className="stage-photo-box">
-                      <img src={stage.img} alt={stage.imgCaption || stage.heading} />
-                      <div className="stage-photo-overlay">
-                        {stage.imgCaption && (
+                  <TiltFrame strength={6} className="stage-vignette-frame">
+                    <figure className="stage-photo-box">
+                      <img
+                        src={stage.img}
+                        alt={stage.imgCaption || stage.heading}
+                        loading="lazy"
+                      />
+                      {stage.imgCaption && (
+                        <figcaption className="stage-photo-overlay">
                           <span className="stage-photo-caption">{stage.imgCaption}</span>
-                        )}
-                      </div>
-                    </div>
+                        </figcaption>
+                      )}
+                    </figure>
                   </TiltFrame>
                 </div>
               )}
 
-              {stage.id === "stage-climax" && (
-                <div
-                  className="climax-seal-box"
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => playSparkleChime()}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      playSparkleChime();
-                    }
-                  }}
-                  aria-label="Celebrate the birthday countdown"
-                >
-                  <div className="climax-heart-halo" />
-                  <div className="climax-seal-circle">
-                    <span className="climax-heart-icon">🎉</span>
-                    <span className="climax-seal-text">The Wait Is Over</span>
-                  </div>
-                  <span className="climax-tap-hint">Tap for a sparkle ✨</span>
+              <div className="stage-card-copy">
+                <div className="stage-card-meta">
+                  <span className="stage-badge">{stage.badge}</span>
+                  <span className="stage-num">{String(idx + 1).padStart(2, "0")}</span>
                 </div>
-              )}
+
+                <h3 className="stage-heading">{stage.heading}</h3>
+
+                <div className="stage-prose-lead">
+                  <p className="stage-lead-sentence">
+                    {renderWords(stage.lead, stage.highlightWords, "lead-word")}
+                  </p>
+                </div>
+
+                {stage.subline && (
+                  <div className="stage-prose-sub">
+                    <p className="stage-sub-sentence">
+                      {renderWords(stage.subline, stage.highlightWords, "sub-word")}
+                    </p>
+                  </div>
+                )}
+
+                {stage.id === "stage-climax" && (
+                  <div
+                    className="climax-seal-box"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => playSparkleChime()}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        playSparkleChime();
+                      }
+                    }}
+                    aria-label="Celebrate the birthday countdown"
+                  >
+                    <div className="climax-heart-halo" />
+                    <div className="climax-seal-circle">
+                      <span className="climax-heart-icon">🎉</span>
+                      <span className="climax-seal-text">The Wait Is Over</span>
+                    </div>
+                    <span className="climax-tap-hint">Tap for a sparkle ✨</span>
+                  </div>
+                )}
+              </div>
             </div>
           </article>
         ))}
@@ -173,11 +177,11 @@ export default function LoveConfessionSection() {
         <div className="confess-outro-card">
           <div className="outro-card-inner">
             <span className="outro-icon">🎈</span>
-            <h3 className="outro-title">And so the countdown ends, and the celebration begins...</h3>
+            <h3 className="outro-title">28 September — the wait is over.</h3>
             <p className="outro-desc">
-              Every day was worth the wait, because it led here, to celebrating you.
+              Five photos later, the calendar lands on your birthday.
             </p>
-            <span className="outro-sign">Always, with all my love ❤️</span>
+            <span className="outro-sign">Happiest Birthday, Shruu 🎂</span>
           </div>
         </div>
       </div>

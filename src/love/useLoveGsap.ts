@@ -403,21 +403,9 @@ function setupScrollExperience(reduced: boolean) {
 
     gsap.to(".muse-photo-a", {
       y: -140,
-      rotateY: -18,
-      rotateX: 8,
-      scale: 1.08,
-      ease: "none",
-      scrollTrigger: {
-        trigger: opening,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-
-    gsap.to(".muse-photo-b", {
-      y: 80,
-      rotateY: 22,
+      rotateY: -12,
+      rotateX: 6,
+      scale: 1.06,
       ease: "none",
       scrollTrigger: {
         trigger: opening,
@@ -429,7 +417,7 @@ function setupScrollExperience(reduced: boolean) {
   }
 
   // --- Why I love you cards ---
-  const why = document.querySelector("#why-i-love-you");
+  const why = document.querySelector("#qualities");
   if (why) {
     gsap.from(".fan-card", {
       y: 80,
@@ -449,7 +437,7 @@ function setupScrollExperience(reduced: boolean) {
   }
 
   // --- How I fell: chronological sticky stages ---
-  const fellSection = document.querySelector<HTMLElement>("#how-i-fell");
+  const fellSection = document.querySelector<HTMLElement>("#journey");
   const fellRail = document.querySelector<HTMLElement>(".fell-rail");
   const fellCards = gsap.utils.toArray<HTMLElement>(".fell-card");
   const fellFill = document.querySelector<HTMLElement>(".fell-spine-fill");
@@ -477,7 +465,7 @@ function setupScrollExperience(reduced: boolean) {
           scaleY: 1,
           ease: "none",
           scrollTrigger: {
-            id: "how-i-fell-spine",
+            id: "journey-spine",
             trigger: fellRail,
             start: "top center",
             end: "bottom center",
@@ -508,7 +496,7 @@ function setupScrollExperience(reduced: boolean) {
       }
 
       ScrollTrigger.create({
-        id: `how-i-fell-stage-${i}`,
+        id: `journey-stage-${i}`,
         trigger: card,
         start: "top 45%",
         end: "bottom 45%",
@@ -560,7 +548,7 @@ function setupScrollExperience(reduced: boolean) {
   }
 
   // --- Love letter book ---
-  const letter = document.querySelector("#love-letter");
+  const letter = document.querySelector("#birthday-book");
   if (letter) {
     gsap.from(".book-casing", {
       y: 70,
@@ -578,9 +566,9 @@ function setupScrollExperience(reduced: boolean) {
   }
 
   // --- Compliments: enter without rotateY so CSS card-flip stays accurate ---
-  const compliments = document.querySelector("#compliments");
+  const compliments = document.querySelector("#unsaid");
   if (compliments) {
-    gsap.utils.toArray<HTMLElement>("#compliments .flip").forEach((card) => {
+    gsap.utils.toArray<HTMLElement>("#unsaid .flip").forEach((card) => {
       gsap.fromTo(
         card,
         { y: 36, opacity: 0 },
@@ -600,7 +588,7 @@ function setupScrollExperience(reduced: boolean) {
       );
     });
 
-    gsap.utils.toArray<HTMLElement>("#compliments .reflect-card").forEach((card) => {
+    gsap.utils.toArray<HTMLElement>("#unsaid .reflect-card").forEach((card) => {
       gsap.fromTo(
         card,
         { y: 28, opacity: 0.2 },
@@ -621,26 +609,82 @@ function setupScrollExperience(reduced: boolean) {
     });
   }
 
-  // --- Future dreams ---
-  gsap.utils.toArray<HTMLElement>(".future-lead, .future-card").forEach((moon) => {
-    const target = moon.querySelector<HTMLElement>(".tilt-inner") || moon;
-    gsap.fromTo(
-      target,
-      { scale: 0.9, y: 36, opacity: 0.25 },
-      {
-        scale: 1,
-        y: 0,
-        opacity: 1,
-        ease: "power2.out",
+  // --- Bright days ahead: keepsake reveal ---
+  const futureSec = document.querySelector<HTMLElement>("#days-ahead");
+  if (futureSec) {
+    const futureCards = gsap.utils.toArray<HTMLElement>("#days-ahead .keepsake-card");
+    
+    // Header reveal
+    gsap.from("#days-ahead .future-fold-head > *", {
+      y: 32,
+      opacity: 0,
+      stagger: 0.12,
+      duration: 0.85,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "#days-ahead",
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    // 3D Staggered entrance of keepsake cards
+    futureCards.forEach((card, index) => {
+      const isEven = index % 2 === 0;
+      const tiltInner = card.querySelector<HTMLElement>(".tilt-inner");
+      const noteBadge = card.querySelector<HTMLElement>(".future-personal-note");
+      const sparkle = card.querySelector<HTMLElement>(".keepsake-sparkle");
+
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: moon,
-          start: "top 90%",
-          end: "top 55%",
-          scrub: 0.5,
+          trigger: card,
+          start: "top 88%",
+          toggleActions: "play none none none",
         },
+      });
+
+      tl.fromTo(
+        card,
+        {
+          y: 50,
+          opacity: 0,
+          rotateZ: isEven ? -2.5 : 2.5,
+          scale: 0.94,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          rotateZ: 0,
+          scale: 1,
+          duration: 0.9,
+          ease: "power3.out",
+        }
+      );
+
+      if (noteBadge) {
+        tl.fromTo(
+          noteBadge,
+          { opacity: 0, y: 12, scale: 0.95 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)" },
+          "-=0.4"
+        );
       }
-    );
-  });
+
+      // Gentle floating animation on sparkles
+      if (sparkle) {
+        gsap.to(sparkle, {
+          y: -8,
+          scale: 1.15,
+          opacity: 0.9,
+          duration: 2.4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: index * 0.3,
+        });
+      }
+    });
+  }
 
   // --- Ending ---
   const ending = document.querySelector("#ending");

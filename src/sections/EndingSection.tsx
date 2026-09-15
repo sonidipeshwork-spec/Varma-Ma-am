@@ -1,4 +1,5 @@
 import { PORTRAITS, QUALITIES, STAGES } from "@/love/content";
+import RomanticCreativeFooter from "@/components/RomanticCreativeFooter";
 
 export default function EndingSection() {
   const wreathImages = [
@@ -12,7 +13,7 @@ export default function EndingSection() {
     STAGES[3].img,
   ];
 
-  const vowWords = "Always and completely".split(" ");
+  const vowWords = "Shine bright always".split(" ");
 
   return (
     <section id="ending" className="finale">
@@ -38,25 +39,22 @@ export default function EndingSection() {
               </span>
             ))}
           </h2>
-          <p className="finale-home">you are my home</p>
+          <p className="finale-home">Happiest Birthday</p>
           <p className="finale-stamp">
-            Happy birthday, Shruu.
+            To our dearest Shruu.
             <br />
-            I love you.
+            Keep smiling always!
           </p>
-          <p className="finale-sign">Always yours</p>
+          <p className="finale-sign">Warmest Wishes</p>
           <div className="finale-seal" aria-hidden>
             <span>S</span>
-            <em>sealed</em>
+            <em>celebrate</em>
           </div>
         </div>
       </div>
 
-      <footer className="finale-bar">
-        <span>Meri Pyaari Ma'am ji ke liye</span>
-        <span>Happiest Birthday</span>
-        <span>28 September</span>
-      </footer>
+      {/* Upgraded Creative USP Footer */}
+      <RomanticCreativeFooter />
     </section>
   );
 }
