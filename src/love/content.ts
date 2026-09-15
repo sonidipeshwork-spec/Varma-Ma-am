@@ -376,7 +376,7 @@ export const DREAMS = [
   {
     img: img2,
     when: "Golden Evenings",
-    title: "Kamyabi Aur Aap Par Proud Moment",
+    title: "Kamyabi Aur Aap Par Proud Moment.",
     desc:
       "Un saare sapno ko reality bante dekhna jinke liye aapne quietly itni mehnat ki hai. Ek din peeche mudkar dekhna, saari struggles ko yaad karna aur kehna haan, maine kar dikhaya.",
     note:
