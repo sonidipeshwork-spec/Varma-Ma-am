@@ -2,15 +2,52 @@ import TiltFrame from "@/components/TiltFrame";
 import { DREAMS } from "@/love/content";
 
 export default function DaysAheadSection() {
+  const eyebrowWords = "Four kinds of days".split(" ");
+  const titleWords = "Bright days ahead".split(" ");
+  const overviewWords = "Not a distant fantasy — four warm chapters I already picture for the year after 28 September.".split(" ");
+
   return (
     <section id="days-ahead" className="fold fold-sky">
+      {/* Dynamic ambient lighting aura */}
+      <div className="future-aurora-glow" aria-hidden="true" />
+
       <header className="fold-head future-fold-head">
-        <p className="future-eyebrow">Four kinds of days</p>
-        <h2>Bright days ahead</h2>
+        <div className="future-eyebrow-container">
+          <span className="future-eyebrow-badge">
+            <span className="badge-sparkle">✦</span>
+            <span className="eyebrow-words">
+              {eyebrowWords.map((word, i) => (
+                <span key={`${word}-${i}`} className="future-split-eyebrow inline-block">
+                  {word}&nbsp;
+                </span>
+              ))}
+            </span>
+            <span className="badge-sparkle">✦</span>
+          </span>
+        </div>
+
+        <h2 className="future-main-heading">
+          {titleWords.map((word, i) => (
+            <span key={`${word}-${i}`} className="future-split-title inline-block">
+              {word}&nbsp;
+            </span>
+          ))}
+        </h2>
+
         <p className="future-overview">
-          Not a distant fantasy — four warm chapters I already picture for the
-          year after 28 September.
+          {overviewWords.map((word, i) => (
+            <span key={`${word}-${i}`} className="future-split-word inline-block">
+              {word}&nbsp;
+            </span>
+          ))}
         </p>
+
+        {/* Decorative golden timeline thread */}
+        <div className="future-golden-thread" aria-hidden="true">
+          <span className="thread-line" />
+          <span className="thread-diamond">◆</span>
+          <span className="thread-line" />
+        </div>
       </header>
 
       <div className="future-grid" data-future-grid>

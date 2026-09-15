@@ -26,24 +26,23 @@ import img16 from "@/assets/image_16.jpg";
 export const NAV = [
   { id: "birthday", label: "Happy Birthday" },
   { id: "countdown", label: "Birthday countdown" },
-  { id: "frames", label: "Five frames" },
-  { id: "opening", label: "For Shruu" },
-  { id: "qualities", label: "Six qualities" },
-  { id: "journey", label: "Memorable journey" },
-  { id: "film", label: "A film for you" },
+  { id: "frames", label: "Ma'am Ji" },
+  { id: "opening", label: "For Shuru" },
+  { id: "qualities", label: "Your Smile" },
+  { id: "journey", label: "Yor Presence" },
+  { id: "film", label: "Everything" },
   { id: "birthday-book", label: "Birthday book" },
   { id: "unsaid", label: "Things unsaid" },
-  { id: "days-ahead", label: "Bright days ahead" },
-  { id: "ending", label: "Ending wish" },
+  { id: "ending", label: "Dream" },
 ] as const;
 
-export const BIRTHDAY_WORDS = ["Happy", "Birthday", "Shruu"] as const;
+export const BIRTHDAY_WORDS = ["Happy", "Birthday", "Shuru"] as const;
 
 export const CONFESSIONS = [
   "Today belongs completely to you.",
   "Celebrating the brightest, kindest soul.",
-  "Bas tum hasti raho, always.",
-  "Happy Birthday, Shruu.",
+  "Bas aap hastie raho, hamesha.",
+  "Happy Birthday, Shuru.",
 ] as const;
 
 export interface ConfessionStage {
@@ -60,53 +59,132 @@ export interface ConfessionStage {
 export const CONFESSION_STAGES: readonly ConfessionStage[] = [
   {
     id: "stage-countdown-begins",
-    badge: "01 • Festive start",
-    heading: "Silver, Embroidery, Mehndi",
-    lead: "This mirror frame — floral kurti, oxidized silver, henna on your hands — is where the birthday countdown begins to feel real.",
-    subline: "28 September starts counting down from looks like this.",
+    badge: "01 • Countdown Shuru",
+
+    heading: "Silver, Mehndi & Woh Pehli Jhalak",
+
+    lead:
+      "Mirror ke saamne floral kurti, haathon mein mehndi aur woh oxidized silver — bas yahin se birthday ka countdown officially thoda aur special lagne laga.",
+
+    subline:
+      "16 September ab sirf ek date nahi hai… ab toh har din uss din ke thoda aur kareeb le ja raha hai.",
+
     img: img3,
-    imgCaption: "Mirror selfie · embroidery · silver choker · 1:07 PM",
-    highlightWords: ["mirror", "birthday", "countdown", "September", "henna"],
+
+    imgCaption:
+      "Mirror selfie · floral kurti · oxidized silver · mehndi · 1:07 PM",
+
+    highlightWords: [
+      "Mirror",
+      "Mehndi",
+      "birthday",
+      "countdown",
+      "16 September",
+    ],
   },
+
   {
     id: "stage-getting-closer",
-    badge: "02 • Getting closer",
-    heading: "Stripes & Starlight",
-    lead: "Chin in hand, striped top, gold stars floating around you — the soft smile the calendar keeps walking toward.",
-    subline: "Days get shorter. This face stays the reason to wait.",
+    badge: "02 • Thoda Aur Kareeb",
+
+    heading: "Stripes, Stars & That Smile",
+
+    lead:
+      "Chin par haath, striped top, aas-paas chhote-chhote stars… aur beech mein woh soft si smile. Birthday jitna kareeb aa raha tha, wait utna hi interesting hota ja raha tha.",
+
+    subline:
+      "Din kam hote gaye… aur excitement thodi badhti gayi. Calendar bhi shayad aapke birthday ka wait kar raha tha.",
+
     img: img4,
-    imgCaption: "Portrait · black-and-white stripes · star filter",
-    highlightWords: ["stars", "smile", "calendar", "wait", "face"],
+
+    imgCaption:
+      "Portrait · black-and-white stripes · little stars · soft smile",
+
+    highlightWords: [
+      "stars",
+      "smile",
+      "wait",
+      "birthday",
+      "closer",
+    ],
   },
+
   {
     id: "stage-almost-here",
-    badge: "03 • Almost here",
-    heading: "Henna & a Peace Sign",
-    lead: "Fresh mehndi covering your hand, fingertips stained dark, peace sign half over your eye — birthday week energy, already on.",
-    subline: "The festive details arrived early. Your day is nearly here, Shruu.",
+    badge: "03 • Bas Ab Thoda Sa",
+
+    heading: "Mehndi, Peace Sign & Birthday Vibes",
+
+    lead:
+      "Haathon par fresh mehndi, dark fingertips aur aankhon ke paas woh cute sa peace sign — festive vibes ne birthday se pehle hi entry maar li thi.",
+
+    subline:
+      "Sab kuch keh raha tha ki special day bas aane hi wala hai… Shuru, ab countdown genuinely exciting ho gaya tha.",
+
     img: img5,
-    imgCaption: "Close-up · peace sign · floral top · henna tips",
-    highlightWords: ["mehndi", "birthday", "festive", "Shruu", "day"],
+
+    imgCaption:
+      "Close-up · peace sign · floral top · fresh mehndi",
+
+    highlightWords: [
+      "Mehndi",
+      "peace sign",
+      "festive",
+      "birthday",
+      "Shuru",
+    ],
   },
+
   {
     id: "stage-the-eve",
-    badge: "04 • The eve",
-    heading: "Soft Sweater, Quiet Frame",
-    lead: "Black-and-white mirror pause in a fuzzy turtleneck — the calm night before 28 September.",
-    subline: "One more sleep. Meri Pyaari Ma'am Ji, tomorrow is yours.",
+    badge: "04 • Birthday Ki Eve",
+
+    heading: "Soft Sweater, Shaant Si Raat",
+
+    lead:
+      "Black-and-white mirror frame, soft fuzzy turtleneck aur woh quiet sa moment — birthday se ek raat pehle ki woh peaceful feeling.",
+
+    subline:
+      "Bas ek aur sleep… phir 16 September. Meri Pyaari Ma'am Ji, kal ka din poora aapka hai.",
+
     img: secondyImg,
-    imgCaption: "B&W mirror selfie · turtleneck · floral wall",
-    highlightWords: ["mirror", "September", "tomorrow", "yours", "night"],
+
+    imgCaption:
+      "B&W mirror selfie · fuzzy turtleneck · quiet evening",
+
+    highlightWords: [
+      "mirror",
+      "quiet",
+      "raat",
+      "16 September",
+      "kal",
+    ],
   },
+
   {
     id: "stage-climax",
-    badge: "05 • 28 September",
-    heading: "Happy Birthday, Shruu",
-    lead: "Leopard print, warm light, eyes on the camera — the countdown ends on this face. Today is your birthday.",
-    subline: "28 September. Celebrating you, exactly as you are.",
+    badge: "05 • 16 September",
+
+    heading: "Happy Birthday, Shuru ❤️",
+
+    lead:
+      "Warm light, leopard print aur camera ki taraf woh confident si look — aur bas, countdown yahin khatam hota hai. Aaj ka din sirf ek date nahi… aaj ka din aapka hai.",
+
+    subline:
+      "16 September. No more counting down. Aaj bas celebrate karna hai — aapko, aapki smile ko, aur uss beautiful person ko jo aap hain.",
+
     img: img2,
-    imgCaption: "Birthday portrait · leopard print · looking here",
-    highlightWords: ["countdown", "birthday", "September", "Celebrating", "Shruu"],
+
+    imgCaption:
+      "Birthday portrait · warm light · leopard print · birthday girl",
+
+    highlightWords: [
+      "16 September",
+      "Happy Birthday",
+      "Shuru",
+      "celebrate",
+      "you",
+    ],
   },
 ] as const;
 
@@ -137,8 +215,8 @@ export const STORY_PANELS = [
   },
   {
     img: img2,
-    eyebrow: "05 · 28 September",
-    title: "Happy Birthday, Shruu",
+    eyebrow: "05 · 16 September",
+    title: "Happy Birthday, Shuru",
     line: "Leopard print, eyes on the camera — the frame where the birthday story lands.",
   },
 ] as const;
@@ -187,38 +265,38 @@ export const QUALITIES = [
 export const STAGES = [
   {
     stage: "I",
-    title: "The first sight",
+    title: "Hilltop flags & open sky",
     mood: "Once",
-    img: schoolImg,
-    desc: "I noticed your grace and poise from the start. Quiet warmth in a room, making an ordinary day memorable.",
+    img: babyImg,
+    desc: "White collar, chin in hand, Om flags and a whole town below — the journey already looking wide.",
   },
   {
     stage: "II",
-    title: "The sweet laughter",
+    title: "Wind in your hair",
     mood: "Then",
-    img: friendImg,
-    desc: "Your laugh cut through the noise like morning sun. Pure, genuine, and contagiously bright.",
+    img: footImg,
+    desc: "Coral tee, bindi, strands catching the breeze outdoors — a quiet candid that still feels close.",
   },
   {
     stage: "III",
-    title: "The real conversations",
+    title: "Rose gold & pearls",
     mood: "After",
-    img: studyImg,
-    desc: "Talking with you revealed how deep, ambitious, and wise you are. Your perspective makes every conversation rewarding.",
+    img: schoolImg,
+    desc: "Champagne drape, pearl edge, sequined black — soft formal light on a composed face.",
   },
   {
     stage: "IV",
-    title: "The great admiration",
+    title: "Yellow florals at home",
     mood: "Until",
     img: collegeImg,
-    desc: "Seeing you conquer goals and carry yourself with confidence made you an inspiration to always look up to.",
+    desc: "Lace trim, bindi, chin resting in your hand — everyday warmth in a doorway frame.",
   },
   {
     stage: "V",
-    title: "Cheering for you",
+    title: "Eyes on today",
     mood: "Always",
     img: img2,
-    desc: "Standing as your constant supporter, celebrating every single milestone you achieve in life.",
+    desc: "Leopard print, steady gaze — the milestone that lands on your birthday: celebrating you.",
   },
 ] as const;
 
@@ -240,51 +318,57 @@ export const GLIMPSES = [
 export const LAYERS = [
   {
     img: img15,
-    title: "Silver and cream",
-    note: "The choker, the embroidery, the elegant way you hold yourself. A timeless photograph.",
+    title: "Silver & Cream Magic",
+    note: "Wo delicate sa choker, beautiful embroidery, aur aapka classy andaaz...",
   },
   {
     img: img16,
-    title: "The cheerful wink",
-    note: "Blue tee, victory sign, that bright wink. Unfiltered energy and spontaneous fun.",
+    title: "Wo Pyaara Sa Wink",
+    note: "Wo cute sa wink... bilkul unfiltered...",
   },
   {
     img: img13,
-    title: "Hallway glow",
-    note: "Lime green against warm light. Graceful and effortless in every frame.",
+    title: "Hallway Glow",
+    note: "Lagta hai Suraj Bhi jal gaya...",
   },
 ] as const;
 
 export const WHISPERS = [
   {
     img: img9,
-    label: "Your laugh",
-    quote: "That laugh of yours brightens up everyone's mood instantly.",
+    label: "Aapki Hassi",
+    quote:
+      "Magic hai usmein, jo sab kuch thik kar deti hai...",
   },
   {
     img: img10,
-    label: "Your poise",
-    quote: "You carry yourself with a natural, effortless elegance.",
+    label: "Aapka Style",
+    quote:
+      "Aapka wo cute sa payara nature...",
   },
   {
     img: img11,
-    label: "Your mind",
-    quote: "The clarity and sharpness in the way you think is genuinely inspiring.",
+    label: "Aapka Mind",
+    quote:
+      "Aapka sab kuch samjh lena...",
   },
   {
     img: img12,
-    label: "Your smile",
-    quote: "Your genuine smile brings warmth into any space you walk into.",
+    label: "Aapki Smile",
+    quote:
+      "Everything for me...",
   },
   {
     img: babyImg,
-    label: "Your beginning",
-    quote: "From the very beginning, destined to do wonderful things in this world.",
+    label: "Shuruaat",
+    quote:
+      "Special for me...",
   },
   {
     img: footImg,
-    label: "Your story",
-    quote: "Your journey started small — and watching your growth is remarkable.",
+    label: "Aapki Kahani",
+    quote:
+      "Love to Listen...",
   },
 ] as const;
 
@@ -292,33 +376,41 @@ export const DREAMS = [
   {
     img: img2,
     when: "Golden Evenings",
-    title: "Quiet Milestones & Shared Pride",
-    desc: "Achieving the big dreams you quietly worked so hard for. Stepping back after long days to celebrate each victory, knowing every ounce of effort was worth it.",
-    note: "I can't wait to see you conquer every milestone you've set your heart on.",
+    title: "Kamyabi Aur Aap Par Proud Moment",
+    desc:
+      "Un saare sapno ko reality bante dekhna jinke liye aapne quietly itni mehnat ki hai. Ek din peeche mudkar dekhna, saari struggles ko yaad karna aur kehna haan, maine kar dikhaya.",
+    note:
+      "Meri bas itni si wish hai ki aapko ek din apni har mehnat ka wo moment mile jahan aap khud par genuinely proud feel karo.",
     tag: "Milestone",
   },
   {
     img: studyImg,
     when: "Fresh Mornings",
-    title: "Unstoppable Ambition & Focus",
-    desc: "Notes open, ambitions clear, turning early mornings into stepping stones. Standing proudly in your corner, cheering the loudest as you conquer every goal.",
-    note: "Seeing you dedicated and passionate is one of the most admirable things about you.",
+    title: "Hard Work & Big Goals",
+    desc:
+      "Khuli hui notes, fresh coffee, clear goals aur wo determination jo aapko har din thoda aur aage le jaata hai. Aapke dreams jitne bade hain, unke liye aapki mehnat bhi utni hi beautiful hai.",
+    note:
+      "Aapka dedication dekhna genuinely inspiring hai... bas aise hi apne goals ke peeche lagi rehna, because you are capable of much more than you realise.",
     tag: "Ambition",
   },
   {
     img: collegeImg,
     when: "Spontaneous Hours",
-    title: "Carefree Laughter & Unfiltered Joy",
-    desc: "Slow evening walks, breezy coffee stops, and contagious laughter that makes time stand still. Pure, radiant moments where worries simply melt away.",
-    note: "Your laughter is pure magic — may your days be overflowing with it.",
+    title: "Befikra Hassi Aur Unfiltered Joy",
+    desc:
+      "Random walks, unexpected plans, coffee stops aur wo conversations jo pata hi nahi chalne deti ki waqt kab nikal gaya. Life ke best moments shayad wahi hote hain jo plan nahi kiye jaate.",
+    note:
+      "Aapki hassi waise hi hamesha genuine rahe... aur life mein aise moments kabhi kam na ho jahan aap bina kisi tension ke bas khulkar khush reh sako.",
     tag: "Joy",
   },
   {
     img: friendImg,
     when: "Through Every Season",
-    title: "Unwavering Support & True Presence",
-    desc: "A steady, uplifting bond where you are always understood and celebrated for exactly who you are. The kind of warmth that never dims, whatever tomorrow brings.",
-    note: "Whatever life brings, remember you always have someone who believes in you unconditionally.",
+    title: "Humesha Ka Saath",
+    desc:
+      "Ek aisa bond jahan explanations ki zarurat kam ho aur understanding zyada. Jahan life kitni bhi busy, complicated ya unpredictable ho, respect, trust aur warmth apni jagah banaye rakhein.",
+    note:
+      "Life aapko jahan bhi le jaaye, bas itna yaad rakhna — aapki journey ko genuinely appreciate karne wala koi hamesha aapke liye khush rahega.",
     tag: "Forever",
   },
 ] as const;
@@ -354,139 +446,366 @@ export interface BookChapter {
 export const BOOK_CHAPTERS: readonly BookChapter[] = [
   {
     id: "chapter-1",
-    tabTitle: "Prologue",
+    tabTitle: "Pheli Dafa",
     chapterNum: "Chapter I",
+
     leftPage: {
-      kicker: "The Dedication",
-      title: "To Shruu",
-      subtitle: "A special keepsake for Meri Pyaari Ma'am Ji",
+      kicker: "Ek Chhoti Si Shuruaat",
+      title: "Pheli Dafa",
+      subtitle: "Meri Pyaari Ma'am Ji ke naam",
+
       paragraphs: [
-        "Birthdays are a moment to pause, celebrate life, and express appreciation for people who bring genuine light and positivity into our days.",
-        "So this keepsake page was made for you — a dedicated space holding warm wishes, genuine admiration, and high hopes for your incredible journey ahead.",
+        "Kuch log zindagi mein bas ek baar milte hain, lekin aapke liye sab kuch banne jaate hain. Mere Liye aap wohi person ho. Mere Sab Kuch....",
+
+        "Pata nahi uss din jab aapko pheli baar dekha pata nahi aisa kya tha, lekin aaj bhi jab uss din ke baare mein sochta hoon, toh ek cheez yaad aati hai. Aapki wo pyaari smile",
+
+        "Shayad uss waqt mujhe khud bhi nahi pata tha ki mein aapko har roz pareshan karunga.",
       ],
-      quote: "“May this birthday mark the beginning of your most triumphant and fulfilling chapter yet.”",
+
+      quote:
+        "“Jab se aap mile ho tab se har din pyaara sa lagta hai. Aapke saath har pal special lagta hai.”",
+
       pageNumber: 1,
     },
+
     rightPage: {
-      kicker: "The Journey",
-      title: "Celebrating Who You Are",
+      kicker: "Miss Shuru",
+      title: "Pheli Nazar Se Aaj Tak",
+
       paragraphs: [
-        "Your journey, your hard work, and the dignity with which you handle every challenge make you stand out completely.",
-        "From small everyday moments to big aspirations, your positive energy leaves an indelible mark on everyone lucky enough to know you.",
-        "May this year reward you with exciting breakthroughs, endless peace of mind, and the sweetest victories.",
+        "Kuch toh hai jo aap mein bahut zyada special hai, jo mujhe uss din se yaad hai jab mene aapko pehli baar dekha tha.",
+
+        "Waqt ke saath shayad cheezein badalti gayi, mein aapko aur zayada pareshan karne lage gaya, aapko thoda aur samajhne ka mauka mila lekin ek cheez same rahi aapki woh alag si presence. Jo bhoot special hai.",
+
+        "Aur shayad isi liye aaj bhi woh moment yaad hai jab mene aapko pheli baar dekha tha, ek normal memory nahi lagti. Woh ek aisi yaad hai jise yaad karke automatically smile aa jaati hai.",
       ],
+
       pageNumber: 2,
     },
   },
+
   {
     id: "chapter-2",
-    tabTitle: "Her Spark",
+    tabTitle: "Aapki Muskaan",
     chapterNum: "Chapter II",
+
     leftPage: {
-      kicker: "The Bright Spirit",
-      title: "Contagious Laughter & Energy",
+      kicker: "Ek Khoobsurat Cheez",
+      title: "Aapki Muskaan",
+
       paragraphs: [
-        "Your cheerful laughter has a unique way of turning stressful days into calm ones. It's a reminder of optimism and finding joy in the little things.",
-        "Your unique perspective, sharp sense of humor, and infectious enthusiasm are true superpowers.",
+        "Aapki smile mein kuch toh baat hai. Woh sirf ek smile nahi hai — usmein ek ajeeb si warmth hai jo saamne wale ka mood bina kuch kahe better kar deti hai.",
+
+        "Kabhi kabhi ek chhoti si smile bhi poore din ka mood change kar deti hai, aur aapki smile bilkul waisi hi hai — simple, natural aur dil se nikli hui.",
+
+        "Aur sabse achhi baat? Aapko shayad khud bhi realise nahi hota ki aapki ek smile kisi aur ke liye kitni special ho sakti hai.",
       ],
-      quote: "“Never lose that spark — it's the light that makes everything around you brighter.”",
+
+      quote:
+        "“Kuch smiles sirf chehre par nahi hoti… woh saamne wale ke din mein bhi thodi si roshni chhod jaati hain.”",
+
       pageNumber: 3,
     },
+
     rightPage: {
-      kicker: "Strength & Grace",
-      title: "Wisdom & Determination",
+      kicker: "That Little Spark",
+      title: "Muskaan Ke Peeche Wali Aap",
+
       paragraphs: [
-        "You possess resilience and wisdom that command genuine respect. Watching your determination as you strive towards your goals is truly inspiring.",
-        "Keep believing in your brilliance. You have the intellect and heart to reach every summit you set your sights upon.",
+        "Aapki smile jitni khoobsurat hai, usse bhi zyada khoobsurat hai woh personality jo uss smile ke peeche hai.",
+
+        "Aapka sense of humour, aapka way of talking aur chhoti-chhoti baaton mein khushi dhoond lena — yeh sab milkar aapko aur bhi special bana dete hain.",
+
+        "Bas ek request hai — life chahe kitni bhi busy ya difficult ho jaaye, uss smile ko kabhi disappear mat hone dena.",
       ],
+
       pageNumber: 4,
     },
   },
+
   {
     id: "chapter-3",
-    tabTitle: "Milestones",
+    tabTitle: "Jheel si Aankhein",
     chapterNum: "Chapter III",
+
     leftPage: {
-      kicker: "Appreciation",
-      title: "A Grounded, Honest Presence",
+      kicker: "Aankhon Ki Baat",
+      title: "Jheel Si Aankhein",
+
       paragraphs: [
-        "In a busy world, finding someone so genuine, authentic, and grounded is rare.",
-        "Thank you for being someone people can respect and count on, and for bringing authenticity into every interaction.",
+        "Kuch aankhein sirf dekhti nahi hain, woh bahut kuch keh bhi jaati hain. Aapki aankhon mein bhi ek alag si depth hai — shaant, expressive aur thodi si mysterious.",
+
+        "Kabhi kabhi bina kuch kahe bhi aankhein woh baat keh deti hain jo words shayad kabhi explain nahi kar paate.",
+
+        "Aur shayad isi liye aapki aankhon mein ek aisi simplicity hai jo ek baar notice karne ke baad easily ignore nahi hoti.",
       ],
-      quote: "“True elegance is staying true to yourself — and you do that effortlessly.”",
+
+      quote:
+        "“Jheel ki tarah hain aapki aankhein — upar se shaant, lekin andar apni ek poori duniya sambhale hue.”",
+
       pageNumber: 5,
     },
+
     rightPage: {
-      kicker: "Wishes For You",
-      title: "Health, Peace & Prosperity",
+      kicker: "The Unspoken",
+      title: "Aankhon Mein Chhupi Kahaani",
+
       paragraphs: [
-        "May your path ahead be cleared of obstacles, and may your days be packed with exciting opportunities and good health.",
-        "Whatever goals you are chasing right now, may you conquer them with flying colors.",
+        "Kabhi kabhi aapko dekhkar lagta hai ki aapki aankhein aapse pehle hi bahut kuch bata deti hain — khushi, excitement, irritation aur woh random si curiosity bhi.",
+
+        "Shayad isi wajah se aapki aankhein aapki personality ka ek beautiful part hain. Simple bhi, expressive bhi, aur bilkul aapki tarah — genuine.",
+
+        "Kuch cheezein explain karne ki zaroorat nahi hoti. Bas notice karne ki hoti hain.",
       ],
+
       pageNumber: 6,
     },
   },
+
   {
     id: "chapter-4",
-    tabTitle: "The Future",
+    tabTitle: "Zulfien",
     chapterNum: "Chapter IV",
+
     leftPage: {
-      kicker: "Birthday Commitments",
-      title: "Always In Your Corner",
+      kicker: "Ek Aur Khoobsurat Detail",
+      title: "Zulfien",
+
       paragraphs: [
-        "Here to always celebrate your victories, cheer the loudest at your triumphs, and offer steady support whenever needed.",
-        "May you always walk forward with confidence, knowing you have people who genuinely wish you the very best.",
+        "Aur phir aati hain aapki woh zulfien — jo kabhi perfectly set hoti hain aur kabhi bilkul apni marzi se chalti hain. 😂",
+
+        "Lekin honestly, shayad wahi naturalness unhe aur beautiful banati hai. Perfect hone ki zaroorat hi kya hai jab imperfect moments hi itne cute lagte hain?",
+
+        "Kabhi hawa ke saath udti hui, kabhi face par aa jaati hui — aapki zulfon ka bhi apna ek personality trait hai.",
       ],
-      quote: "“The best is yet to come. Dream big, stay bold, and keep shining.”",
+
+      quote:
+        "“Kuch khoobsurtiyaan perfect nahi hoti… bas apni hoti hain, aur wahi unhe khaas banati hain.”",
+
       pageNumber: 7,
     },
+
     rightPage: {
-      kicker: "Birthday Blessing",
-      title: "Happiest Birthday, Ma'am Ji",
+      kicker: "The Little Details",
+      title: "Jo Cheezein Notice Ho Jaati Hain",
+
       paragraphs: [
-        "On this memorable day, wishing you boundless happiness, peace, vibrant health, and extraordinary success in everything you undertake.",
-        "Thank you for being such an admirable and special person. Happiest Birthday, Shruu!",
+        "Aapke baare mein sabse interesting baat yeh hai ki aapki beauty sirf ek cheez mein nahi hai. Woh chhoti-chhoti details mein hai — smile, aankhein, baatein, expressions aur woh natural sa attitude.",
+
+        "Shayad isi liye aapko describe karna thoda mushkil hai. Ek quality likho toh doosri yaad aa jaati hai.",
+
+        "Aur honestly, yeh book shayad isi liye banani padi… kyunki ek page mein aapko describe karna thoda unfair hota. 😌",
       ],
+
+      pageNumber: 8,
+    },
+  },
+
+  {
+    id: "chapter-5",
+    tabTitle: "Care for Everyone",
+    chapterNum: "Chapter V",
+
+    leftPage: {
+      kicker: "Dil Se",
+      title: "Care For Everyone",
+
+      paragraphs: [
+        "Aapki sabse beautiful qualities mein se ek hai — aap logon ki care karti hain. Chhoti si cheez ho ya koi genuinely important matter, aapke andar doosron ke liye concern naturally aa jaata hai.",
+
+        "Aap shayad har baar express nahi karti, lekin aapke actions bahut kuch bata dete hain. Aur mere according, kisi ke liye care karna uss insaan ki personality ki sabse genuine qualities mein se ek hai.",
+
+        "Aapke andar woh warmth hai jo logon ko comfortable feel karati hai — aur yeh quality honestly bahut rare hai.",
+      ],
+
+      quote:
+        "“Khoobsurti chehre se nazar aa sakti hai, lekin asli khoobsurti tab dikhti hai jab dil doosron ke liye care karta hai.”",
+
+      pageNumber: 9,
+    },
+
+    rightPage: {
+      kicker: "A Beautiful Heart",
+      title: "Aapka Dil",
+
+      paragraphs: [
+        "Aap jis tarah apne aas-paas ke logon ke liye concern rakhti hain, woh aapke nature ke baare mein bahut kuch keh deta hai.",
+
+        "Kabhi advice dena, kabhi support karna, kabhi bas kisi ki baat sun lena — yeh chhoti cheezein hoti hain, lekin saamne wale ke liye bahut matter karti hain.",
+
+        "Bas isi tarah genuine rehna. Duniya mein achhe log bahut hain, lekin genuinely caring log thode kam milte hain.",
+      ],
+
+      pageNumber: 10,
+    },
+  },
+
+  {
+    id: "chapter-6",
+    tabTitle: "Sweet Voice",
+    chapterNum: "Chapter VI",
+
+    leftPage: {
+      kicker: "Awaaz Mein Bhi Ek Kahaani",
+      title: "Sweet Voice",
+
+      paragraphs: [
+        "Aapki voice mein ek alag si softness hai. Aisi awaaz jo bas suni nahi jaati, feel bhi hoti hai.",
+
+        "Chahe normal conversation ho, excitement mein kuch batana ho, ya phir woh random late-night talks — aapki voice mein ek comfort sa hai.",
+
+        "Aur kabhi kabhi conversation mein kya baat ho rahi hai, usse zyada achha bas yeh lagta hai ki saamne wala insaan baat kar raha hai.",
+      ],
+
+      quote:
+        "“Kuch awaazein kaano tak aati hain, aur kuch seedha yaadon mein reh jaati hain.”",
+
+      pageNumber: 11,
+    },
+
+    rightPage: {
+      kicker: "The Little Comfort",
+      title: "Bas Aapki Awaaz",
+
+      paragraphs: [
+        "Aapki voice ki sabse achhi baat shayad yeh hai ki woh forced nahi lagti. Bilkul natural — bilkul aapki personality ki tarah.",
+
+        "Kabhi hasi, kabhi serious tone, kabhi woh cute sa irritation — har mood mein aapki voice ki apni ek alag vibe hoti hai.",
+
+        "Aur haan, agar kabhi kisi ne kaha ho ki aapki voice sweet nahi hai… toh respectfully disagree karna allowed hai. 😌",
+      ],
+
+      pageNumber: 12,
+    },
+  },
+
+  {
+    id: "chapter-7",
+    tabTitle: "Late Night Talk",
+    chapterNum: "Chapter VII",
+
+    leftPage: {
+      kicker: "After Midnight",
+      title: "Late Night Talk",
+
+      paragraphs: [
+        "Pata nahi late-night conversations mein aisa kya magic hota hai, lekin raat ko ki gayi random baatein din ki conversations se thodi zyada special lagti hain.",
+
+        "Kabhi serious topics, kabhi completely random nonsense, kabhi hasi-mazaak aur kabhi bas bina kisi particular reason ke baat karte rehna.",
+
+        "Shayad achhi conversations ka secret topic nahi hota. Bas saamne wala insaan interesting hona chahiye.",
+      ],
+
+      quote:
+        "“Raat lambi ho ya baat — jab conversation achhi ho, toh waqt ka pata hi nahi chalta.”",
+
+      pageNumber: 13,
+    },
+
+    rightPage: {
+      kicker: "Those Little Conversations",
+      title: "Bas Yunhi Baatein",
+
+      paragraphs: [
+        "Kuch conversations kisi conclusion ke liye nahi hoti. Woh bas hoti hain — random, imperfect aur completely unnecessary… phir bhi somehow memorable.",
+
+        "Aur shayad aapke saath ki gayi baaton ki beauty bhi wahi hai. Har conversation ko kisi reason ki zaroorat nahi hoti.",
+
+        "Kabhi kabhi bas kisi se baat karna hi enough hota hai.",
+      ],
+
+      pageNumber: 14,
+    },
+  },
+
+  {
+    id: "chapter-8",
+    tabTitle: "First Thought",
+    chapterNum: "Chapter VIII",
+
+    leftPage: {
+      kicker: "A Quiet Little Thought",
+      title: "First Thought",
+
+      paragraphs: [
+        "Kuch logon ke baare mein sochne ke liye koi special reason nahi chahiye hota. Kabhi randomly koi song, koi place, koi joke ya koi chhoti si cheez unki yaad dila deti hai.",
+
+        "Aur phir bina kisi warning ke ek thought aata hai — “Yeh cheez Shuru ko batani chahiye.”",
+
+        "Shayad kisi ko yaad karne ka sabse simple aur genuine version yahi hai — jab koi insaan bina bulaye thoughts mein aa jaaye.",
+      ],
+
+      quote:
+        "“Kuch log yaadon mein nahi rehte… woh random thoughts ke beech apni jagah bana lete hain.”",
+
+      pageNumber: 15,
+    },
+
+    rightPage: {
+      kicker: "The Birthday Ending",
+      title: "Happiest Birthday, Ma'am Ji",
+
+      paragraphs: [
+        "Toh Shuru, iss chhoti si book ke har page mein ek alag cheez likhi hai — pehli mulaqat se lekar smile, aankhon, zulfon, care, voice, late-night talks aur un random thoughts tak.",
+
+        "Lekin agar in sab ko ek sentence mein likhna ho, toh bas itna kahunga — aap jaisi hain, waise hi bahut special hain. Aapko kisi comparison, perfection ya explanation ki zaroorat nahi hai.",
+
+        "May this birthday bring you woh saari khushiyan jo aap deserve karti hain, woh success jiske liye aap mehnat karti hain, aur woh peace jo life ko truly beautiful banata hai.",
+
+        "Hamesha khush rahiye, haste rahiye, apni beautiful si personality ko waise hi rakhiye — aur haan, Ma'am Ji rehna bilkul mat chhodiye. ❤️",
+
+        "Happiest Birthday, Shuru! Aapka aane wala saal aapke liye bahut saari beautiful memories, achievements aur reasons to smile lekar aaye.",
+      ],
+
       signOff: {
-        close: "Warmest wishes & highest regards,",
+        close: "With lots of warmth, respect & good wishes,",
         sign: "Dipesh",
       },
-      pageNumber: 8,
+
+      pageNumber: 16,
     },
   },
 ] as const;
 
 export const LETTER = {
-  date: "28 September 2026",
-  greeting: "Dearest Shruu,",
+  date: "16 September 2026",
+  greeting: "Meri Pyaari Shuru,",
   paragraphs: [
-    "Today is a celebration of you — your kindness, your brilliance, and the wonderful warmth you share with the world.",
-    "Watching your growth and your dedication is inspiring. May your birthday be as delightful, bright, and vibrant as you are.",
-    "Wishing you a year filled with unforgettable achievements, good health, peace, and endless reasons to smile.",
+    "Enjoy your special day meri pyaari ma'am ji..",
   ],
-  close: "Wishing you the absolute best,",
-  sign: "Dipesh",
+  close: "Dil se dher saara pyar aur best wishes,",
+  sign: "",
 };
 
 export const REFLECTIONS = [
   {
-    src: img1,
-    title: "Grace & Light",
-    desc: "A warm and composed presence that naturally brightens the room.",
-  },
-  {
     src: img2,
-    title: "Calm Confidence",
-    desc: "Carrying yourself with quiet strength, dignity, and poise.",
+    title: "Aankhon Se Teer",
+    note: "Leopard print wala look",
+    desc: "Ma'am agar aise dekhoge toh hume kidhar jaaye...",
   },
   {
     src: img13,
-    title: "Bright Energy",
-    desc: "Effortless style and genuine smiles in every snapshot.",
+    title: "Lime & Daylight",
+    note: "Hallway wala mirror",
+    desc: "Hamesha Camera Ready...",
   },
   {
     src: collegeImg,
-    title: "Wisdom & Ambition",
-    desc: "Always learning, growing, and inspiring those around you.",
+    title: "Peela Phool & Bindi",
+    note: "Lace trim & bindi",
+    desc: "Ufffff Look... Hayeee... ",
+  },
+  {
+    src: warmPortrait,
+    title: "Wo Pyari Si Smile",
+    note: "Lavender daylight",
+    desc: "Cute Smile...",
+  },
+  {
+    src: secondyImg,
+    title: "Thoda Quiet, Thoda Magic",
+    note: "Classic Black & White",
+    desc: "Bas Meri Nazar na Lage aapko...",
   },
 ] as const;

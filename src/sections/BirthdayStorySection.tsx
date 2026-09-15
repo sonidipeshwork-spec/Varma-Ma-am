@@ -5,7 +5,7 @@ export default function BirthdayStorySection() {
   return (
     <>
       <section id="birthday" className="story-pin story-pin-hb">
-        <h2 className="hb-line" aria-label="Happy Birthday Shruu">
+        <h2 className="hb-line" aria-label="Happy Birthday Shuru">
           {BIRTHDAY_WORDS.map((word) => (
             <span key={word} className="hb-word">
               {word.split("").map((ch, i) => (

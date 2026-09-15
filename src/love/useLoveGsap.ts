@@ -588,102 +588,26 @@ function setupScrollExperience(reduced: boolean) {
       );
     });
 
-    gsap.utils.toArray<HTMLElement>("#unsaid .reflect-card").forEach((card) => {
-      gsap.fromTo(
-        card,
-        { y: 28, opacity: 0.2 },
-        {
-          y: 0,
-          opacity: 1,
-          ease: "power2.out",
-          immediateRender: false,
-          clearProps: "transform",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
-            end: "top 58%",
-            scrub: 0.45,
-          },
-        }
-      );
-    });
-  }
-
-  // --- Bright days ahead: keepsake reveal ---
-  const futureSec = document.querySelector<HTMLElement>("#days-ahead");
-  if (futureSec) {
-    const futureCards = gsap.utils.toArray<HTMLElement>("#days-ahead .keepsake-card");
-    
-    // Header reveal
-    gsap.from("#days-ahead .future-fold-head > *", {
-      y: 32,
-      opacity: 0,
-      stagger: 0.12,
-      duration: 0.85,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: "#days-ahead",
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-    });
-
-    // 3D Staggered entrance of keepsake cards
-    futureCards.forEach((card, index) => {
-      const isEven = index % 2 === 0;
-      const tiltInner = card.querySelector<HTMLElement>(".tilt-inner");
-      const noteBadge = card.querySelector<HTMLElement>(".future-personal-note");
-      const sparkle = card.querySelector<HTMLElement>(".keepsake-sparkle");
-
-      const tl = gsap.timeline({
+    // Five equal reflection frames — one staggered entrance (cleaner than per-card scrub)
+    const reflectRoot = compliments.querySelector<HTMLElement>(".reflect");
+    const reflectCards = gsap.utils.toArray<HTMLElement>("#unsaid .reflect-card");
+    if (reflectRoot && reflectCards.length) {
+      gsap.from(reflectCards, {
+        y: 36,
+        opacity: 0,
+        scale: 0.97,
+        stagger: 0.09,
+        duration: 0.7,
+        ease: "power3.out",
+        immediateRender: false,
+        clearProps: "transform",
         scrollTrigger: {
-          trigger: card,
-          start: "top 88%",
+          trigger: reflectRoot,
+          start: "top 82%",
           toggleActions: "play none none none",
         },
       });
-
-      tl.fromTo(
-        card,
-        {
-          y: 50,
-          opacity: 0,
-          rotateZ: isEven ? -2.5 : 2.5,
-          scale: 0.94,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          rotateZ: 0,
-          scale: 1,
-          duration: 0.9,
-          ease: "power3.out",
-        }
-      );
-
-      if (noteBadge) {
-        tl.fromTo(
-          noteBadge,
-          { opacity: 0, y: 12, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)" },
-          "-=0.4"
-        );
-      }
-
-      // Gentle floating animation on sparkles
-      if (sparkle) {
-        gsap.to(sparkle, {
-          y: -8,
-          scale: 1.15,
-          opacity: 0.9,
-          duration: 2.4,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          delay: index * 0.3,
-        });
-      }
-    });
+    }
   }
 
   // --- Ending ---

@@ -9,10 +9,10 @@ export default function QualitiesSection() {
   return (
     <section id="qualities" className="fold fold-why">
       <header className="fold-head why-fold-head">
-        <p className="why-eyebrow">Six qualities</p>
+        <p className="why-eyebrow">My most favorite qualities of you</p>
         <h2>What makes you so special</h2>
         <p className="why-lede">
-          Six photos. Six true details — written from what’s actually in the frame.
+          I love you for your beautiful smile, your kind heart, and your infectious laughter.
         </p>
       </header>
 

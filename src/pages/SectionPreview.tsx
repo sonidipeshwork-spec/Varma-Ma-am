@@ -12,7 +12,6 @@ import {
   FilmSection,
   BirthdayBookSection,
   UnsaidSection,
-  DaysAheadSection,
   EndingSection,
 } from "@/sections";
 
@@ -25,7 +24,6 @@ const SCROLL_SECTIONS = new Set([
   "journey",
   "film",
   "unsaid",
-  "days-ahead",
   "ending",
 ]);
 
@@ -35,13 +33,12 @@ const SECTIONS_MAP: Record<string, { title: string; component: ReactNode }> = {
   birthday: { title: "Happy Birthday", component: <BirthdayStorySection /> },
   countdown: { title: "Birthday Countdown", component: <BirthdayCountdownSection /> },
   frames: { title: "Five Frames of You", component: <BirthdayStorySection /> },
-  opening: { title: "For Shruu", component: <OpeningSection /> },
+  opening: { title: "For Shuru", component: <OpeningSection /> },
   qualities: { title: "Six Qualities", component: <QualitiesSection /> },
   journey: { title: "Memorable Journey", component: <JourneySection /> },
   film: { title: "A Film For You", component: <FilmSection /> },
   "birthday-book": { title: "Birthday Book", component: <BirthdayBookSection /> },
   unsaid: { title: "Things Unsaid", component: <UnsaidSection /> },
-  "days-ahead": { title: "Bright Days Ahead", component: <DaysAheadSection /> },
   ending: { title: "Ending Wish", component: <EndingSection /> },
 };
 

@@ -90,23 +90,21 @@ export default function UnsaidSection() {
 
       <div className={`reflect-block${allSaid ? " is-complete" : ""}`}>
         <header className="reflect-head">
-          <p className="whisper-eyebrow">After they are said</p>
+          <p className="whisper-eyebrow">My favorite things about you</p>
           <h3>What stays true anyway</h3>
-          <p>
-            Whether the cards are open or not, these are the quieter truths that
-            do not need a flip.
-          </p>
+          <p>The things that make you so special.</p>
         </header>
 
-        <div className="reflect">
+        <div className="reflect" aria-label="Five portraits that stay true">
           {REFLECTIONS.map((r, i) => (
-            <figure
-              key={r.title}
-              className={`reflect-card ${i === 0 ? "is-lead" : ""}`}
-            >
-              <img src={r.src} alt={r.title} loading="lazy" />
+            <figure key={r.title} className="reflect-card">
+              <div className="reflect-media">
+                <img src={r.src} alt={r.title} loading="lazy" />
+              </div>
               <figcaption>
-                <h3>{r.title}</h3>
+                <span className="reflect-index">{String(i + 1).padStart(2, "0")}</span>
+                <span className="reflect-note">{r.note}</span>
+                <h4>{r.title}</h4>
                 <p>{r.desc}</p>
               </figcaption>
             </figure>

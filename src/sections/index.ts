@@ -8,5 +8,4 @@ export { default as JourneySection } from "./JourneySection";
 export { default as FilmSection } from "./FilmSection";
 export { default as BirthdayBookSection } from "./BirthdayBookSection";
 export { default as UnsaidSection } from "./UnsaidSection";
-export { default as DaysAheadSection } from "./DaysAheadSection";
 export { default as EndingSection } from "./EndingSection";

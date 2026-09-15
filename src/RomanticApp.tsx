@@ -11,7 +11,6 @@ import {
   FilmSection,
   BirthdayBookSection,
   UnsaidSection,
-  DaysAheadSection,
   EndingSection,
 } from "@/sections";
 
@@ -109,7 +108,6 @@ export default function RomanticApp() {
           <FilmSection />
           <BirthdayBookSection />
           <UnsaidSection />
-          <DaysAheadSection />
           <EndingSection />
         </>
       )}

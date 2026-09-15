@@ -6,11 +6,10 @@ export default function JourneySection() {
   return (
     <section id="journey" className="fold fold-dark fell-section">
       <header className="fold-head fell-head">
-        <p className="fell-eyebrow">Five milestones</p>
-        <h2>A memorable journey</h2>
+        <p className="fell-eyebrow">Your Unique Moments</p>
+        <h2>Meri Ma'am Ji</h2>
         <p className="fell-lede">
-          Five moments from first acquaintance to great admiration. Scroll through
-          the memories that make celebrating you so special.
+          Some of my favorite memories of you that I will always cherish.
         </p>
       </header>
 

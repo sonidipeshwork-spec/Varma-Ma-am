@@ -25,12 +25,28 @@ const QUESTIONS: Question[] = [
     id: 1,
     tag: "Question 01",
     category: "Birthday Queen 👑",
-    question: "Be honest... aaj ke din sabse zyada attention kiski banti hai? 👀",
+    question: "Sacchi batao... aaj sabse zyada pyaar aur attention kisko milna chahiye? 🥺❤️",
     options: [
-      { text: "Her. Obviously, it's literally her birthday.", reaction: "Correct answer detected. Birthday Queen officially crowned. 👑", emoji: "👑" },
-      { text: "Me, I also deserve some attention", reaction: "Nice try. Today is NOT about you. 😂", emoji: "😌" },
-      { text: "Both of us, because we're iconic", reaction: "Self-confidence level: birthday premium. ✨", emoji: "🔥" },
-      { text: "Whoever brought the cake", reaction: "Finally, someone understands the real hierarchy. 🎂", emoji: "🍰" },
+      {
+        text: "Obviously meri Ma'am Ji ko, she deserves the entire world! 👑✨",
+        reaction: "100% Correct! Aaj ka poora din bas meri Ma'am Ji ki khushiyo ke naam! 🥰💖",
+        emoji: "💖"
+      },
+      {
+        text: "Govind Dev Ji ko, unka aashirwad meri Ma'am Ji pe hamesha rahe 🙏✨",
+        reaction: "Sabse pyaari baat! Govind Dev Ji ki kripa bane rahe aur Ma'am Ji ki har dua poori ho! 🚩🌸",
+        emoji: "🙏"
+      },
+      {
+        text: "Un sabko jo meri Ma'am Ji ko special feel karane aaye hain 🥹",
+        reaction: "Aww, total wholesome vibes! Infinite love for Ma'am Ji today. 🤗💕",
+        emoji: "🧸"
+      },
+      {
+        text: "Jo meri Ma'am Ji ke liye Cake aur gifts laya hai! 🎂🎁",
+        reaction: "True! Yummy treats for the absolute sweetest Ma'am Ji! 🍰✨",
+        emoji: "🎉"
+      },
     ],
   },
 
@@ -38,12 +54,28 @@ const QUESTIONS: Question[] = [
     id: 2,
     tag: "Question 02",
     category: "Birthday Behaviour 🎂",
-    question: "Birthday girl ko aaj kitne compliments milne chahiye before she says 'bas karo'? 😌",
+    question: "Hamari Ma'am Ji ko aaj kitne compliments milne chahiye before she blushes? 🥺✨",
     options: [
-      { text: "10 compliments", reaction: "Too low. Please increase the budget. 😂", emoji: "💅" },
-      { text: "50 compliments minimum", reaction: "Now we're respecting birthday regulations. 👑", emoji: "✨" },
-      { text: "Unlimited. It's her day.", reaction: "Exactly. Compliments have no daily limit today. 💖", emoji: "🥰" },
-      { text: "She'll never say bas karo", reaction: "Finally, someone knows her properly. 😭", emoji: "😂" },
+      {
+        text: "10 compliments minimum",
+        reaction: "Arre re, Ma'am Ji aapko lagta hai main manunga. 💕",
+        emoji: "🌸"
+      },
+      {
+        text: "50 compliments with full VIP treatment",
+        reaction: "Aisi pyaari Ma'am Ji ke saamne 500 compliments bhi kam pad jayenge! 👑💖",
+        emoji: "✨"
+      },
+      {
+        text: "Unlimited! She deserves all the love in the world today 💖",
+        reaction: "Spot on! Aaj Ma'am Ji ki smile hi poore din ka best part hai. 🥰✨",
+        emoji: "🥰"
+      },
+      {
+        text: "Ma'am Ji kitni bhi tareef sun lein, kam hi lagegi 🥹",
+        reaction: "Sach mein! Unki cuteness ka koi match hi nahi hai. 🧸💖",
+        emoji: "🥹"
+      },
     ],
   },
 
@@ -51,12 +83,28 @@ const QUESTIONS: Question[] = [
     id: 3,
     tag: "Question 03",
     category: "Birthday Tax 💸",
-    question: "Aaj birthday girl ke liye 'Birthday Tax' mein sabse pehle kya dena padega? 😏",
+    question: "Aaj hamari Ma'am Ji ko 'Birthday Tax' mein sabse pehle kya milna chahiye? 🥺🎁",
     options: [
-      { text: "Chocolate", reaction: "Mandatory payment accepted. 🍫", emoji: "🍫" },
-      { text: "A cute gift", reaction: "Transaction approved by the Birthday Department. 🎁", emoji: "🎁" },
-      { text: "A full day of attention", reaction: "Expensive... but completely justified. 👑", emoji: "💖" },
-      { text: "Everything. It's her birthday.", reaction: "Someone understands the assignment. 😂", emoji: "💳" },
+      {
+        text: "Favorite chocolate KitKat 🍫",
+        reaction: "Yum! Ma'am Ji ke din ki sabse sweet shuruat. 🍫✨",
+        emoji: "🍫"
+      },
+      {
+        text: "Ek bohot hi pyaara sa surprise gift 🎁",
+        reaction: "Approved! Next Sat. 🥰🌸",
+        emoji: "🎁"
+      },
+      {
+        text: "Poore din ka 100% attention aur pampering 👑",
+        reaction: "Aaj zayada pareshan kiya jaayega. 💖✨",
+        emoji: "💖"
+      },
+      {
+        text: "Sab kuch! Aaj Ma'am Ji jo mange wahi hazir hai ✨",
+        reaction: "100/10 answer! Bas exceptions hai thode 🥳💳",
+        emoji: "🥰"
+      },
     ],
   },
 
@@ -64,12 +112,28 @@ const QUESTIONS: Question[] = [
     id: 4,
     tag: "Question 04",
     category: "Birthday Wish List ✨",
-    question: "Agar birthday girl ko ek wish mil jaaye, sabse pehle kya maangegi? 👀",
+    question: "Agar hamari Ma'am Ji ko ek magic wish mil jaye, toh woh sabse pehle kya maangengi? 🥺✨",
     options: [
-      { text: "Unlimited shopping money", reaction: "Bank account has officially entered danger mode. 💸", emoji: "🛍️" },
-      { text: "A dream vacation", reaction: "Passport is already warming up. ✈️", emoji: "🌴" },
-      { text: "Her favourite person forever", reaction: "Okayyy, someone brought the emotions. 🥹", emoji: "❤️" },
-      { text: "One more birthday every month", reaction: "Honestly... we'd support this law. 😂", emoji: "🎂" },
+      {
+        text: "Unlimited shopping! 🛍️✨",
+        reaction: "Yesss! Unko har favorite cheez milni chahiye! 🛍️",
+        emoji: "🛍️"
+      },
+      {
+        text: "Ek peaceful dream vacation 🌴✈️",
+        reaction: "Bilkul deserve karte ho aap 🌸✈️",
+        emoji: "🌴"
+      },
+      {
+        text: "Unke pyaare log hamesha unke saath rahein 🥹❤️",
+        reaction: "Aww, Full emotional moment. 🥹💖",
+        emoji: "💖"
+      },
+      {
+        text: "Aur Jo socha hai wo toh bilkul nahi",
+        reaction: "Daant Padegi Aapko 😠",
+        emoji: "😤"
+      },
     ],
   },
 
@@ -77,25 +141,57 @@ const QUESTIONS: Question[] = [
     id: 5,
     tag: "Question 05",
     category: "Birthday Drama 🎭",
-    question: "Birthday girl agar bole 'mujhe kuch nahi chahiye'... actually iska matlab kya hai? 😂",
+    question: "Agar hamari Ma'am Ji bole 'Mujhe kuch nahi chahiye'... toh sach mein iska kya matlab hai? 🥺✨",
     options: [
-      { text: "Surprise me. Obviously.", reaction: "Translation successful. 🎁", emoji: "😏" },
-      { text: "I genuinely want nothing", reaction: "Most dangerous sentence of the day. 💀", emoji: "😭" },
-      { text: "I want something very specific", reaction: "And somehow we're supposed to guess it. 😂", emoji: "🔮" },
-      { text: "Just give me food", reaction: "The most honest birthday answer. 🍕", emoji: "🍕" },
+      {
+        text: "Ek Bada Surprise 🎁💖",
+        reaction: "Aww! 🥰✨",
+        emoji: "🎁"
+      },
+      {
+        text: "Pampering toh banti hai 👑",
+        reaction: "Exactly! 🌸👑",
+        emoji: "💖"
+      },
+      {
+        text: "Inko pata hai ki unka favorite gift pehle se ready hai 🤫✨",
+        reaction: "Aap toh Ma'am Ji ke mind reader nikle! 🔮🥰",
+        emoji: "✨"
+      },
+      {
+        text: "Unki favorite dish khila do, woh waise hi khush ho jayengi 🍕🍰",
+        reaction: "Cutest answer ever! Ma'am Ji 🧁🌸",
+        emoji: "🍰"
+      },
     ],
   },
 
   {
     id: 6,
     tag: "Question 06",
-    category: "Birthday Roast 🔥",
-    question: "Birthday girl ki sabse dangerous superpower kya hai? 😈",
+    category: "Birthday Magic ✨",
+    question: "Meri Ma'am Ji ki sabse pyaari aur strongest superpower kya hai? 🥺✨",
     options: [
-      { text: "Getting what she wants with one look", reaction: "That look has defeated stronger people. 💀", emoji: "👀" },
-      { text: "Making everyone do what she says", reaction: "Boss mode: permanently activated. 👑", emoji: "😎" },
-      { text: "Winning every argument somehow", reaction: "Evidence suggests this is actually true. ⚖️", emoji: "😂" },
-      { text: "Being cute even when she's annoying", reaction: "Unfortunately, this power is unbeatable. 🥹", emoji: "💖" },
+      {
+        text: "Ek pyaari si smile 🌸🥹",
+        reaction: "100% True! 🥰✨",
+        emoji: "🥹"
+      },
+      {
+        text: "Pore room mein positive aur happy vibes bhar dena 🌟",
+        reaction: "Bilkul sahi! Ma'am Ji 💖👑",
+        emoji: "✨"
+      },
+      {
+        text: "Hamesha sabko care aur respect feel karwana 🤗💕",
+        reaction: "So sweet! 🌸🥰",
+        emoji: "💖"
+      },
+      {
+        text: "Super cute hona, chahe kuch bhi ho jaye 🧸✨",
+        reaction: "Is superpower ka toh koi muqabla hi nahi hai! 👑🎀",
+        emoji: "🧸"
+      },
     ],
   },
 
@@ -103,77 +199,28 @@ const QUESTIONS: Question[] = [
     id: 7,
     tag: "Question 07",
     category: "Cake Court 🎂",
-    question: "Cake ka sabse bada piece kisko milna chahiye? 🍰",
+    question: "Cake ka sabse bada aur best piece kisko milna chahiye? 🍰✨",
     options: [
-      { text: "Birthday girl. No discussion.", reaction: "The law has spoken. 👑", emoji: "👑" },
-      { text: "Whoever bought the cake", reaction: "Interesting... but absolutely incorrect. 😂", emoji: "🤨" },
-      { text: "Me, because I deserve it", reaction: "Birthday girl would like to file a complaint. ⚖️", emoji: "😂" },
-      { text: "Everyone gets equal cake", reaction: "Peace has been restored to the kingdom. 🤝", emoji: "🍰" },
-    ],
-  },
-
-  {
-    id: 8,
-    tag: "Question 08",
-    category: "Birthday Memories 💕",
-    question: "Aaj ki party mein sabse memorable moment kya hona chahiye? ✨",
-    options: [
-      { text: "Her laughing uncontrollably", reaction: "That's the real birthday highlight. 🥹", emoji: "😂" },
-      { text: "The biggest surprise", reaction: "Mission: Make Her Scream Successfully. 🎉", emoji: "🎁" },
-      { text: "Everyone together", reaction: "Good people + good memories = perfect birthday. ❤️", emoji: "🫶" },
-      { text: "Something completely unexpected", reaction: "Chaos has officially been invited. 😈", emoji: "🎊" },
-    ],
-  },
-
-  {
-    id: 9,
-    tag: "Question 09",
-    category: "Birthday Energy ⚡",
-    question: "Aaj birthday girl ka mood kis mode mein hai? 😌",
-    options: [
-      { text: "Main Character Mode", reaction: "Camera on. Spotlight on. She has arrived. 🎬", emoji: "✨" },
-      { text: "Cute But Dangerous Mode", reaction: "Approach carefully. Birthday privileges are active. 😈", emoji: "💅" },
-      { text: "Food & Cake Mode", reaction: "Honestly, the most relatable option. 😂", emoji: "🍰" },
-      { text: "Emotional Birthday Mode", reaction: "Someone bring tissues before the speeches begin. 🥹", emoji: "🥺" },
-    ],
-  },
-
-  {
-    id: 10,
-    tag: "Question 10",
-    category: "Birthday Prediction 🔮",
-    question: "Agla birthday aane tak birthday girl mein sabse bada upgrade kya hoga? 👀",
-    options: [
-      { text: "More successful", reaction: "Big things loading... 🚀", emoji: "🚀" },
-      { text: "More beautiful", reaction: "Impossible. But somehow she'll manage. ✨", emoji: "💖" },
-      { text: "More chaotic", reaction: "We should probably prepare ourselves now. 😂", emoji: "🌪️" },
-      { text: "Exactly the same, just more iconic", reaction: "Consistency is also a talent. 👑", emoji: "🔥" },
-    ],
-  },
-
-  {
-    id: 11,
-    tag: "Question 11",
-    category: "Birthday VIP 🌟",
-    question: "Aaj agar birthday girl ek celebrity hoti, uska VIP treatment kya hota? 😎",
-    options: [
-      { text: "Private jet", reaction: "Economy class has officially been cancelled. ✈️", emoji: "✈️" },
-      { text: "Red carpet everywhere", reaction: "Every hallway is now a runway. 💃", emoji: "❤️" },
-      { text: "Unlimited shopping", reaction: "Her bank account would not survive this birthday. 💸", emoji: "🛍️" },
-      { text: "Everyone follows her schedule", reaction: "Finally, the world runs according to her calendar. 😂", emoji: "👑" },
-    ],
-  },
-
-  {
-    id: 12,
-    tag: "Question 12",
-    category: "The Birthday Finale 🎉",
-    question: "Last question... birthday girl ko iss saal sabse zyada kya milna chahiye? ❤️",
-    options: [
-      { text: "Happiness, every single day", reaction: "Okay, we're ending this on the sweetest note. 🥹", emoji: "💖" },
-      { text: "Success bigger than her dreams", reaction: "Manifestation officially activated. ✨", emoji: "🚀" },
-      { text: "People who genuinely love her", reaction: "Because that's the best gift of all. 🫶", emoji: "❤️" },
-      { text: "ALL OF THE ABOVE. No negotiations.", reaction: "Birthday Queen deserves the entire universe. 👑🎂", emoji: "🌎" },
+      {
+        text: "Obviously meri Ma'am Ji ko! No arguments at all 👑💕",
+        reaction: "Absolutely! 🥰🍰",
+        emoji: "👑"
+      },
+      {
+        text: "Ma'am Ji jisko apne haatho se khilana chahein 🥹✨",
+        reaction: "Aww, kitna pyaara gesture! Next Sat. 🌸🤗",
+        emoji: "💖"
+      },
+      {
+        text: "Govind Dev Ji 🙏✨",
+        reaction: "Sabse shubh start! 🚩🌸",
+        emoji: "🙏"
+      },
+      {
+        text: "Sabko milega, par Ma'am Ji ko double piece milega! 🎂🎉",
+        reaction: "Perfect plan! 🥳✨",
+        emoji: "🍰"
+      },
     ],
   },
 ];

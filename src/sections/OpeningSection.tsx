@@ -1,7 +1,7 @@
 import { PORTRAITS } from "@/love/content";
 
 export default function OpeningSection() {
-  const titleWords = "For Shruu".split(" ");
+  const titleWords = "Meri Pyaari Ma'am Ji".split(" ");
 
   return (
     <section id="opening" className="fold fold-muse">
@@ -15,13 +15,13 @@ export default function OpeningSection() {
           ))}
         </h1>
         <p className="lede">
-          Portraits, qualities, and a letter dated 28 September — opened for your birthday.
+          for the birthday of the most special girl in the world
         </p>
       </div>
 
       <div className="muse-stage muse-stack">
         <figure className="muse-photo-a photo-frame">
-          <img src={PORTRAITS.hero} alt="Shruu, looking toward the camera" />
+          <img src={PORTRAITS.hero} alt="Shuru, looking toward the camera" />
         </figure>
       </div>
     </section>

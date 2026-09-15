@@ -70,7 +70,7 @@ export default function RomanticCreativeFooter() {
   const copyBirthdayKeepsake = () => {
     playSparkleChime();
     navigator.clipboard?.writeText(
-      "To Shruu (Meri Pyaari Ma'am Ji) — Wishing you soaring heights, vibrant health, and unending happiness. Happiest Birthday! 🎂 28 September"
+      "To Shuru (Meri Pyaari Ma'am Ji) — Wishing you soaring heights, vibrant health, and unending happiness. Happiest Birthday! 🎂 16 September"
     );
     setCopiedWish(true);
     setTimeout(() => setCopiedWish(false), 2500);
@@ -82,7 +82,7 @@ export default function RomanticCreativeFooter() {
   };
 
   return (
-    <footer className="creative-footer-root" role="contentinfo" aria-label="Birthday Keepsake for Shruu">
+    <footer className="creative-footer-root" role="contentinfo" aria-label="Birthday Keepsake for Shuru">
       {/* Decorative whimsical wave separator */}
       <div className="footer-scallop-divider" aria-hidden>
         <svg viewBox="0 0 1440 80" fill="none" preserveAspectRatio="none">
@@ -105,18 +105,18 @@ export default function RomanticCreativeFooter() {
                 <span className="badge-dot" />
                 <span>OFFICIAL BIRTHDAY VIP PASSPORT • EDITION 2026</span>
               </div>
-              <span className="passport-id">DOC #28-09-SHRUU</span>
+              <span className="passport-id">DOC #16-09-SHURU</span>
             </div>
 
             <div className="passport-body">
               <div className="passport-avatar-box">
-                <img src={img1} alt="Shruu" className="passport-avatar" />
+                <img src={img1} alt="Shuru" className="passport-avatar" />
                 <span className="passport-stamp-verified">VIP QUEEN 100%</span>
               </div>
 
               <div className="passport-details">
                 <span className="passport-designation">OFFICIALLY ISSUED IN CELEBRATION OF</span>
-                <h3 className="passport-name">Shruu <span className="passport-aka">(Meri Pyaari Ma'am Ji)</span></h3>
+                <h3 className="passport-name">Shuru <span className="passport-aka">(Meri Pyaari Ma'am Ji)</span></h3>
                 <p className="passport-blurb">
                   Certified as the most brilliant, hardworking, and cheerful human. Holder is granted unlimited
                   birthday wishes, lifetime celebration passes, priority sweet treats, and utmost respect & cheers.
@@ -125,7 +125,7 @@ export default function RomanticCreativeFooter() {
                 <div className="passport-meta-grid">
                   <div className="meta-pill">
                     <span className="meta-key">Special Day</span>
-                    <span className="meta-val">28 September 🎂</span>
+                    <span className="meta-val">16 September 🎂</span>
                   </div>
                   <div className="meta-pill">
                     <span className="meta-key">Title</span>
@@ -269,16 +269,16 @@ export default function RomanticCreativeFooter() {
         <div className="footer-signature-bar">
           <div className="signature-left">
             <div className="mini-polaroid-peek">
-              <img src={secondyImg} alt="Shruu memory" />
+              <img src={secondyImg} alt="Shuru memory" />
             </div>
             <div className="signature-text">
               <p className="sign-heartline">Designed with celebration and highest regards</p>
-              <p className="sign-names">Dipesh <span>★</span> Shruu (Ma'am Ji)</p>
+              <p className="sign-names">Dipesh <span>★</span> Shuru (Ma'am Ji)</p>
             </div>
           </div>
 
           <div className="signature-center">
-            <span className="footer-date-chip">📅 September 28 • Birthday Edition</span>
+            <span className="footer-date-chip">📅 September 16 • Birthday Edition</span>
           </div>
 
           <div className="signature-right">
@@ -295,7 +295,7 @@ export default function RomanticCreativeFooter() {
         </div>
 
         <div className="footer-micro-ribbon">
-          <span>Happiest Birthday, Shruu</span>
+          <span>Happiest Birthday, Shuru</span>
           <span className="ribbon-star">✦</span>
           <span>May all your dreams turn to reality</span>
           <span className="ribbon-star">✦</span>

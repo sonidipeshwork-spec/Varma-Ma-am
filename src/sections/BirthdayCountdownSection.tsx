@@ -10,7 +10,7 @@ import {
 } from "@/love/useLoveGsap";
 import TiltFrame from "@/components/TiltFrame";
 
-const CLIMAX_WORDS = new Set(["birthday", "shruu", "countdown", "celebrate", "september", "today"]);
+const CLIMAX_WORDS = new Set(["birthday", "shuru", "shruu", "countdown", "celebrate", "september", "today"]);
 
 function normalizeToken(word: string) {
   return word.replace(/[^a-zA-Z0-9']/g, "").toLowerCase();
@@ -78,11 +78,11 @@ export default function BirthdayCountdownSection() {
 
       <header className="confess-horizon-header">
         <div className="confess-eyebrow-pill">
-          <span>28 September • For Shruu</span>
+          <span>16 September • For Shuru</span>
         </div>
         <h2 className="confess-horizon-title">Counting Down To Your Birthday</h2>
         <p className="confess-horizon-hint">
-          <span className="scroll-arrow">⟶</span> Scroll through five photos on the way to 28 September
+          <span className="scroll-arrow">⟶</span> Scroll through five photos on the way to 16 September
         </p>
       </header>
 
@@ -93,7 +93,7 @@ export default function BirthdayCountdownSection() {
             <span className="intro-kicker">The Countdown</span>
             <h3 className="intro-title">Five frames. One birthday.</h3>
             <p className="intro-note">
-              Each stop is a real photo of you — scrolled in order toward 28 September.
+              Each stop is a real photo of you — scrolled in order toward 16 September.
             </p>
           </div>
         </div>
@@ -177,11 +177,11 @@ export default function BirthdayCountdownSection() {
         <div className="confess-outro-card">
           <div className="outro-card-inner">
             <span className="outro-icon">🎈</span>
-            <h3 className="outro-title">28 September — the wait is over.</h3>
+            <h3 className="outro-title">16 September — the wait is over.</h3>
             <p className="outro-desc">
               Five photos later, the calendar lands on your birthday.
             </p>
-            <span className="outro-sign">Happiest Birthday, Shruu 🎂</span>
+            <span className="outro-sign">Happiest Birthday, Shuru 🎂</span>
           </div>
         </div>
       </div>

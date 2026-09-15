@@ -106,7 +106,7 @@ export default function LocketGate({ onOpen }: LocketGateProps) {
             <div className="locket-well">
               <div className="locket-well-velvet" />
               <div className="locket-portrait-wrap">
-                <img src={PORTRAITS.hero} alt="Shruu" className="locket-portrait" />
+                <img src={PORTRAITS.hero} alt="Shuru" className="locket-portrait" />
                 <div className="locket-portrait-sheen" />
               </div>
               <div className="locket-well-inner-bevel" />
