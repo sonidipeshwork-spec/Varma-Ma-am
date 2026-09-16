@@ -32,9 +32,8 @@ export default function BirthdayCountdownSection() {
         return (
           <span
             key={`${word}-${idx}`}
-            className={`confess-word ${classNamePrefix} ${isHighlighted ? "is-highlight" : ""} ${
-              isClimaxWord ? "is-climax" : ""
-            }`}
+            className={`confess-word ${classNamePrefix} ${isHighlighted ? "is-highlight" : ""} ${isClimaxWord ? "is-climax" : ""
+              }`}
             onClick={(e) => {
               e.stopPropagation();
               playPopSound();
@@ -80,9 +79,9 @@ export default function BirthdayCountdownSection() {
         <div className="confess-eyebrow-pill">
           <span>16 September • For Shuru</span>
         </div>
-        <h2 className="confess-horizon-title">Counting Down To Your Birthday</h2>
+        <h2 className="confess-horizon-title">Your Magic</h2>
         <p className="confess-horizon-hint">
-          <span className="scroll-arrow">⟶</span> Scroll through five photos on the way to 16 September
+          <span className="scroll-arrow">⟶</span>Meri Pyaari Ma'am Ji
         </p>
       </header>
 
@@ -90,10 +89,10 @@ export default function BirthdayCountdownSection() {
         <div className="confess-intro-card">
           <div className="intro-card-inner">
             <span className="intro-heart-badge">🎂</span>
-            <span className="intro-kicker">The Countdown</span>
-            <h3 className="intro-title">Five frames. One birthday.</h3>
+            <span className="intro-kicker">16 September</span>
+            <h3 className="intro-title">Meri Jaan</h3>
             <p className="intro-note">
-              Each stop is a real photo of you — scrolled in order toward 16 September.
+              Meri Pyaari Shuru Ma'am Ji
             </p>
           </div>
         </div>
@@ -177,11 +176,11 @@ export default function BirthdayCountdownSection() {
         <div className="confess-outro-card">
           <div className="outro-card-inner">
             <span className="outro-icon">🎈</span>
-            <h3 className="outro-title">16 September — the wait is over.</h3>
+            <h3 className="outro-title">16 September</h3>
             <p className="outro-desc">
-              Five photos later, the calendar lands on your birthday.
+              Wait for 364 Days
             </p>
-            <span className="outro-sign">Happiest Birthday, Shuru 🎂</span>
+            <span className="outro-sign">Happiest Birthday, Shuru Ji 🎂</span>
           </div>
         </div>
       </div>

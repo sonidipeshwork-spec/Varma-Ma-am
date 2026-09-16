@@ -28,7 +28,6 @@ export const NAV = [
   { id: "countdown", label: "Birthday countdown" },
   { id: "frames", label: "Ma'am Ji" },
   { id: "opening", label: "For Shuru" },
-  { id: "qualities", label: "Your Smile" },
   { id: "journey", label: "Yor Presence" },
   { id: "film", label: "Everything" },
   { id: "birthday-book", label: "Birthday book" },
@@ -59,131 +58,111 @@ export interface ConfessionStage {
 export const CONFESSION_STAGES: readonly ConfessionStage[] = [
   {
     id: "stage-countdown-begins",
-    badge: "01 • Countdown Shuru",
+    badge: "Meri Ma'am Ji",
 
-    heading: "Silver, Mehndi & Woh Pehli Jhalak",
+    heading: "Shivraatri ki wo snap",
 
     lead:
-      "Mirror ke saamne floral kurti, haathon mein mehndi aur woh oxidized silver — bas yahin se birthday ka countdown officially thoda aur special lagne laga.",
+      "Yeh suit mere liye sabse favourite hai",
 
     subline:
-      "16 September ab sirf ek date nahi hai… ab toh har din uss din ke thoda aur kareeb le ja raha hai.",
+      "aur mere liye aapka hona sabse precious hai",
 
     img: img3,
 
     imgCaption:
-      "Mirror selfie · floral kurti · oxidized silver · mehndi · 1:07 PM",
+      "Shivratri, 2025",
 
     highlightWords: [
-      "Mirror",
-      "Mehndi",
-      "birthday",
-      "countdown",
-      "16 September",
+      "-",
     ],
   },
 
   {
     id: "stage-getting-closer",
-    badge: "02 • Thoda Aur Kareeb",
+    badge: "Wo Screenshot Lena",
 
-    heading: "Stripes, Stars & That Smile",
+    heading: "Aapki Pyaari Highlights ke screenshot lena.",
 
     lead:
-      "Chin par haath, striped top, aas-paas chhote-chhote stars… aur beech mein woh soft si smile. Birthday jitna kareeb aa raha tha, wait utna hi interesting hota ja raha tha.",
+      "Late Night Aapki ID ko sukoon ke liye dekhna.",
 
     subline:
-      "Din kam hote gaye… aur excitement thodi badhti gayi. Calendar bhi shayad aapke birthday ka wait kar raha tha.",
+      "Aur Imagine karna unhe sapno ko",
 
     img: img4,
 
     imgCaption:
-      "Portrait · black-and-white stripes · little stars · soft smile",
+      "Screenshot Captured",
 
     highlightWords: [
-      "stars",
-      "smile",
-      "wait",
-      "birthday",
-      "closer",
+      "-",
     ],
   },
 
   {
     id: "stage-almost-here",
-    badge: "03 • Bas Ab Thoda Sa",
+    badge: "Magical Hands",
 
-    heading: "Mehndi, Peace Sign & Birthday Vibes",
+    heading: "Yeh Photo Alag Hai",
 
     lead:
-      "Haathon par fresh mehndi, dark fingertips aur aankhon ke paas woh cute sa peace sign — festive vibes ne birthday se pehle hi entry maar li thi.",
+      "Yeh Haathon ki Mehndi Itni Pyaari Hai",
 
     subline:
-      "Sab kuch keh raha tha ki special day bas aane hi wala hai… Shuru, ab countdown genuinely exciting ho gaya tha.",
+      "Isliye toh Wait Rehta hai aap kab mehndi lagaoge…",
 
     img: img5,
 
     imgCaption:
-      "Close-up · peace sign · floral top · fresh mehndi",
+      "Nazar Na Lage",
 
     highlightWords: [
-      "Mehndi",
-      "peace sign",
-      "festive",
-      "birthday",
-      "Shuru",
+      "-",
     ],
   },
 
   {
     id: "stage-the-eve",
-    badge: "04 • Birthday Ki Eve",
+    badge: "80's Heroine",
 
-    heading: "Soft Sweater, Shaant Si Raat",
+    heading: "Aapki Muskurahat",
 
     lead:
-      "Black-and-white mirror frame, soft fuzzy turtleneck aur woh quiet sa moment — birthday se ek raat pehle ki woh peaceful feeling.",
+      "Aapki smile hi sabse khoobsurat hai",
 
     subline:
-      "Bas ek aur sleep… phir 16 September. Meri Pyaari Ma'am Ji, kal ka din poora aapka hai.",
+      "Aapki smile ne mujhe sukoon wali Raat di hain.",
 
     img: secondyImg,
 
     imgCaption:
-      "B&W mirror selfie · fuzzy turtleneck · quiet evening",
+      "Classic Look",
 
     highlightWords: [
-      "mirror",
-      "quiet",
-      "raat",
-      "16 September",
-      "kal",
+      "-",
     ],
   },
 
   {
     id: "stage-climax",
-    badge: "05 • 16 September",
+    badge: "16 September",
 
     heading: "Happy Birthday, Shuru ❤️",
 
     lead:
-      "Warm light, leopard print aur camera ki taraf woh confident si look — aur bas, countdown yahin khatam hota hai. Aaj ka din sirf ek date nahi… aaj ka din aapka hai.",
+      "Govind Dev Ji Aapki Har Wish Puri Kare...",
 
     subline:
-      "16 September. No more counting down. Aaj bas celebrate karna hai — aapko, aapki smile ko, aur uss beautiful person ko jo aap hain.",
+      "Aur Mein Aapko Aur Pareshan karta Rahun",
 
     img: img2,
 
     imgCaption:
-      "Birthday portrait · warm light · leopard print · birthday girl",
+      "meri ma'am ji",
 
     highlightWords: [
-      "16 September",
-      "Happy Birthday",
-      "Shuru",
-      "celebrate",
-      "you",
+      "-",
     ],
   },
 ] as const;
@@ -191,33 +170,33 @@ export const CONFESSION_STAGES: readonly ConfessionStage[] = [
 export const STORY_PANELS = [
   {
     img: schoolImg,
-    eyebrow: "01 · Formal glow",
-    title: "Rose gold & pearls",
-    line: "Champagne drape, pearl edge, sequined black — soft light on a composed face.",
+    eyebrow: "01 · Formal Royal Look",
+    title: "Itni Cutness Kha se Aati Hai",
+    line: "-",
   },
   {
     img: collegeImg,
-    eyebrow: "02 · At home",
-    title: "Yellow florals & lace",
-    line: "Chin in hand, bindi, lace trim — everyday warmth in a doorway frame.",
+    eyebrow: "02 · Sukoon Wala Frame",
+    title: "Hayeee Look",
+    line: "-",
   },
   {
     img: img5,
-    eyebrow: "03 · Festive week",
-    title: "Mehndi & a peace sign",
-    line: "Henna still dark on your fingertips, floral top, playfulness mid-celebration.",
+    eyebrow: "03 · Mehndi & Nautanki",
+    title: "Desi Swag",
+    line: "-.",
   },
   {
     img: img6,
-    eyebrow: "04 · Festival red",
-    title: "Saree & that dimple",
-    line: "Gold blouse, bandhani red over the shoulder — mirror smile you can't miss.",
+    eyebrow: "04 · Laal Saree & Dimple",
+    title: "Yeh Dimple Illegal Hona Chahiye!",
+    line: "-",
   },
   {
     img: img2,
-    eyebrow: "05 · 16 September",
-    title: "Happy Birthday, Shuru",
-    line: "Leopard print, eyes on the camera — the frame where the birthday story lands.",
+    eyebrow: "05 · Birthday Girl Special",
+    title: "Meri Pyari Ma'am Ji",
+    line: "-",
   },
 ] as const;
 
@@ -265,54 +244,54 @@ export const QUALITIES = [
 export const STAGES = [
   {
     stage: "I",
-    title: "Hilltop flags & open sky",
-    mood: "Once",
+    title: "Khula Aasmaan Aur Masoomiyat",
+    mood: "-",
     img: babyImg,
-    desc: "White collar, chin in hand, Om flags and a whole town below — the journey already looking wide.",
+    desc: "Gaal pe haath aur aakhon mein badi si duniya dekhne ka sapna... kitni masoom lagti ho aap!",
   },
   {
     stage: "II",
-    title: "Wind in your hair",
-    mood: "Then",
+    title: "Hawa Mein Lehrate Baal",
+    mood: "-",
     img: footImg,
-    desc: "Coral tee, bindi, strands catching the breeze outdoors — a quiet candid that still feels close.",
+    desc: "inhe Zulfuon ka yuh chehre pe aana, aur uske saath aapka smile dena... Bas ",
   },
   {
     stage: "III",
-    title: "Rose gold & pearls",
-    mood: "After",
+    title: "Sweet Saree Look",
+    mood: "-",
     img: schoolImg,
-    desc: "Champagne drape, pearl edge, sequined black — soft formal light on a composed face.",
+    desc: "",
   },
   {
     stage: "IV",
-    title: "Yellow florals at home",
-    mood: "Until",
+    title: "Pyaari Smile",
+    mood: "-",
     img: collegeImg,
-    desc: "Lace trim, bindi, chin resting in your hand — everyday warmth in a doorway frame.",
+    desc: "Cutest Look of my Ma'am Ji",
   },
   {
     stage: "V",
-    title: "Eyes on today",
-    mood: "Always",
+    title: "Aaj Ka Din Sirf Aapka Hai",
+    mood: "-",
     img: img2,
-    desc: "Leopard print, steady gaze — the milestone that lands on your birthday: celebrating you.",
+    desc: "Confidence, wahi pyaari nigahein aur aapka birthday...",
   },
 ] as const;
 
 export const GLIMPSES = [
-  { src: img3, caption: "Embroidery and silver, just past seven" },
-  { src: img4, caption: "Stripes, starlight, that soft smile" },
-  { src: img5, caption: "Henna still fresh, peace for the camera" },
-  { src: img6, caption: "Red saree, and the dimple I look for" },
-  { src: img7, caption: "Gold blouse, festival red" },
-  { src: img8, caption: "Mehndi and magenta, one quiet pose" },
-  { src: img9, caption: "Holi colors caught on your cheek" },
-  { src: img10, caption: "Chin in hand, sweater weather" },
-  { src: img11, caption: "Bindi, pink top, calm as ever" },
-  { src: img12, caption: "A snapshot to treasure forever" },
-  { src: img13, caption: "Lime green, soft eyes, hallway light" },
-  { src: img14, caption: "Yellow flower, jhumka, open sky" },
+  { src: img3, caption: "Shivratri Look" },
+  { src: img4, caption: "Aapki Highlight" },
+  { src: img5, caption: "Hathon Par Mehndi" },
+  { src: img6, caption: "First Saree Look" },
+  { src: img15, caption: "Gold Bangles" },
+  { src: img8, caption: "Quiet Pose" },
+  { src: img16, caption: "Mirror" },
+  { src: img10, caption: "God Look" },
+  { src: img11, caption: "Navraatri Look" },
+  { src: img12, caption: "Winter Glow" },
+  { src: img13, caption: "Whatsapp DP" },
+  { src: img14, caption: "Yellow Flower" },
 ] as const;
 
 export const LAYERS = [
@@ -376,41 +355,33 @@ export const DREAMS = [
   {
     img: img2,
     when: "Golden Evenings",
-    title: "Kamyabi Aur Aap Par Proud Moment.",
-    desc:
-      "Un saare sapno ko reality bante dekhna jinke liye aapne quietly itni mehnat ki hai. Ek din peeche mudkar dekhna, saari struggles ko yaad karna aur kehna haan, maine kar dikhaya.",
-    note:
-      "Meri bas itni si wish hai ki aapko ek din apni har mehnat ka wo moment mile jahan aap khud par genuinely proud feel karo.",
+    title: "Aapki Kamyabi ✨",
+    desc: "Aapki khamosh mehnat rang laaye, aur aap garv se muskura kar kaho \"Maine kar dikhaya!\"",
+    note: "Bas Dhyan Rakha Karo Khud Ka Thoda Sa.",
     tag: "Milestone",
   },
   {
     img: studyImg,
     when: "Fresh Mornings",
-    title: "Hard Work & Big Goals",
-    desc:
-      "Khuli hui notes, fresh coffee, clear goals aur wo determination jo aapko har din thoda aur aage le jaata hai. Aapke dreams jitne bade hain, unke liye aapki mehnat bhi utni hi beautiful hai.",
-    note:
-      "Aapka dedication dekhna genuinely inspiring hai... bas aise hi apne goals ke peeche lagi rehna, because you are capable of much more than you realise.",
+    title: "Andhar Ka Sukoon",
+    desc: "Sabka Dhyan Rakhte Rakhhte aur muskuraana",
+    note: "Aapka focus kamaal hai, bas aise hi chamakte rehna!",
     tag: "Ambition",
   },
   {
     img: collegeImg,
     when: "Spontaneous Hours",
-    title: "Befikra Hassi Aur Unfiltered Joy",
-    desc:
-      "Random walks, unexpected plans, coffee stops aur wo conversations jo pata hi nahi chalne deti ki waqt kab nikal gaya. Life ke best moments shayad wahi hote hain jo plan nahi kiye jaate.",
-    note:
-      "Aapki hassi waise hi hamesha genuine rahe... aur life mein aise moments kabhi kam na ho jahan aap bina kisi tension ke bas khulkar khush reh sako.",
+    title: "Aapki Befikra Hassi 🌸",
+    desc: "Random plans, lambi baatein aur bina kisi fikr ke aapka dil khol kar hasna.",
+    note: "Aapki yeh masoom smile hamesha aisi hi bani rahe.",
     tag: "Joy",
   },
   {
     img: friendImg,
     when: "Through Every Season",
-    title: "Humesha Ka Saath",
-    desc:
-      "Ek aisa bond jahan explanations ki zarurat kam ho aur understanding zyada. Jahan life kitni bhi busy, complicated ya unpredictable ho, respect, trust aur warmth apni jagah banaye rakhein.",
-    note:
-      "Life aapko jahan bhi le jaaye, bas itna yaad rakhna — aapki journey ko genuinely appreciate karne wala koi hamesha aapke liye khush rahega.",
+    title: "Ek Pyara Sa Saath",
+    desc: "Bina bole dil ki baat samajh lena — jahan hamesha apnapan, trust aur sukoon ho.",
+    note: "Duniya jahan bhi le jaye, main hamesha aapke saath hoon.",
     tag: "Forever",
   },
 ] as const;
@@ -494,9 +465,9 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Aapki Muskaan",
 
       paragraphs: [
-        "Aapki smile mein kuch toh baat hai. Woh sirf ek smile nahi hai — usmein ek ajeeb si warmth hai jo saamne wale ka mood bina kuch kahe better kar deti hai.",
+        "Aapki smile mein kuch toh baat hai. Woh sirf ek smile nahi hai usmein ek ajeeb si warmth hai jo saamne wale ka mood bina kuch kahe better kar deti hai.",
 
-        "Kabhi kabhi ek chhoti si smile bhi poore din ka mood change kar deti hai, aur aapki smile bilkul waisi hi hai — simple, natural aur dil se nikli hui.",
+        "Kabhi kabhi ek chhoti si smile bhi poore din ka mood change kar deti hai, aur aapki smile bilkul waisi hi hai simple, natural aur dil se nikli hui.",
 
         "Aur sabse achhi baat? Aapko shayad khud bhi realise nahi hota ki aapki ek smile kisi aur ke liye kitni special ho sakti hai.",
       ],
@@ -514,9 +485,9 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       paragraphs: [
         "Aapki smile jitni khoobsurat hai, usse bhi zyada khoobsurat hai woh personality jo uss smile ke peeche hai.",
 
-        "Aapka sense of humour, aapka way of talking aur chhoti-chhoti baaton mein khushi dhoond lena — yeh sab milkar aapko aur bhi special bana dete hain.",
+        "Aapka sense of humour, aapka way of talking aur chhoti-chhoti baaton mein khushi dhoond lena yeh sab milkar aapko aur bhi special bana dete hain.",
 
-        "Bas ek request hai — life chahe kitni bhi busy ya difficult ho jaaye, uss smile ko kabhi disappear mat hone dena.",
+        "Bas ek request hai life chahe kitni bhi busy ya difficult ho jaaye, uss smile ko kabhi disappear mat hone dena.",
       ],
 
       pageNumber: 4,
@@ -533,7 +504,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Jheel Si Aankhein",
 
       paragraphs: [
-        "Kuch aankhein sirf dekhti nahi hain, woh bahut kuch keh bhi jaati hain. Aapki aankhon mein bhi ek alag si depth hai — shaant, expressive aur thodi si mysterious.",
+        "Kuch aankhein sirf dekhti nahi hain, woh bahut kuch keh bhi jaati hain. Aapki aankhon mein bhi ek alag si depth hai shaant, expressive aur thodi si mysterious.",
 
         "Kabhi kabhi bina kuch kahe bhi aankhein woh baat keh deti hain jo words shayad kabhi explain nahi kar paate.",
 
@@ -541,7 +512,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       ],
 
       quote:
-        "“Jheel ki tarah hain aapki aankhein — upar se shaant, lekin andar apni ek poori duniya sambhale hue.”",
+        "“Jheel ki tarah hain aapki aankhein upar se shaant, lekin andar apni ek poori duniya sambhale hue.”",
 
       pageNumber: 5,
     },
@@ -551,9 +522,9 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Aankhon Mein Chhupi Kahaani",
 
       paragraphs: [
-        "Kabhi kabhi aapko dekhkar lagta hai ki aapki aankhein aapse pehle hi bahut kuch bata deti hain — khushi, excitement, irritation aur woh random si curiosity bhi.",
+        "Kabhi kabhi aapko dekhkar lagta hai ki aapki aankhein aapse pehle hi bahut kuch bata deti hain khushi, excitement, irritation aur woh random si curiosity bhi.",
 
-        "Shayad isi wajah se aapki aankhein aapki personality ka ek beautiful part hain. Simple bhi, expressive bhi, aur bilkul aapki tarah — genuine.",
+        "Shayad isi wajah se aapki aankhein aapki personality ka ek beautiful part hain. Simple bhi, expressive bhi, aur bilkul aapki tarah genuine.",
 
         "Kuch cheezein explain karne ki zaroorat nahi hoti. Bas notice karne ki hoti hain.",
       ],
@@ -572,15 +543,15 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Zulfien",
 
       paragraphs: [
-        "Aur phir aati hain aapki woh zulfien — jo kabhi perfectly set hoti hain aur kabhi bilkul apni marzi se chalti hain. 😂",
+        "Aur phir aati hain aapki woh zulfien jo kabhi perfectly set hoti hain aur kabhi bilkul apni marzi se chalti hain. 😂",
 
         "Lekin honestly, shayad wahi naturalness unhe aur beautiful banati hai. Perfect hone ki zaroorat hi kya hai jab imperfect moments hi itne cute lagte hain?",
 
-        "Kabhi hawa ke saath udti hui, kabhi face par aa jaati hui — aapki zulfon ka bhi apna ek personality trait hai.",
+        "Kabhi hawa ke saath udti hui, kabhi face par aa jaati hui aapki zulfon ka bhi apna ek personality trait hai.",
       ],
 
       quote:
-        "“Kuch khoobsurtiyaan perfect nahi hoti… bas apni hoti hain, aur wahi unhe khaas banati hain.”",
+        "“Kuch khoobsurtiyaan perfect nahi hoti bas apni hoti hain, aur wahi unhe khaas banati hain.”",
 
       pageNumber: 7,
     },
@@ -590,11 +561,11 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Jo Cheezein Notice Ho Jaati Hain",
 
       paragraphs: [
-        "Aapke baare mein sabse interesting baat yeh hai ki aapki beauty sirf ek cheez mein nahi hai. Woh chhoti-chhoti details mein hai — smile, aankhein, baatein, expressions aur woh natural sa attitude.",
+        "Aapke baare mein sabse interesting baat yeh hai ki aapki beauty sirf ek cheez mein nahi hai. Woh chhoti chhoti details mein hai smile, aankhein, baatein, expressions aur woh natural sa attitude.",
 
         "Shayad isi liye aapko describe karna thoda mushkil hai. Ek quality likho toh doosri yaad aa jaati hai.",
 
-        "Aur honestly, yeh book shayad isi liye banani padi… kyunki ek page mein aapko describe karna thoda unfair hota. 😌",
+        "Aur honestly, yeh book shayad isi liye banani padi kyunki ek page mein aapko describe karna thoda unfair hota. 😌",
       ],
 
       pageNumber: 8,
@@ -611,11 +582,11 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Care For Everyone",
 
       paragraphs: [
-        "Aapki sabse beautiful qualities mein se ek hai — aap logon ki care karti hain. Chhoti si cheez ho ya koi genuinely important matter, aapke andar doosron ke liye concern naturally aa jaata hai.",
+        "Aapki sabse beautiful qualities mein se ek hai aap logon ki care karti hain. Chhoti si cheez ho ya koi genuinely important matter, aapke andar doosron ke liye concern naturally aa jaata hai.",
 
         "Aap shayad har baar express nahi karti, lekin aapke actions bahut kuch bata dete hain. Aur mere according, kisi ke liye care karna uss insaan ki personality ki sabse genuine qualities mein se ek hai.",
 
-        "Aapke andar woh warmth hai jo logon ko comfortable feel karati hai — aur yeh quality honestly bahut rare hai.",
+        "Aapke andar woh warmth hai jo logon ko comfortable feel karati hai aur yeh quality honestly bahut rare hai.",
       ],
 
       quote:
@@ -631,7 +602,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       paragraphs: [
         "Aap jis tarah apne aas-paas ke logon ke liye concern rakhti hain, woh aapke nature ke baare mein bahut kuch keh deta hai.",
 
-        "Kabhi advice dena, kabhi support karna, kabhi bas kisi ki baat sun lena — yeh chhoti cheezein hoti hain, lekin saamne wale ke liye bahut matter karti hain.",
+        "Kabhi advice dena, kabhi support karna, kabhi bas kisi ki baat sun lena yeh chhoti cheezein hoti hain, lekin saamne wale ke liye bahut matter karti hain.",
 
         "Bas isi tarah genuine rehna. Duniya mein achhe log bahut hain, lekin genuinely caring log thode kam milte hain.",
       ],
@@ -652,7 +623,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       paragraphs: [
         "Aapki voice mein ek alag si softness hai. Aisi awaaz jo bas suni nahi jaati, feel bhi hoti hai.",
 
-        "Chahe normal conversation ho, excitement mein kuch batana ho, ya phir woh random late-night talks — aapki voice mein ek comfort sa hai.",
+        "Chahe normal conversation ho, excitement mein kuch batana ho, ya phir woh random late-night talks aapki voice mein ek comfort sa hai.",
 
         "Aur kabhi kabhi conversation mein kya baat ho rahi hai, usse zyada achha bas yeh lagta hai ki saamne wala insaan baat kar raha hai.",
       ],
@@ -668,9 +639,9 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Bas Aapki Awaaz",
 
       paragraphs: [
-        "Aapki voice ki sabse achhi baat shayad yeh hai ki woh forced nahi lagti. Bilkul natural — bilkul aapki personality ki tarah.",
+        "Aapki voice ki sabse achhi baat shayad yeh hai ki woh forced nahi lagti. Bilkul natural bilkul aapki personality ki tarah.",
 
-        "Kabhi hasi, kabhi serious tone, kabhi woh cute sa irritation — har mood mein aapki voice ki apni ek alag vibe hoti hai.",
+        "Kabhi hasi, kabhi serious tone, kabhi woh cute sa irritation har mood mein aapki voice ki apni ek alag vibe hoti hai.",
 
         "Aur haan, agar kabhi kisi ne kaha ho ki aapki voice sweet nahi hai… toh respectfully disagree karna allowed hai. 😌",
       ],
@@ -697,7 +668,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       ],
 
       quote:
-        "“Raat lambi ho ya baat — jab conversation achhi ho, toh waqt ka pata hi nahi chalta.”",
+        "“Raat lambi ho ya baat jab conversation achhi ho, toh waqt ka pata hi nahi chalta.”",
 
       pageNumber: 13,
     },
@@ -707,7 +678,7 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Bas Yunhi Baatein",
 
       paragraphs: [
-        "Kuch conversations kisi conclusion ke liye nahi hoti. Woh bas hoti hain — random, imperfect aur completely unnecessary… phir bhi somehow memorable.",
+        "Kuch conversations kisi conclusion ke liye nahi hoti. Woh bas hoti hain random, imperfect aur completely unnecessary phir bhi somehow memorable.",
 
         "Aur shayad aapke saath ki gayi baaton ki beauty bhi wahi hai. Har conversation ko kisi reason ki zaroorat nahi hoti.",
 
@@ -730,9 +701,9 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       paragraphs: [
         "Kuch logon ke baare mein sochne ke liye koi special reason nahi chahiye hota. Kabhi randomly koi song, koi place, koi joke ya koi chhoti si cheez unki yaad dila deti hai.",
 
-        "Aur phir bina kisi warning ke ek thought aata hai — “Yeh cheez Shuru ko batani chahiye.”",
+        "Aur phir bina kisi warning ke ek thought aata hai “Yeh cheez Shuru ko batani chahiye.”",
 
-        "Shayad kisi ko yaad karne ka sabse simple aur genuine version yahi hai — jab koi insaan bina bulaye thoughts mein aa jaaye.",
+        "Shayad kisi ko yaad karne ka sabse simple aur genuine version yahi hai jab koi insaan bina bulaye thoughts mein aa jaaye.",
       ],
 
       quote:
@@ -746,13 +717,13 @@ export const BOOK_CHAPTERS: readonly BookChapter[] = [
       title: "Happiest Birthday, Ma'am Ji",
 
       paragraphs: [
-        "Toh Shuru, iss chhoti si book ke har page mein ek alag cheez likhi hai — pehli mulaqat se lekar smile, aankhon, zulfon, care, voice, late-night talks aur un random thoughts tak.",
+        "Toh Shuru, iss chhoti si book ke har page mein ek alag cheez likhi hai pehli mulaqat se lekar smile, aankhon, zulfon, care, voice, late-night talks aur un random thoughts tak.",
 
-        "Lekin agar in sab ko ek sentence mein likhna ho, toh bas itna kahunga — aap jaisi hain, waise hi bahut special hain. Aapko kisi comparison, perfection ya explanation ki zaroorat nahi hai.",
+        "Lekin agar in sab ko ek sentence mein likhna ho, toh bas itna kahunga aap jaisi hain, waise hi bahut special hain. Aapko kisi comparison, perfection ya explanation ki zaroorat nahi hai.",
 
         "May this birthday bring you woh saari khushiyan jo aap deserve karti hain, woh success jiske liye aap mehnat karti hain, aur woh peace jo life ko truly beautiful banata hai.",
 
-        "Hamesha khush rahiye, haste rahiye, apni beautiful si personality ko waise hi rakhiye — aur haan, Ma'am Ji rehna bilkul mat chhodiye. ❤️",
+        "Hamesha khush rahiye, haste rahiye, apni beautiful si personality ko waise hi rakhiye aur haan, Ma'am Ji rehna bilkul mat chhodiye ❤️",
 
         "Happiest Birthday, Shuru! Aapka aane wala saal aapke liye bahut saari beautiful memories, achievements aur reasons to smile lekar aaye.",
       ],

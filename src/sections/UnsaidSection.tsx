@@ -29,19 +29,10 @@ export default function UnsaidSection() {
   return (
     <section id="unsaid" className="fold fold-whispers">
       <header className="fold-head whisper-head">
-        <p className="whisper-eyebrow">Unsaid → said</p>
+        <p className="whisper-eyebrow">Meri Ma'am Ji</p>
         <h2>Things unsaid</h2>
         <p className="whisper-lede">
-          Six appreciations saved for your birthday. Tap a portrait to flip it —
-          once it is open, that one is finally said.
-        </p>
-        <p className="whisper-progress" aria-live="polite">
-          <span className="whisper-progress-count">
-            {String(saidCount).padStart(2, "0")}
-            <span className="whisper-progress-sep">/</span>
-            {String(total).padStart(2, "0")}
-          </span>
-          <span className="whisper-progress-label">{progressLabel}</span>
+          Meri Pyaari Ma'am Ji
         </p>
       </header>
 

@@ -14,42 +14,42 @@ export default function EndingSection() {
     {
       src: PORTRAITS.hero,
       title: "The Birthday Queen",
-      caption: "Brightest aura, charismatic presence, and an inspiring spirit.",
+      caption: "Mere liye sabse special day...",
     },
     {
       src: PORTRAITS.offset,
       title: "Timeless Calm",
-      caption: "Soft elegance and quiet composure in every season.",
+      caption: "Har Din Ek Nayi Ada...",
     },
     {
       src: PORTRAITS.childhoodA,
       title: "Sweet Beginnings",
-      caption: "A joyful spirit that has brightened the world from day one.",
+      caption: "Pyaari si smile...",
     },
     {
       src: PORTRAITS.childhoodB,
       title: "Little Footprints",
-      caption: "Every precious step leading up to the amazing person you are today.",
+      caption: "Meri Cute Ma'am Ji...",
     },
     {
       src: QUALITIES[0].img,
       title: "Grace & Poise",
-      caption: "Silver reflections, festive elegance, and effortless natural charm.",
+      caption: "Your Dimple...",
     },
     {
       src: QUALITIES[2].img,
       title: "Playful Energy",
-      caption: "Mehndi details, bright peace signs, and genuine cheerful warmth.",
+      caption: "Your Eyes...",
     },
     {
       src: QUALITIES[4].img,
       title: "Daylight Warmth",
-      caption: "The gentle, reassuring comfort you bring into every conversation.",
+      caption: "Your Nature...",
     },
     {
       src: STAGES[3].img,
       title: "Confidence & Ambition",
-      caption: "Reaching new heights and setting inspiring benchmarks always.",
+      caption: "True Belief...",
     },
   ];
 
@@ -120,26 +120,13 @@ export default function EndingSection() {
 
         {/* Central Celebratory Content */}
         <div className="finale-copy">
-          <div className="finale-crown-tag" aria-hidden>
-            <span className="crown-sparkle">✨</span>
-            <span className="crown-text">A CELEBRATION FOR SHURU MA'AM JI</span>
-            <span className="crown-sparkle">✨</span>
-          </div>
-
-          <h2 className="finale-vow">
-            {vowWords.map((word) => (
-              <span key={word} className="vow-word">
-                {word}
-              </span>
-            ))}
-          </h2>
 
           <p className="finale-home">Happiest Birthday</p>
 
           <p className="finale-stamp">
-            To our dearest Shuru (Meri Pyaari Ma'am Ji).
+            Meri Pyaari Ma'am Ji
             <br />
-            May your smile remain as bright and boundless as the skies!
+            Govind Dev Ji Bless You...
           </p>
 
           {/* Interactive Birthday Candle Ritual */}
@@ -176,7 +163,7 @@ export default function EndingSection() {
               title="Click the royal seal to open personal birthday blessing"
             >
               <span>S</span>
-              <em>{sealUnlocked ? "BLESSINGS UNSEALED" : "TAP TO UNSEAL"}</em>
+              <em>{sealUnlocked ? "BLESSINGS UNSEALED" : "Govind Dev Ji Bless You"}</em>
             </button>
 
             {/* Confetti / Sparkle burst on interaction */}
@@ -195,33 +182,6 @@ export default function EndingSection() {
               </span>
             ))}
           </div>
-
-          {/* Unfolded Royal Keepsake Parchment */}
-          {sealUnlocked && (
-            <div className="finale-unsealed-letter animate-scale-up" role="region" aria-label="Birthday Blessing Parchment">
-              <div className="unsealed-ribbon">A Personal Note for 16 September</div>
-              <h4 className="unsealed-heading">Meri Pyaari Ma'am Ji</h4>
-              <p className="unsealed-body">
-                "Some people bring a calm, inspiring brilliance wherever they go — and you are undeniably one of them.
-                Thank you for being someone so admirable, authentic, and hardworking.
-                May this year reward you with the grandest milestones, vibrant health, peace of mind, and reasons to laugh every day."
-              </p>
-              <div className="unsealed-signature">
-                <span>With highest regards & heartfelt cheers,</span>
-                <strong>Dipesh ✦</strong>
-              </div>
-              <button
-                type="button"
-                className="unsealed-close-btn"
-                onClick={() => {
-                  playPopSound();
-                  setSealUnlocked(false);
-                }}
-              >
-                Close Keepsake ✕
-              </button>
-            </div>
-          )}
         </div>
 
         {/* Modal Lightbox for Wreath Memories */}

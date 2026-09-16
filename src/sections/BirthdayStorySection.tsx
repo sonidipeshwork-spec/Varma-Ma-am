@@ -22,8 +22,8 @@ export default function BirthdayStorySection() {
 
       <section id="frames" className="story-horizon-pin">
         <header className="fold-head film-head">
-          <h2>Five frames of you</h2>
-          <p>Five portraits. One birthday. The story told in what you were wearing.</p>
+          <h2>Aapki Tareef</h2>
+          <p>Thoda Sa Pareshan Karna...</p>
         </header>
         <div className="story-horizon">
           {STORY_PANELS.map((panel) => (

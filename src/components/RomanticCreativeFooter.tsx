@@ -138,29 +138,6 @@ export default function RomanticCreativeFooter() {
                 </div>
               </div>
             </div>
-
-            {/* Tap to rain sparkles button */}
-            <div className="passport-action-bar">
-              <button
-                type="button"
-                className="tap-love-btn"
-                onClick={handleFloatingSparkle}
-                aria-label="Tap to shower birthday sparkles"
-              >
-                <span className="heart-icon-bounce">🎉</span>
-                <span>Tap to shower confetti ({tapCounter > 0 ? `${tapCounter} sparkles sent` : "tap here!"})</span>
-                <span className="sparkle-hint">✨</span>
-              </button>
-
-              <button
-                type="button"
-                className="copy-vow-btn"
-                onClick={copyBirthdayKeepsake}
-                title="Save birthday keepsake note"
-              >
-                {copiedWish ? "Copied to Clipboard! 📜" : "Copy Birthday Card 📜"}
-              </button>
-            </div>
           </div>
 
           {/* Floating celebratory emojis on tap */}
@@ -187,83 +164,7 @@ export default function RomanticCreativeFooter() {
           )}
         </div>
 
-        {/* 2-COLUMN CREATIVE SHOWCASE: Birthday Time Capsule + Support Guarantees */}
-        <div className="footer-features-grid">
-          {/* Feature 1: Birthday Time Capsule */}
-          <div className="time-capsule-card">
-            <div className="capsule-card-head">
-              <span className="capsule-icon-box">⏳</span>
-              <div>
-                <h4 className="capsule-card-title">Birthday Time Capsule</h4>
-                <p className="capsule-card-sub">Inspiring wishes for your upcoming year</p>
-              </div>
-            </div>
 
-            <div className={`capsule-message-box ${capsuleOpen ? "is-open" : ""}`}>
-              {capsuleOpen ? (
-                <div className="capsule-unsealed">
-                  <span className="capsule-tag">MESSAGE {capsuleIndex + 1} OF {CAPSULE_MESSAGES.length}</span>
-                  <p className="capsule-quote">"{CAPSULE_MESSAGES[capsuleIndex]}"</p>
-                  <div className="capsule-controls">
-                    <button type="button" onClick={nextCapsule} className="capsule-nav-btn">
-                      Next Wish →
-                    </button>
-                    <button type="button" onClick={toggleCapsule} className="capsule-close-btn">
-                      Close Capsule 🔒
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="capsule-sealed">
-                  <div className="sealed-graphic">
-                    <span className="sealed-padlock">🎁</span>
-                  </div>
-                  <p className="sealed-text">
-                    A special birthday capsule sealed with golden ribbon. Click below to unwrap a celebratory wish.
-                  </p>
-                  <button type="button" onClick={toggleCapsule} className="capsule-unseal-btn">
-                    <span>Unwrap Wish</span>
-                    <span className="wax-dot">✨</span>
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Feature 2: 4 Guarantees & Cheers */}
-          <div className="promises-card">
-            <div className="promises-head">
-              <span className="promise-icon-box">🌟</span>
-              <div>
-                <h4 className="capsule-card-title">Four Guarantees For You</h4>
-                <p className="capsule-card-sub">Standing as your biggest supporter through every goal</p>
-              </div>
-            </div>
-
-            <div className="promises-list">
-              {PROMISES.map((item, idx) => {
-                const isOpen = activePromise === idx;
-                return (
-                  <div
-                    key={item.title}
-                    className={`promise-item ${isOpen ? "promise-active" : ""}`}
-                    onClick={() => {
-                      playPopSound();
-                      setActivePromise(isOpen ? null : idx);
-                    }}
-                  >
-                    <div className="promise-title-row">
-                      <span className="promise-bullet">{item.icon}</span>
-                      <span className="promise-title-text">{item.title}</span>
-                      <span className="promise-arrow">{isOpen ? "−" : "+"}</span>
-                    </div>
-                    {isOpen && <p className="promise-desc">{item.text}</p>}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
 
         {/* BOTTOM SIGN-OFF BAR */}
         <div className="footer-signature-bar">
@@ -273,24 +174,12 @@ export default function RomanticCreativeFooter() {
             </div>
             <div className="signature-text">
               <p className="sign-heartline">Designed with celebration and highest regards</p>
-              <p className="sign-names">Dipesh <span>★</span> Shuru (Ma'am Ji)</p>
+              <p className="sign-names">Shuru Ma'am Ji</p>
             </div>
           </div>
 
           <div className="signature-center">
-            <span className="footer-date-chip">📅 September 16 • Birthday Edition</span>
-          </div>
-
-          <div className="signature-right">
-            <button
-              type="button"
-              className="scroll-top-pill"
-              onClick={scrollToTop}
-              title="Return to the beginning"
-            >
-              <span>Back to Top</span>
-              <span className="arrow-bubble">↑</span>
-            </button>
+            <span className="footer-date-chip">September 16 • Birthday Edition</span>
           </div>
         </div>
 
@@ -299,7 +188,7 @@ export default function RomanticCreativeFooter() {
           <span className="ribbon-star">✦</span>
           <span>May all your dreams turn to reality</span>
           <span className="ribbon-star">✦</span>
-          <span>Bas tum hasti raho</span>
+          <span>Bas aap hasti raho</span>
         </div>
       </div>
     </footer>

@@ -12,11 +12,10 @@ export default function FilmSection() {
     <section id="film" className="fold fold-film">
       <div className="film-pin">
         <header className="fold-head film-head">
-          <p className="film-eyebrow">Twelve stills</p>
-          <h2>A film for you</h2>
+          <p className="film-eyebrow">Lahme</p>
+          <h2>Aapki Ek Chhoti Si Film</h2>
           <p className="film-lede">
-            Real frames from your days — not stock poetry. Keep scrolling and
-            the reel pulls sideways, one still at a time.
+            Aapke har din ke aslee aur pyaare frames bas scroll karte jaiye, aur har ek tasveer aapki kahani bayaan karegi.
           </p>
           <p className="film-counter" aria-live="polite">
             <span className="film-counter-current" data-film-frame>

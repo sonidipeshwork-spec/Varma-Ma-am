@@ -6,7 +6,6 @@ import {
   LocketGate,
   BirthdayStorySection,
   OpeningSection,
-  QualitiesSection,
   JourneySection,
   FilmSection,
   BirthdayBookSection,
@@ -103,7 +102,6 @@ export default function RomanticApp() {
         <>
           <BirthdayStorySection />
           <OpeningSection />
-          <QualitiesSection />
           <JourneySection />
           <FilmSection />
           <BirthdayBookSection />
